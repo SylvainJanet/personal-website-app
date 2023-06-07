@@ -1,9 +1,7 @@
 package fr.sylvainjanet.app.test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -16,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 /**
- * Test the app.
+ * Tests the App controller.
  * 
  * @author Sylvain
  *
@@ -26,21 +24,21 @@ import org.springframework.test.web.servlet.MockMvc;
 class AppTest {
 
   /**
-   * profile.
+   * Current environment.
    */
   @Value("${app.environment}")
   private String environment;
 
   /**
-   * Autowired mockMvc.
+   * Autowired mockMvc used to mock http requests.
    */
   @Autowired
   private MockMvc mockMvc;
 
   /**
-   * Checks the /hello.
+   * GET /hello should return Hello world and the environment name.
    *
-   * @throws Exception if error occurs.
+   * @throws Exception if something goes wrong during the testing.
    */
   @Test
   void testHello() throws Exception {
@@ -49,16 +47,4 @@ class AppTest {
         .andExpect(content().string(equalTo("Hello World ! - " + environment)));
   }
 
-  /**
-   * Checks the /add-message.
-   *
-   * @throws Exception if error occurs.
-   */
-  @Test
-  void testAddMessage() throws Exception {
-    String content = "Test de l'application";
-    this.mockMvc.perform(put("/add-message?content=" + content).with(csrf()))
-        .andDo(print()).andExpect(status().isOk()).andExpect(
-            content().string(equalTo("message \"" + content + "\" added.")));
-  }
 }

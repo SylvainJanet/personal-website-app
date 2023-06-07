@@ -1,5 +1,7 @@
 package fr.sylvainjanet.app;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,19 +10,16 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fr.sylvainjanet.app.entities.Message;
-import fr.sylvainjanet.app.repo.MessageRepository;
+import fr.sylvainjanet.app.config.InitialData;
+import fr.sylvainjanet.app.entities.LocalizedString;
+import fr.sylvainjanet.app.repo.LocalizedStringRepository;
 
 /**
- * App.
+ * Main App.
  *
  * @author Sylvain Janet
  *
@@ -32,12 +31,13 @@ import fr.sylvainjanet.app.repo.MessageRepository;
 public class App extends SpringBootServletInitializer {
 
   /**
-   * Profile name from app.properties.
+   * Profile name from app.properties. Uses the ConfigurationProperties
+   * annotation to bind the property and avoid warnings in .properties file
    */
   private String environment;
 
   /**
-   * getProfile.
+   * Get the current environment (maven profile).
    * 
    * @return the environment
    */
@@ -46,48 +46,47 @@ public class App extends SpringBootServletInitializer {
   }
 
   /**
-   * setProfile.
+   * Set the current environment. Used for property binding by the
+   * ConfigurationProperties annotation.
    * 
-   * @param environmentToSet the profile
+   * @param environment the profile
    */
-  public void setEnvironment(final String environmentToSet) {
-    this.environment = environmentToSet;
+  public void setEnvironment(final String environment) {
+    this.environment = environment;
   }
 
   /**
-   * The repo.
-   */
-  @Autowired
-  private MessageRepository repository;
-
-  /**
-   * home.
+   * Mapping used for basic testing of the app functionality : the API Hello
+   * world.
    *
    * @return hello
    */
   @GetMapping("/hello")
   @ResponseBody
   String home() {
+    if (!isInit) {
+      List<LocalizedString> initData = InitialData.INIT_LOCALIZED_STRING;
+      for (LocalizedString localizedString : initData) {
+        repo.save(localizedString);
+      }
+      isInit = true;
+    }
     return "Hello World ! - " + environment;
   }
 
   /**
-   * Create new message in db.
-   * 
-   * @param content the content to put
-   * @return a confirmation message
+   * Localized string repo to initialize data.
    */
-  @PutMapping(path = "/add-message", produces = "text/plain")
-  ResponseEntity<String> addMessage(
-      @RequestParam(required = true) final String content) {
-
-    repository.save(new Message(content));
-    return new ResponseEntity<>("message \"" + content + "\" added.",
-        HttpStatus.OK);
-  }
+  @Autowired
+  private LocalizedStringRepository repo;
 
   /**
-   * Main.
+   * Has data already been initialized.
+   */
+  private boolean isInit = false;
+
+  /**
+   * Launch the spring application.
    *
    * @param args args
    * @throws Exception exception
@@ -97,7 +96,7 @@ public class App extends SpringBootServletInitializer {
   }
 
   /**
-   * configure.
+   * Build the spring application.
    */
   @Override
   protected SpringApplicationBuilder configure(

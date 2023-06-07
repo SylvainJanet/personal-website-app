@@ -5,7 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Configuration class.
+ * Configuration class. Contains parameters used in the app configuration, such
+ * as web security (cors config, csrf config, ...), database restrictions (max
+ * property size, ...).
  * 
  * @author Sylvain
  *
@@ -18,6 +20,11 @@ public final class ConfigurationParams {
   public static final int MAX_STR_SIZE = 50;
 
   /**
+   * Max string very long size for DB entities.
+   */
+  public static final int MAX_LONG_STR_SIZE = 10000;
+
+  /**
    * Origins allowed in prod environment.
    */
   public static final List<String> ORIGINS_ALLOWED_PROD =
@@ -25,7 +32,7 @@ public final class ConfigurationParams {
           "https://dev.sylvainjanet.fr"));
 
   /**
-   * Origins allowed in prod environment.
+   * Origins allowed in dev environment.
    */
   public static final List<String> ORIGINS_ALLOWED_DEV =
       Collections.unmodifiableList(Arrays.asList("http://localhost:4200/",

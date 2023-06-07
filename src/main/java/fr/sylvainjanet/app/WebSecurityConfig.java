@@ -17,7 +17,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import fr.sylvainjanet.app.config.ConfigurationParams;
 
 /**
- * Web Security Config.
+ * Web Security Configuration.
  *
  * @author Sylvain Janet
  *
@@ -26,6 +26,14 @@ import fr.sylvainjanet.app.config.ConfigurationParams;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
+  /**
+   * Used to prevent spring boot auto configuration and security password
+   * generation.
+   * 
+   * @param authenticationConfiguration the authentication configuration
+   * @return the authentication manager
+   * @throws Exception if an error occurs during configuration
+   */
   @Bean
   static AuthenticationManager authenticationManagerBean(
       final AuthenticationConfiguration authenticationConfiguration)
@@ -42,7 +50,9 @@ public class WebSecurityConfig {
   private String environment;
 
   /**
-   * cors Configuration.
+   * CORS Configuration. The configuration is different in dev environment
+   * (where everything is done locally) and staging/prod environment (where the
+   * VPS is used)
    *
    * @return cors Configuration
    */
@@ -74,7 +84,8 @@ public class WebSecurityConfig {
   }
 
   /**
-   * Set security.
+   * Set security : uses the cors configuration set in this class and use csrf
+   * token from cookie to header.
    *
    * @param http the http object
    * @return the filter chain
