@@ -266,5 +266,5 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           port: ${{ secrets.VPS_PORT }}
           key: ${{ secrets.VPS_KEY }}
-          source: "./app.war"
+          source: "./app-dev.war"
           target: ${{secrets.VPS_TOMCAT_PATH}}
