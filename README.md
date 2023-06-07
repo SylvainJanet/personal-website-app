@@ -1,2 +1,4 @@
-# personal-website-app
-Personal website app - sylvainjanet.fr
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=SylvainJanet_sampleJavaApp&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=SylvainJanet_sampleJavaApp)[![CodeQL](https://github.com/SylvainJanet/sampleJavaApp/actions/workflows/code-QL.yml/badge.svg)](https://github.com/SylvainJanet/sampleJavaApp/actions/workflows/code-QL.yml)[![Dependency Review](https://github.com/SylvainJanet/sampleJavaApp/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/SylvainJanet/sampleJavaApp/actions/workflows/dependency-review.yml)[![Deployed](https://github.com/SylvainJanet/sampleJavaApp/actions/workflows/ci-cd-main.yml/badge.svg)](https://github.com/SylvainJanet/sampleJavaApp/actions/workflows/ci-cd-main.yml)
+
+# sample Java App
+Sample Java App. Used to try and deploy on my VPS
