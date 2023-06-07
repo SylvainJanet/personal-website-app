@@ -5,6 +5,7 @@
 	<groupId>fr.sylvainjanet</groupId>
 	<artifactId>app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>app</name>
 	<description>sylvainjanet.fr backend app</description>
 	<url>http://sylvain.janet.fr/app</url>
