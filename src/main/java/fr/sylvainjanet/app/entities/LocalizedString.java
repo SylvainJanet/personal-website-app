@@ -1,6 +1,6 @@
 package fr.sylvainjanet.app.entities;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -73,8 +73,7 @@ public class LocalizedString {
   @MapKeyEnumerated(EnumType.STRING)
   @Column(name = EntitiesParams.LOCALIZED_STRING_TEXT_NAME,
       length = ConfigurationParams.MAX_LONG_STR_SIZE, nullable = false)
-  private Map<TextLanguage, String> textMap =
-      new HashMap<TextLanguage, String>();
+  private Map<TextLanguage, String> textMap = new EnumMap<>(TextLanguage.class);
 
   /**
    * Is this localized string defined for all languages ? The textMap should

@@ -2,6 +2,7 @@ package fr.sylvainjanet.app.config;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public final class InitialData {
               put(TextLanguage.ENGLISH, "Sylvain Janet");
             }
           }), new LocalizedString(Arrays.asList("french-language-name"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -45,7 +46,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("english-language-name"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -58,7 +59,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("main-title"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -71,7 +72,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("occupation-trainer"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -84,7 +85,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("occupation-mathematician"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -97,7 +98,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("occupation-musician"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -110,7 +111,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("occupation-fullstack-dev"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -123,7 +124,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("skills-title"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -136,7 +137,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("java-language"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -149,7 +150,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("csharp-language"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -162,7 +163,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("python-language"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -175,7 +176,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("js-ts-language"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -188,7 +189,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("sql-language"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -201,7 +202,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("html-language"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -214,7 +215,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("latex-language"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -227,7 +228,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("about-me-title"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
@@ -240,7 +241,7 @@ public final class InitialData {
                 }
               }),
           new LocalizedString(Arrays.asList("about-me-content"),
-              new HashMap<TextLanguage, String>() {
+              new EnumMap<TextLanguage, String>(TextLanguage.class) {
                 /**
                  * Id for serialization.
                  */
