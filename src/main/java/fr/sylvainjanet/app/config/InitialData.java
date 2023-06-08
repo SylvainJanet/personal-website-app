@@ -153,9 +153,9 @@ public final class InitialData {
     TEXTMAP_OCCUPATION_MUSICIAN.put(TextLanguage.ENGLISH, "Musician");
 
     TEXTMAP_OCCUPATION_FULLSTACK_DEV.put(TextLanguage.FRENCH,
-        "FullStack Developer");
-    TEXTMAP_OCCUPATION_FULLSTACK_DEV.put(TextLanguage.ENGLISH,
         "Développeur fullstack");
+    TEXTMAP_OCCUPATION_FULLSTACK_DEV.put(TextLanguage.ENGLISH,
+        "FullStack Developer");
 
     TEXTMAP_SKILLS_TITLE.put(TextLanguage.FRENCH, "Compétences");
     TEXTMAP_SKILLS_TITLE.put(TextLanguage.ENGLISH, "Skills");

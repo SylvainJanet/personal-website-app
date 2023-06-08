@@ -3,6 +3,7 @@ package fr.sylvainjanet.app.entities;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -61,6 +62,7 @@ public class LocalizedString {
 
   /**
    * Map containing all the messages corresponding to every language.
+   * https://www.baeldung.com/jpa-persisting-enums-in-jpa
    */
   @ElementCollection(fetch = FetchType.LAZY)
   @CollectionTable(name = EntitiesParams.LOCALIZED_STRING_TEXTMAP_NAME,
@@ -216,6 +218,41 @@ public class LocalizedString {
     super();
     this.selectors = selectors;
     this.textMap = textMap;
+  }
+
+  /**
+   * Hashcode based on id.
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
+  }
+
+  /**
+   * Equals based on id.
+   */
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    LocalizedString other = (LocalizedString) obj;
+    return Objects.equals(id, other.id);
+  }
+
+  /**
+   * To String method.
+   */
+  @Override
+  public String toString() {
+    return "LocalizedString [id=" + id + ", selectors=" + selectors
+        + ", textMap=" + textMap + "]";
   }
 
 }
