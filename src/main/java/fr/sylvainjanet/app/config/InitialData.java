@@ -187,32 +187,32 @@ public final class InitialData {
     TEXTMAP_ABOUT_ME_TITLE.put(TextLanguage.ENGLISH, "About me");
 
     TEXTMAP_ABOUT_ME_CONTENT.put(TextLanguage.FRENCH,
-        "Développeur FullStack et formateur." + "[[1]]"
+        "Développeur FullStack et formateur." + "[[]]"
             + "Mon parcours professionnel a commencé par des études "
             + "en mathématiques : je suis normalien, agrégé de "
             + "mathématiques, et j'ai un master en logique et en "
-            + "informatique théorique." + "[[2]]"
+            + "informatique théorique." + "[[]]"
             + "J'ai entamé ma carrière dans le développement "
             + "informatique avec un titre professionnel Concepteur "
-            + "développeur d'applications Java." + "[[3]]"
+            + "développeur d'applications Java." + "[[]]"
             + "J'ai participé au développement de plusieurs projets. "
             + "J'ai des compétences dans des frameworks back-end"
             + " comme Spring boot ou Entity Framework, et dans des "
             + "frameworks front-end comme Angular ou Vue.js. J'ai "
             + "également donné des formations en Python, Java, C#, "
-            + "Javascript, SQL ou encore en Algorithmique." + "[[4]]"
+            + "Javascript, SQL ou encore en Algorithmique." + "[[]]"
             + "Enfin, j'ai plusieurs projets individuels, dont la "
             + "portée est plus large et reflète mes intérêts "
             + "personnels. De l'expression artistique avec la "
             + "musique, ma curiosité pour les langues, ma passion "
-            + "pour les jeux." + "[[5]]"
-            + "Pour plus d'informations, voir " + "[[6,mon cv]]");
+            + "pour les jeux." + "[[]]"
+            + "Pour plus d'informations, voir " + "[[1,mon cv]]");
     TEXTMAP_ABOUT_ME_CONTENT.put(TextLanguage.ENGLISH,
-        "FullStack developer and trainer.[[1]]" + "[[1]]" + "blablabla"
-            + "[[2]]" + "blablablablabla" + "[[3]]"
-            + "blablablablablablablablabla" + "[[4]]"
-            + "blablablablablablablablablablablabla" + "[[5]]"
-            + "For more information, see " + "[[6,my cv]]");
+        "FullStack developer and trainer.[[]]" + "blablabla"
+            + "[[]]" + "blablablablabla" + "[[]]"
+            + "blablablablablablablablabla" + "[[]]"
+            + "blablablablablablablablablablablabla" + "[[]]"
+            + "For more information, see " + "[[1,my cv]]");
   }
 
   /**
@@ -225,7 +225,7 @@ public final class InitialData {
           new LocalizedString(Arrays.asList("french-language-name"),
               TEXTMAP_FRENCH_LANGUAGE_NAME),
           new LocalizedString(Arrays.asList("english-language-name"),
-              TEXTMAP_FRENCH_LANGUAGE_NAME),
+              TEXTMAP_ENGLISH_LANGUAGE_NAME),
           new LocalizedString(Arrays.asList("main-title"),
               TEXTMAP_MAIN_TITLE),
           new LocalizedString(Arrays.asList("occupation-trainer"),
