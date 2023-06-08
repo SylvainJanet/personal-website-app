@@ -82,6 +82,18 @@ public final class ConfigurationParams {
    */
   public static final Long MAX_AGE_PREFLIGHT_CACHE = 7200L;
 
+  /**
+   * Default string when a selector has not been found.
+   */
+  public static final String DEFAULT_TEXT_NO_SELECTOR_FOUND =
+      "No text to display";
+
+  /**
+   * Default string when a translation has not been found.
+   */
+  public static final String DEFAULT_TEXT_NO_TRANSLATION_FOUND =
+      "No translation";
+
   private ConfigurationParams() {
 
   }
