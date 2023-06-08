@@ -71,6 +71,27 @@ public final class InitialData {
   /**
    * Texts for sylvain janet.
    */
+  private static final Map<TextLanguage, String> TEXTMAP_INFO_NAME_FIELD =
+      new EnumMap<>(TextLanguage.class);
+  /**
+   * Texts for sylvain janet.
+   */
+  private static final Map<TextLanguage, String> TEXTMAP_INFO_PROFILE_FIELD =
+      new EnumMap<>(TextLanguage.class);
+  /**
+   * Texts for sylvain janet.
+   */
+  private static final Map<TextLanguage, String> TEXTMAP_INFO_EMAIL_FIELD =
+      new EnumMap<>(TextLanguage.class);
+  /**
+   * Texts for sylvain janet.
+   */
+  private static final Map<TextLanguage, String> TEXTMAP_INFO_PHONE_FIELD =
+      new EnumMap<>(TextLanguage.class);
+
+  /**
+   * Texts for sylvain janet.
+   */
   private static final Map<TextLanguage, String> TEXTMAP_SKILLS_TITLE =
       new EnumMap<>(TextLanguage.class);
 
@@ -128,6 +149,18 @@ public final class InitialData {
   private static final Map<TextLanguage, String> TEXTMAP_ABOUT_ME_CONTENT =
       new EnumMap<>(TextLanguage.class);
 
+  /**
+   * Texts for sylvain janet.
+   */
+  private static final Map<TextLanguage, String> TEXTMAP_WEBSITE =
+      new EnumMap<>(TextLanguage.class);
+
+  /**
+   * Texts for sylvain janet.
+   */
+  private static final Map<TextLanguage, String> TEXTMAP_CV_FILENAME =
+      new EnumMap<>(TextLanguage.class);
+
   static {
     TEXTMAP_SYLVAIN_JANET.put(TextLanguage.FRENCH, "Sylvain Janet");
     TEXTMAP_SYLVAIN_JANET.put(TextLanguage.ENGLISH, "Sylvain Janet");
@@ -156,6 +189,18 @@ public final class InitialData {
         "Développeur fullstack");
     TEXTMAP_OCCUPATION_FULLSTACK_DEV.put(TextLanguage.ENGLISH,
         "FullStack Developer");
+
+    TEXTMAP_INFO_NAME_FIELD.put(TextLanguage.FRENCH, "Nom");
+    TEXTMAP_INFO_NAME_FIELD.put(TextLanguage.ENGLISH, "Name");
+
+    TEXTMAP_INFO_PROFILE_FIELD.put(TextLanguage.FRENCH, "Profil");
+    TEXTMAP_INFO_PROFILE_FIELD.put(TextLanguage.ENGLISH, "Profile");
+
+    TEXTMAP_INFO_EMAIL_FIELD.put(TextLanguage.FRENCH, "Email");
+    TEXTMAP_INFO_EMAIL_FIELD.put(TextLanguage.ENGLISH, "Email");
+
+    TEXTMAP_INFO_PHONE_FIELD.put(TextLanguage.FRENCH, "Téléphone");
+    TEXTMAP_INFO_PHONE_FIELD.put(TextLanguage.ENGLISH, "Phone");
 
     TEXTMAP_SKILLS_TITLE.put(TextLanguage.FRENCH, "Compétences");
     TEXTMAP_SKILLS_TITLE.put(TextLanguage.ENGLISH, "Skills");
@@ -187,7 +232,7 @@ public final class InitialData {
     TEXTMAP_ABOUT_ME_TITLE.put(TextLanguage.ENGLISH, "About me");
 
     TEXTMAP_ABOUT_ME_CONTENT.put(TextLanguage.FRENCH,
-        "Développeur FullStack et formateur." + "[[]]"
+        "Développeur FullStack et Formateur." + "[[]]"
             + "Mon parcours professionnel a commencé par des études "
             + "en mathématiques : je suis normalien, agrégé de "
             + "mathématiques, et j'ai un master en logique et en "
@@ -197,22 +242,43 @@ public final class InitialData {
             + "développeur d'applications Java." + "[[]]"
             + "J'ai participé au développement de plusieurs projets. "
             + "J'ai des compétences dans des frameworks back-end"
-            + " comme Spring boot ou Entity Framework, et dans des "
-            + "frameworks front-end comme Angular ou Vue.js. J'ai "
-            + "également donné des formations en Python, Java, C#, "
-            + "Javascript, SQL ou encore en Algorithmique." + "[[]]"
+            + " comme [[1,Spring boot]] ou [[2,Entity Framework]], et dans des "
+            + "frameworks front-end comme [[3,Angular]]. J'ai "
+            + "également donné des formations en [[4,Python]], [[5,Java]], "
+            + "[[6,C#]], [[7,Javascript]], [[8,SQL]] ou encore en "
+            + "[[9,Algorithmique]]." + "[[]]"
             + "Enfin, j'ai plusieurs projets individuels, dont la "
             + "portée est plus large et reflète mes intérêts "
             + "personnels. De l'expression artistique avec la "
             + "musique, ma curiosité pour les langues, ma passion "
-            + "pour les jeux." + "[[]]"
-            + "Pour plus d'informations, voir " + "[[1,mon cv]]");
+            + "pour les jeux." + "[[]]" + "Pour plus d'informations, voir "
+            + "[[10,mon cv]].");
     TEXTMAP_ABOUT_ME_CONTENT.put(TextLanguage.ENGLISH,
-        "FullStack developer and trainer.[[]]" + "blablabla"
-            + "[[]]" + "blablablablabla" + "[[]]"
-            + "blablablablablablablablabla" + "[[]]"
-            + "blablablablablablablablablablablabla" + "[[]]"
-            + "For more information, see " + "[[1,my cv]]");
+        "FullStack developer and Trainer." + "[[]]"
+            + "My professional journey began with studies in mathematics: "
+            + "I am a graduate of the École Normale Supérieure, an associate "
+            + "professor of mathematics, and I hold a master's degree in logic "
+            + "and theoretical computer science." + "[[]]"
+            + "I started my career in software development with a professional "
+            + "title as a Java application developer." + "[[]]"
+            + "I have been involved in the development of several projects. "
+            + "I have skills in back-end frameworks like [[1,Spring Boot]] and "
+            + "[[2,Entity Framework]], as well as front-end frameworks like "
+            + "[[3,Angular]]. I have also provided training in [[4,Python]], "
+            + "[[5,Java]], [[6,C#]], [[7,JavaScript]], [[8,SQL]], and "
+            + "[[9,Algorithmics]]." + "[[]]"
+            + "Furthermore, I have several individual projects that have a "
+            + "broader scope and reflect my personal interests, such as "
+            + "artistic expression through music, my curiosity for languages, "
+            + "and my passion for games." + "[[]]"
+            + "For more information, please refer to [[10,my CV]].");
+
+    TEXTMAP_WEBSITE.put(TextLanguage.FRENCH, "sylvainjanet.fr");
+    TEXTMAP_WEBSITE.put(TextLanguage.ENGLISH, "sylvainjanet.com");
+
+    TEXTMAP_CV_FILENAME.put(TextLanguage.FRENCH, "JanetSylvain_CV_FR.pdf");
+    TEXTMAP_CV_FILENAME.put(TextLanguage.ENGLISH,
+        "JanetSylvain_CV_EN.pdf");
   }
 
   /**
@@ -236,6 +302,14 @@ public final class InitialData {
               TEXTMAP_OCCUPATION_MUSICIAN),
           new LocalizedString(Arrays.asList("occupation-fullstack-dev"),
               TEXTMAP_OCCUPATION_FULLSTACK_DEV),
+          new LocalizedString(Arrays.asList("about-name-field"),
+              TEXTMAP_INFO_NAME_FIELD),
+          new LocalizedString(Arrays.asList("about-profile-field"),
+              TEXTMAP_INFO_PROFILE_FIELD),
+          new LocalizedString(Arrays.asList("about-email-field"),
+              TEXTMAP_INFO_EMAIL_FIELD),
+          new LocalizedString(Arrays.asList("about-phone-field"),
+              TEXTMAP_INFO_PHONE_FIELD),
           new LocalizedString(Arrays.asList("skills-title"),
               TEXTMAP_SKILLS_TITLE),
           new LocalizedString(Arrays.asList("java-language"),
@@ -255,7 +329,10 @@ public final class InitialData {
           new LocalizedString(Arrays.asList("about-me-title"),
               TEXTMAP_ABOUT_ME_TITLE),
           new LocalizedString(Arrays.asList("about-me-content"),
-              TEXTMAP_ABOUT_ME_CONTENT)));
+              TEXTMAP_ABOUT_ME_CONTENT),
+          new LocalizedString(Arrays.asList("website"), TEXTMAP_WEBSITE),
+          new LocalizedString(Arrays.asList("cv-file-name"),
+              TEXTMAP_CV_FILENAME)));
 
   private InitialData() {
 
