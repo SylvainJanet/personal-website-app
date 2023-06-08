@@ -6,16 +6,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
- * Test the webapp.
+ * Test the webapp global behaviour.
  *
  * @author Sylvain
  *
  */
 @SpringBootTest
-class TestingWebApplicationTests {
+class WebApplicationTests {
 
   /**
-   * Test if the application context can start.
+   * The application context should load.
    */
   @Test
   void contextLoads() {

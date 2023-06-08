@@ -7,3 +7,6 @@ sun
 
 ${org.checkstyle.sun.suppressionxpathfilter.config} : checkstyle-xpath-suppressions.xml
 ${org.checkstyle.sun.suppressionfilter.config} : checkstyle-suppressions.xml
+
+
+https://stackoverflow.com/questions/4023185/disable-a-particular-checkstyle-rule-for-a-particular-line-of-code

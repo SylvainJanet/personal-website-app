@@ -20,10 +20,10 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<exec.mainClass>fr.sylvainjanet.app.App</exec.mainClass>
 		<jasypt.spring.boot.starter.version>3.0.5</jasypt.spring.boot.starter.version>
-		<sonar.maven.plugin.version>3.3-SNAPSHOT</sonar.maven.plugin.version>
-		<maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
-		<jacoco.maven.plugin.version>0.8.7</jacoco.maven.plugin.version>
-		<jasypt.maven.plugin.version>3.0.5</jasypt.maven.plugin.version>
+		<sonar.maven.plugin.version>3.9.1.2184</sonar.maven.plugin.version>
+		<maven.checkstyle.plugin.version>3.3.0</maven.checkstyle.plugin.version>
+		<jacoco.maven.plugin.version>0.8.10</jacoco.maven.plugin.version>
+		<jasypt.maven.plugin.version>3.0.5</jasypt.maven.plugin.version> 
 	</properties>
 	<dependencies>
 		<dependency>
