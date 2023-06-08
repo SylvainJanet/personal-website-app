@@ -21,112 +21,112 @@ public final class InitialData {
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_SYLVAIN_JANET =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_FRENCH_LANGUAGE_NAME =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_ENGLISH_LANGUAGE_NAME =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_MAIN_TITLE =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_OCCUPATION_TRAINER =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   // CSOFF: LineLength - this line can't be made shorter
   private static final Map<TextLanguage, String> TEXTMAP_OCCUPATION_MATHEMATICIAN =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
   // CSON: LineLength
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_OCCUPATION_MUSICIAN =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   // CSOFF: LineLength - this line can't be made shorter
   private static final Map<TextLanguage, String> TEXTMAP_OCCUPATION_FULLSTACK_DEV =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
   // CSON: LineLength
 
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_SKILLS_TITLE =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_JAVA_LANGUAGE =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_CSHARP_LANGUAGE =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_PYTHON_LANGUAGE =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_JS_TS_LANGUAGE =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_SQL_LANGUAGE =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_HTML_LANGUAGE =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_LATEX_LANGUAGE =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_ABOUT_ME_TITLE =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   /**
    * Texts for sylvain janet.
    */
   private static final Map<TextLanguage, String> TEXTMAP_ABOUT_ME_CONTENT =
-      new EnumMap<TextLanguage, String>(TextLanguage.class);
+      new EnumMap<>(TextLanguage.class);
 
   static {
     TEXTMAP_SYLVAIN_JANET.put(TextLanguage.FRENCH, "Sylvain Janet");

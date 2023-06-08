@@ -36,8 +36,8 @@ public enum TextLanguage {
    */
   private final String script;
   /**
-   * Locale object constructed with the language, region, variant and script
-   * provided. https://www.baeldung.com/java-8-localization
+   * Locale object constructed with the language, region, variant and
+   * script provided. https://www.baeldung.com/java-8-localization
    */
   private final Locale locale;
 
@@ -49,14 +49,14 @@ public enum TextLanguage {
    * @param variant  the variant
    * @param script   the script
    */
-  TextLanguage(final String language, final String region, final String variant,
-      final String script) {
+  TextLanguage(final String language, final String region,
+      final String variant, final String script) {
     this.language = language;
     this.region = region;
     this.variant = variant;
     this.script = script;
-    this.locale = new Locale.Builder().setLanguage(language).setRegion(region)
-        .setVariant(variant).setScript(script).build();
+    this.locale = new Locale.Builder().setLanguage(language)
+        .setRegion(region).setVariant(variant).setScript(script).build();
   }
 
   /**

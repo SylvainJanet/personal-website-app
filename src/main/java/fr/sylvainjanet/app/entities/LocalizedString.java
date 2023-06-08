@@ -42,9 +42,9 @@ public class LocalizedString {
   private Long id;
 
   /**
-   * List of selectors where this message is used. This could correspond to a
-   * css class, an html id, or any other string. This way, the same message can
-   * be consistently used at different places.
+   * List of selectors where this message is used. This could correspond to
+   * a css class, an html id, or any other string. This way, the same
+   * message can be consistently used at different places.
    * https://www.baeldung.com/java-jpa-persist-string-list
    * https://www.baeldung.com/hibernate-initialize-proxy-exception
    */
@@ -52,8 +52,8 @@ public class LocalizedString {
   @CollectionTable(name = EntitiesParams.LOCALIZED_STRING_SELECTORS_NAME,
       joinColumns = @JoinColumn(
           name = EntitiesParams.LOCALIZED_STRING_NAME + "_id"),
-      uniqueConstraints = { @UniqueConstraint(
-          columnNames = { EntitiesParams.LOCALIZED_STRING_SELECTOR_NAME }) })
+      uniqueConstraints = { @UniqueConstraint(columnNames = {
+          EntitiesParams.LOCALIZED_STRING_SELECTOR_NAME }) })
   @Column(name = EntitiesParams.LOCALIZED_STRING_SELECTOR_NAME,
       nullable = false, length = ConfigurationParams.MAX_STR_SIZE,
       unique = true)
@@ -73,13 +73,15 @@ public class LocalizedString {
   @MapKeyEnumerated(EnumType.STRING)
   @Column(name = EntitiesParams.LOCALIZED_STRING_TEXT_NAME,
       length = ConfigurationParams.MAX_LONG_STR_SIZE, nullable = false)
-  private Map<TextLanguage, String> textMap = new EnumMap<>(TextLanguage.class);
+  private Map<TextLanguage, String> textMap =
+      new EnumMap<>(TextLanguage.class);
 
   /**
-   * Is this localized string defined for all languages ? The textMap should
-   * have values for every TextLanguage.
+   * Is this localized string defined for all languages ? The textMap
+   * should have values for every TextLanguage.
    * 
-   * @return Whether or not this localized string defined for all languages.
+   * @return Whether or not this localized string defined for all
+   *         languages.
    */
   public boolean isDefinedForAllLanguages() {
     for (TextLanguage language : TextLanguage.values()) {
@@ -91,8 +93,8 @@ public class LocalizedString {
   }
 
   /**
-   * Is this localized string defined for a language ? The textMap should have a
-   * value for this language.
+   * Is this localized string defined for a language ? The textMap should
+   * have a value for this language.
    * 
    * @param language the language to look at
    * @return Whether or not this localized string defined for a language
@@ -102,11 +104,11 @@ public class LocalizedString {
   }
 
   /**
-   * Is this localized string defined and a non null non empty string for all
-   * languages ? The textMap should have values for every TextLanguage.
+   * Is this localized string defined and a non null non empty string for
+   * all languages ? The textMap should have values for every TextLanguage.
    * 
-   * @return Whether or not this localized string defined and a non null non
-   *         empty string for all languages.
+   * @return Whether or not this localized string defined and a non null
+   *         non empty string for all languages.
    */
   public boolean isNonEmptyForAllLanguages() {
     for (TextLanguage language : TextLanguage.values()) {
@@ -123,17 +125,18 @@ public class LocalizedString {
    * language ? The textMap should have a value for this language.
    * 
    * @param language the language to look at
-   * @return Whether or not this localized string defined and a non null non
-   *         empty string for a language
+   * @return Whether or not this localized string defined and a non null
+   *         non empty string for a language
    */
   public boolean isNonEmptyFor(final TextLanguage language) {
-    return textMap.keySet().contains(language) && textMap.get(language) != null
+    return textMap.keySet().contains(language)
+        && textMap.get(language) != null
         && !textMap.get(language).isEmpty();
   }
 
   /**
-   * Is this localized string used for a selector ? The list of selectors should
-   * contain the selector.
+   * Is this localized string used for a selector ? The list of selectors
+   * should contain the selector.
    * 
    * @param selector the selector to test
    * @return whether or not his localized string used for the selector.

@@ -56,8 +56,8 @@ public class App extends SpringBootServletInitializer {
   }
 
   /**
-   * Mapping used for basic testing of the app functionality : the API Hello
-   * world.
+   * Mapping used for basic testing of the app functionality : the API
+   * Hello world.
    *
    * @return hello
    */

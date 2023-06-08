@@ -51,8 +51,8 @@ public class WebSecurityConfig {
 
   /**
    * CORS Configuration. The configuration is different in dev environment
-   * (where everything is done locally) and staging/prod environment (where the
-   * VPS is used)
+   * (where everything is done locally) and staging/prod environment (where
+   * the VPS is used)
    *
    * @return cors Configuration
    */
@@ -69,10 +69,14 @@ public class WebSecurityConfig {
     corsConfig.setMaxAge(ConfigurationParams.MAX_AGE_PREFLIGHT_CACHE);
 
     if (environment.equals("dev") || environment.equals("coverage-dev")) {
-      corsConfig.setAllowedOrigins(ConfigurationParams.ORIGINS_ALLOWED_DEV);
-      corsConfig.setAllowedMethods(ConfigurationParams.METHODS_ALLOWED_DEV);
-      corsConfig.setAllowedHeaders(ConfigurationParams.HEADERS_ALLOWED_DEV);
-      corsConfig.setExposedHeaders(ConfigurationParams.EXPOSED_HEADERS_DEV);
+      corsConfig
+          .setAllowedOrigins(ConfigurationParams.ORIGINS_ALLOWED_DEV);
+      corsConfig
+          .setAllowedMethods(ConfigurationParams.METHODS_ALLOWED_DEV);
+      corsConfig
+          .setAllowedHeaders(ConfigurationParams.HEADERS_ALLOWED_DEV);
+      corsConfig
+          .setExposedHeaders(ConfigurationParams.EXPOSED_HEADERS_DEV);
       corsConfig.setAllowCredentials(true);
       corsConfig.setMaxAge(ConfigurationParams.MAX_AGE_PREFLIGHT_CACHE);
     }
@@ -84,18 +88,20 @@ public class WebSecurityConfig {
   }
 
   /**
-   * Set security : uses the cors configuration set in this class and use csrf
-   * token from cookie to header.
+   * Set security : uses the cors configuration set in this class and use
+   * csrf token from cookie to header.
    *
    * @param http the http object
    * @return the filter chain
    * @throws Exception exception
    */
   @Bean
-  SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
+  SecurityFilterChain filterChain(final HttpSecurity http)
+      throws Exception {
     http.cors().configurationSource(corsConfiguration()).and()
         .authorizeRequests().anyRequest().anonymous().and().csrf()
-        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        .csrfTokenRepository(
+            CookieCsrfTokenRepository.withHttpOnlyFalse());
     // https://www.baeldung.com/spring-security-csrf
 
     // https://stackoverflow.com/questions/24680302/

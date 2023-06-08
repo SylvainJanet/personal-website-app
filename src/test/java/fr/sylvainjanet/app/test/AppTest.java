@@ -43,8 +43,8 @@ class AppTest {
   @Test
   void testHello() throws Exception {
     this.mockMvc.perform(get("/hello")).andDo(print())
-        .andExpect(status().isOk())
-        .andExpect(content().string(equalTo("Hello World ! - " + environment)));
+        .andExpect(status().isOk()).andExpect(
+            content().string(equalTo("Hello World ! - " + environment)));
   }
 
 }
