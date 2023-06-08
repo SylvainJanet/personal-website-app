@@ -36,7 +36,7 @@ public class LocalizedStringController {
   ResponseEntity<String> getText(
       @RequestParam(required = true) final String selector,
       @RequestParam(required = true) final TextLanguage language) {
-    return new ResponseEntity<String>(service.getText(selector, language),
+    return new ResponseEntity<>(service.getText(selector, language),
         HttpStatus.OK);
   }
 
