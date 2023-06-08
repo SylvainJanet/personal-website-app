@@ -1,8 +1,5 @@
 package fr.sylvainjanet.app;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
@@ -13,10 +10,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import fr.sylvainjanet.app.config.InitialData;
-import fr.sylvainjanet.app.entities.LocalizedString;
-import fr.sylvainjanet.app.repo.LocalizedStringRepository;
 
 /**
  * Main App.
@@ -64,26 +57,8 @@ public class App extends SpringBootServletInitializer {
   @GetMapping("/hello")
   @ResponseBody
   String home() {
-    if (!isInit) {
-      List<LocalizedString> initData = InitialData.INIT_LOCALIZED_STRING;
-      for (LocalizedString localizedString : initData) {
-        repo.save(localizedString);
-      }
-      isInit = true;
-    }
     return "Hello World ! - " + environment;
   }
-
-  /**
-   * Localized string repo to initialize data.
-   */
-  @Autowired
-  private LocalizedStringRepository repo;
-
-  /**
-   * Has data already been initialized.
-   */
-  private boolean isInit = false;
 
   /**
    * Launch the spring application.
