@@ -29,7 +29,7 @@ public final class ConfigurationParams {
    */
   public static final List<String> ORIGINS_ALLOWED_PROD =
       Collections.unmodifiableList(Arrays.asList("https://sylvainjanet.fr",
-          "https://dev.sylvainjanet.fr"));
+          "https://www.sylvainjanet.fr", "https://dev.sylvainjanet.fr"));
 
   /**
    * Origins allowed in dev environment.
