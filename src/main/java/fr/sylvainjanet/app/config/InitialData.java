@@ -252,7 +252,7 @@ public final class InitialData {
             + "personnels. De l'expression artistique avec la "
             + "musique, ma curiosité pour les langues, ma passion "
             + "pour les jeux." + "[[]]" + "Pour plus d'informations, voir "
-            + "[[10,mon cv]].");
+            + "[[a_asset,mon cv]].");
     TEXTMAP_ABOUT_ME_CONTENT.put(TextLanguage.ENGLISH,
         "FullStack developer and Trainer." + "[[]]"
             + "My professional journey began with studies in mathematics: "
@@ -271,7 +271,7 @@ public final class InitialData {
             + "broader scope and reflect my personal interests, such as "
             + "artistic expression through music, my curiosity for languages, "
             + "and my passion for games." + "[[]]"
-            + "For more information, please refer to [[10,my CV]].");
+            + "For more information, please refer to [[a_asset,my CV]].");
 
     TEXTMAP_WEBSITE.put(TextLanguage.FRENCH, "sylvainjanet.fr");
     TEXTMAP_WEBSITE.put(TextLanguage.ENGLISH, "sylvainjanet.com");
