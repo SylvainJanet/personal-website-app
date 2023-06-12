@@ -161,6 +161,18 @@ public final class InitialData {
   private static final Map<TextLanguage, String> TEXTMAP_CV_FILENAME =
       new EnumMap<>(TextLanguage.class);
 
+  /**
+   * Texts for sylvain janet.
+   */
+  private static final Map<TextLanguage, String> TEXTMAP_BACKTOTOP_ALT =
+      new EnumMap<>(TextLanguage.class);
+
+  /**
+   * Texts for sylvain janet.
+   */
+  private static final Map<TextLanguage, String> TEXTMAP_CVIMG_ALT =
+      new EnumMap<>(TextLanguage.class);
+
   static {
     TEXTMAP_SYLVAIN_JANET.put(TextLanguage.FRENCH, "Sylvain Janet");
     TEXTMAP_SYLVAIN_JANET.put(TextLanguage.ENGLISH, "Sylvain Janet");
@@ -279,6 +291,15 @@ public final class InitialData {
     TEXTMAP_CV_FILENAME.put(TextLanguage.FRENCH, "JanetSylvain_CV_FR.pdf");
     TEXTMAP_CV_FILENAME.put(TextLanguage.ENGLISH,
         "JanetSylvain_CV_EN.pdf");
+
+    TEXTMAP_BACKTOTOP_ALT.put(TextLanguage.FRENCH,
+        "Icône de retour en haut de page");
+    TEXTMAP_BACKTOTOP_ALT.put(TextLanguage.ENGLISH, "Back to top icon");
+
+    TEXTMAP_CVIMG_ALT.put(TextLanguage.FRENCH,
+        "Photo de CV de Sylvain Janet");
+    TEXTMAP_CVIMG_ALT.put(TextLanguage.ENGLISH,
+        "CV photo of Sylvain Janet");
   }
 
   /**
@@ -332,7 +353,11 @@ public final class InitialData {
               TEXTMAP_ABOUT_ME_CONTENT),
           new LocalizedString(Arrays.asList("website"), TEXTMAP_WEBSITE),
           new LocalizedString(Arrays.asList("cv-file-name"),
-              TEXTMAP_CV_FILENAME)));
+              TEXTMAP_CV_FILENAME),
+          new LocalizedString(Arrays.asList("back-to-top-alt"),
+              TEXTMAP_BACKTOTOP_ALT),
+          new LocalizedString(Arrays.asList("cv-img-alt"),
+              TEXTMAP_CVIMG_ALT)));
 
   private InitialData() {
 
