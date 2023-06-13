@@ -182,7 +182,6 @@
 						<name>Demo Spring REST Docs</name>
 						<version>${project.version}</version>
 						<host>${api.url}</host>
-						<!-- <outputDirectory>${project.build.directory}/static/openApi</outputDirectory> -->
 						<outputDirectory>${project.build.outputDirectory}/static/openApi</outputDirectory>
 						<filename>openApi</filename>
 						<specification>OPENAPI_V3</specification>

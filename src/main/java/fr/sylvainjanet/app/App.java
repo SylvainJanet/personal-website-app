@@ -61,8 +61,7 @@ public class App extends SpringBootServletInitializer {
   @GetMapping("/hello")
   @ResponseBody
   ResponseEntity<StringDto> home() {
-    System.out.println("HELLO WORLD");
-    return new ResponseEntity<StringDto>(
+    return new ResponseEntity<>(
         new StringDto("Hello World ! - " + environment), HttpStatus.OK);
   }
 
