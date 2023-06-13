@@ -230,7 +230,7 @@ jobs:
           path: ./target-staging/site/apidocs
           
   deploy-documentation:  
-    needs : document
+    needs : [document, build]
     runs-on: ubuntu-latest  
   
     steps:
