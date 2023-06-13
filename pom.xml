@@ -28,6 +28,7 @@
 		<restdocs.api.spec.mockmvc.version>0.16.4</restdocs.api.spec.mockmvc.version>
 		<springdoc.openapi.ui.version>1.7.0</springdoc.openapi.ui.version>
 		<restdocs.spec.maven.plugin.version>0.19</restdocs.spec.maven.plugin.version>
+		<maven.javadoc.plugin.version>3.5.0</maven.javadoc.plugin.version>
 	</properties>
 	<pluginRepositories>
 		<pluginRepository>
@@ -183,6 +184,21 @@
 						<description>API description for Demo Spring REST Docs service</description>
 						<snippetsDirectory>${snippetsDirectory}</snippetsDirectory>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven.javadoc.plugin.version}</version>
+					<executions>
+						<!-- Exports JavaDocs to regular HTML files -->
+						<execution>
+							<id>javadoc-coverage</id>
+							<phase>package</phase>
+							<goals>
+								<goal>javadoc</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>
