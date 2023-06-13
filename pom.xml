@@ -181,7 +181,8 @@
 					<configuration>
 						<name>Demo Spring REST Docs</name>
 						<version>${project.version}</version>
-						<host>${api.url}</host>
+						<host>{api.host}</host>
+						<basePath>{api.basePath}</basePath>
 						<outputDirectory>${project.build.outputDirectory}/static/openApi</outputDirectory>
 						<filename>openApi</filename>
 						<specification>OPENAPI_V3</specification>
@@ -215,7 +216,8 @@
 		<profile>
 			<id>dev</id>
 			<properties>
-				<api.url>localhost:8080</api.url>
+				<api.host>localhost:8080</api.host>
+				<basePath></basePath>
 				<activatedProperties>dev</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-dev/site/jacoco/jacoco.xml
@@ -231,7 +233,8 @@
 		<profile>
 			<id>prod</id>
 			<properties>
-				<api.url>server.sylvainjanet.fr</api.url>
+				<api.host>server.sylvainjanet.fr</api.host>
+				<basePath>app</basePath>
 				<activatedProperties>prod</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-prod/site/jacoco/jacoco.xml
@@ -244,7 +247,8 @@
 		<profile>
 			<id>staging</id>
 			<properties>
-				<api.url>server.sylvainjanet.fr</api.url>
+				<api.host>server.sylvainjanet.fr</api.host>
+				<basePath>app-dev</basePath>
 				<activatedProperties>staging</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-staging/site/jacoco/jacoco.xml
@@ -257,7 +261,8 @@
 		<profile>
 			<id>depGraph</id>
 			<properties>
-				<api.url>localhost:8080</api.url>
+				<api.host>localhost:8080</api.host>
+				<basePath></basePath>
 				<activatedProperties>depGraph</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target/site/jacoco/jacoco.xml
@@ -270,7 +275,8 @@
 		<profile>
 			<id>update-db-struct</id>
 			<properties>
-				<api.url>localhost:8080</api.url>
+				<api.host>localhost:8080</api.host>
+				<basePath></basePath>
 				<activatedProperties>update-db-struct</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-update-db-struct/site/jacoco/jacoco.xml
@@ -283,7 +289,8 @@
 		<profile>
 			<id>coverage-dev</id>
 			<properties>
-				<api.url>localhost:8080</api.url>
+				<api.host>localhost:8080</api.host>
+				<basePath></basePath>
 				<activatedProperties>coverage-dev</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-dev/site/jacoco/jacoco.xml
@@ -323,7 +330,8 @@
 		<profile>
 			<id>coverage-staging</id>
 			<properties>
-				<api.url>server.sylvainjanet.fr</api.url>
+				<api.host>server.sylvainjanet.fr</api.host>
+				<basePath>app-dev</basePath>
 				<activatedProperties>coverage-staging</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-staging/site/jacoco/jacoco.xml
@@ -363,7 +371,8 @@
 		<profile>
 			<id>coverage-prod</id>
 			<properties>
-				<api.url>server.sylvainjanet.fr</api.url>
+				<api.host>server.sylvainjanet.fr</api.host>
+				<basePath>app</basePath>
 				<activatedProperties>coverage-prod</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-prod/site/jacoco/jacoco.xml
