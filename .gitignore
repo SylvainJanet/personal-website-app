@@ -7,6 +7,7 @@ target-staging/
 target-coverage-staging/
 target-staging/
 target-update-db-struct/
+target-restdoc/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/

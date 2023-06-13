@@ -23,8 +23,26 @@
 		<sonar.maven.plugin.version>3.9.1.2184</sonar.maven.plugin.version>
 		<maven.checkstyle.plugin.version>3.3.0</maven.checkstyle.plugin.version>
 		<jacoco.maven.plugin.version>0.8.10</jacoco.maven.plugin.version>
-		<jasypt.maven.plugin.version>3.0.5</jasypt.maven.plugin.version> 
+		<jasypt.maven.plugin.version>3.0.5</jasypt.maven.plugin.version>
+		<snippetsDirectory>${basedir}/target-restdoc/generated-snippets</snippetsDirectory>
+		<restdocs.api.spec.mockmvc.version>0.16.4</restdocs.api.spec.mockmvc.version>
+		<springdoc.openapi.ui.version>1.7.0</springdoc.openapi.ui.version>
+		<restdocs.spec.maven.plugin.version>0.19</restdocs.spec.maven.plugin.version>
 	</properties>
+	<repositories>
+		<repository>
+			<id>jcenter</id>
+			<name>JCenter repository</name>
+			<url>https://jcenter.bintray.com</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jcenter</id>
+			<name>JCenter repository</name>
+			<url>https://jcenter.bintray.com</url>
+		</pluginRepository>
+	</pluginRepositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -69,6 +87,30 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.restdocs/spring-restdocs-mockmvc -->
+		<dependency>
+			<groupId>org.springframework.restdocs</groupId>
+			<artifactId>spring-restdocs-mockmvc</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.restdocs</groupId>
+			<artifactId>spring-restdocs-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://alainnicolas.fr/blog/make-documentation-great-again-bonus/ -->
+		<dependency>
+			<groupId>com.epages</groupId>
+			<artifactId>restdocs-api-spec-mockmvc</artifactId>
+			<version>${restdocs.api.spec.mockmvc.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://medium.com/swlh/openapi-swagger-ui-codegen-with-spring-boot-1afb1c0a570e -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>${springdoc.openapi.ui.version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<pluginManagement>
@@ -84,9 +126,6 @@
 					<artifactId>maven-project-info-reports-plugin</artifactId>
 				</plugin>
 				<!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-				<plugin>
-					<artifactId>maven-resources-plugin</artifactId>
-				</plugin>
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
@@ -127,6 +166,30 @@
 					<artifactId>jasypt-maven-plugin</artifactId>
 					<version>${jasypt.maven.plugin.version}</version>
 				</plugin>
+				<plugin>
+					<!-- https://github.com/BerkleyTechnologyServices/restdocs-spec -->
+					<groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
+					<artifactId>restdocs-spec-maven-plugin</artifactId>
+					<version>${restdocs.spec.maven.plugin.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>generate</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<name>Demo Spring REST Docs</name>
+						<version>${project.version}</version>
+						<host>${api.url}</host>
+						<!-- <outputDirectory>${project.build.directory}/static/openApi</outputDirectory> -->
+						<outputDirectory>${project.build.outputDirectory}/static/openApi</outputDirectory>
+						<filename>openApi</filename>
+						<specification>OPENAPI_V3</specification>
+						<description>API description for Demo Spring REST Docs service</description>
+						<snippetsDirectory>${snippetsDirectory}</snippetsDirectory>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<resources>
@@ -153,6 +216,7 @@
 		<profile>
 			<id>dev</id>
 			<properties>
+				<api.url>localhost:8080</api.url>
 				<activatedProperties>dev</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-dev/site/jacoco/jacoco.xml
@@ -168,6 +232,7 @@
 		<profile>
 			<id>prod</id>
 			<properties>
+				<api.url>server.sylvainjanet.fr/app</api.url>
 				<activatedProperties>prod</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-prod/site/jacoco/jacoco.xml
@@ -180,6 +245,7 @@
 		<profile>
 			<id>staging</id>
 			<properties>
+				<api.url>server.sylvainjanet.fr/app-dev</api.url>
 				<activatedProperties>staging</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-staging/site/jacoco/jacoco.xml
@@ -192,6 +258,7 @@
 		<profile>
 			<id>depGraph</id>
 			<properties>
+				<api.url>localhost:8080</api.url>
 				<activatedProperties>depGraph</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target/site/jacoco/jacoco.xml
@@ -204,6 +271,7 @@
 		<profile>
 			<id>update-db-struct</id>
 			<properties>
+				<api.url>localhost:8080</api.url>
 				<activatedProperties>update-db-struct</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-update-db-struct/site/jacoco/jacoco.xml
@@ -216,6 +284,7 @@
 		<profile>
 			<id>coverage-dev</id>
 			<properties>
+				<api.url>localhost:8080</api.url>
 				<activatedProperties>coverage-dev</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-dev/site/jacoco/jacoco.xml
@@ -255,6 +324,7 @@
 		<profile>
 			<id>coverage-staging</id>
 			<properties>
+				<api.url>server.sylvainjanet.fr/app-dev</api.url>
 				<activatedProperties>coverage-staging</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-staging/site/jacoco/jacoco.xml
@@ -294,6 +364,7 @@
 		<profile>
 			<id>coverage-prod</id>
 			<properties>
+				<api.url>server.sylvainjanet.fr/app</api.url>
 				<activatedProperties>coverage-prod</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-prod/site/jacoco/jacoco.xml
