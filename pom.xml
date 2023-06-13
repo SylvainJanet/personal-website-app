@@ -210,7 +210,7 @@
 			<id>dev</id>
 			<properties>
 				<api.host>localhost:8080</api.host>
-				<basePath></basePath>
+				<api.basePath></api.basePath>
 				<activatedProperties>dev</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-dev/site/jacoco/jacoco.xml
@@ -227,7 +227,7 @@
 			<id>prod</id>
 			<properties>
 				<api.host>server.sylvainjanet.fr</api.host>
-				<basePath>app</basePath>
+				<api.basePath>/app</api.basePath>
 				<activatedProperties>prod</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-prod/site/jacoco/jacoco.xml
@@ -241,7 +241,7 @@
 			<id>staging</id>
 			<properties>
 				<api.host>server.sylvainjanet.fr</api.host>
-				<basePath>app-dev</basePath>
+				<api.basePath>/app-dev</api.basePath>
 				<activatedProperties>staging</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-staging/site/jacoco/jacoco.xml
@@ -255,7 +255,7 @@
 			<id>depGraph</id>
 			<properties>
 				<api.host>localhost:8080</api.host>
-				<basePath></basePath>
+				<api.basePath></api.basePath>
 				<activatedProperties>depGraph</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target/site/jacoco/jacoco.xml
@@ -269,7 +269,7 @@
 			<id>update-db-struct</id>
 			<properties>
 				<api.host>localhost:8080</api.host>
-				<basePath></basePath>
+				<api.basePath></api.basePath>
 				<activatedProperties>update-db-struct</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-update-db-struct/site/jacoco/jacoco.xml
@@ -283,7 +283,7 @@
 			<id>coverage-dev</id>
 			<properties>
 				<api.host>localhost:8080</api.host>
-				<basePath></basePath>
+				<api.basePath></api.basePath>
 				<activatedProperties>coverage-dev</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-dev/site/jacoco/jacoco.xml
@@ -324,7 +324,7 @@
 			<id>coverage-staging</id>
 			<properties>
 				<api.host>server.sylvainjanet.fr</api.host>
-				<basePath>app-dev</basePath>
+				<api.basePath>/app-dev</api.basePath>
 				<activatedProperties>coverage-staging</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-staging/site/jacoco/jacoco.xml
@@ -365,7 +365,7 @@
 			<id>coverage-prod</id>
 			<properties>
 				<api.host>server.sylvainjanet.fr</api.host>
-				<basePath>app</basePath>
+				<api.basePath>/app</api.basePath>
 				<activatedProperties>coverage-prod</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-prod/site/jacoco/jacoco.xml
