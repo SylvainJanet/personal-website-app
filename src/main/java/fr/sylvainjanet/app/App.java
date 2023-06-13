@@ -1,6 +1,5 @@
 package fr.sylvainjanet.app;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
@@ -8,13 +7,13 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fr.sylvainjanet.app.config.InitialData;
-import fr.sylvainjanet.app.entities.LocalizedString;
-import fr.sylvainjanet.app.repo.LocalizedStringRepository;
+import fr.sylvainjanet.app.dtos.StringDto;
 
 /**
  * Main App.
@@ -61,18 +60,10 @@ public class App extends SpringBootServletInitializer {
    */
   @GetMapping("/hello")
   @ResponseBody
-  String home() {
-    for (LocalizedString el : InitialData.INIT_LOCALIZED_STRING) {
-      repo.save(el);
-    }
-    return "Hello World ! - " + environment;
+  ResponseEntity<StringDto> home() {
+    return new ResponseEntity<>(
+        new StringDto("Hello World ! - " + environment), HttpStatus.OK);
   }
-
-  /**
-   * Localized string repo, temp to use to init data.
-   */
-  @Autowired
-  private LocalizedStringRepository repo;
 
   /**
    * Launch the spring application.
