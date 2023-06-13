@@ -29,18 +29,11 @@
 		<springdoc.openapi.ui.version>1.7.0</springdoc.openapi.ui.version>
 		<restdocs.spec.maven.plugin.version>0.19</restdocs.spec.maven.plugin.version>
 	</properties>
-	<repositories>
-		<repository>
-			<id>jcenter</id>
-			<name>JCenter repository</name>
-			<url>https://jcenter.bintray.com</url>
-		</repository>
-	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>jcenter</id>
-			<name>JCenter repository</name>
-			<url>https://jcenter.bintray.com</url>
+			<name>JCenter Repository</name>
+			<url>https://jcenter.bintray.com/</url>
 		</pluginRepository>
 	</pluginRepositories>
 	<dependencies>
@@ -181,8 +174,8 @@
 					<configuration>
 						<name>Demo Spring REST Docs</name>
 						<version>${project.version}</version>
-						<host>{api.host}</host>
-						<basePath>{api.basePath}</basePath>
+						<host>${api.host}</host>
+						<basePath>${api.basePath}</basePath>
 						<outputDirectory>${project.build.outputDirectory}/static/openApi</outputDirectory>
 						<filename>openApi</filename>
 						<specification>OPENAPI_V3</specification>
