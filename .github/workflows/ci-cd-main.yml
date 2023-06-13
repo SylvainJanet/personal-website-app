@@ -227,7 +227,7 @@ jobs:
       - name: Build with Maven 
         env: 
           JASYPT_ENCRYPTOR_PWD_DIST: ${{ secrets.JASYPT_ENCRYPTOR_PWD_DIST }}
-        run: mvn -Pprod -B restdocs-spec:generate install
+        run: mvn -Pprod -B package restdocs-spec:generate install
 
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
       - name: Maven Dependency Tree Dependency Submission
