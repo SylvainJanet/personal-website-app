@@ -176,6 +176,7 @@
 						<version>${project.version}</version>
 						<host>${api.host}</host>
 						<basePath>${api.basePath}</basePath>
+						<schemes>${api.scheme}</schemes>
 						<outputDirectory>${project.build.outputDirectory}/static/openApi</outputDirectory>
 						<filename>openApi</filename>
 						<specification>OPENAPI_V3</specification>
@@ -211,6 +212,7 @@
 			<properties>
 				<api.host>localhost:8080</api.host>
 				<api.basePath></api.basePath>
+				<api.scheme>http</api.scheme>
 				<activatedProperties>dev</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-dev/site/jacoco/jacoco.xml
@@ -228,6 +230,7 @@
 			<properties>
 				<api.host>server.sylvainjanet.fr</api.host>
 				<api.basePath>/app</api.basePath>
+				<api.scheme>https</api.scheme>
 				<activatedProperties>prod</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-prod/site/jacoco/jacoco.xml
@@ -242,6 +245,7 @@
 			<properties>
 				<api.host>server.sylvainjanet.fr</api.host>
 				<api.basePath>/app-dev</api.basePath>
+				<api.scheme>https</api.scheme>
 				<activatedProperties>staging</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-staging/site/jacoco/jacoco.xml
@@ -256,6 +260,7 @@
 			<properties>
 				<api.host>localhost:8080</api.host>
 				<api.basePath></api.basePath>
+				<api.scheme>http</api.scheme>
 				<activatedProperties>depGraph</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target/site/jacoco/jacoco.xml
@@ -270,6 +275,7 @@
 			<properties>
 				<api.host>localhost:8080</api.host>
 				<api.basePath></api.basePath>
+				<api.scheme>http</api.scheme>
 				<activatedProperties>update-db-struct</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-update-db-struct/site/jacoco/jacoco.xml
@@ -284,6 +290,7 @@
 			<properties>
 				<api.host>localhost:8080</api.host>
 				<api.basePath></api.basePath>
+				<api.scheme>http</api.scheme>
 				<activatedProperties>coverage-dev</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-dev/site/jacoco/jacoco.xml
@@ -325,6 +332,7 @@
 			<properties>
 				<api.host>server.sylvainjanet.fr</api.host>
 				<api.basePath>/app-dev</api.basePath>
+				<api.scheme>https</api.scheme>
 				<activatedProperties>coverage-staging</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-staging/site/jacoco/jacoco.xml
@@ -366,6 +374,7 @@
 			<properties>
 				<api.host>server.sylvainjanet.fr</api.host>
 				<api.basePath>/app</api.basePath>
+				<api.scheme>https</api.scheme>
 				<activatedProperties>coverage-prod</activatedProperties>
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-prod/site/jacoco/jacoco.xml
