@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  *
  */
 @SpringBootTest
-class WebApplicationTests {
+public class WebApplicationTests {
 
   /**
    * The application context should load.

@@ -40,7 +40,7 @@ import fr.sylvainjanet.app.dtos.StringDto;
  */
 @SpringBootTest
 @AutoConfigureMockMvc
-class AppTest {
+public class AppTest {
 
   /**
    * Current environment.
