@@ -189,7 +189,7 @@ jobs:
         category: "/language:${{matrix.language}}"
         
   document:
-    needs: [lint, analyse_QL, check_analysis_sonarcloud]
+    needs: [lint]
     if: always()
     runs-on: ubuntu-latest
     permissions: # The Dependency Submission API requires write permission
