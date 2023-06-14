@@ -336,17 +336,13 @@
 								<goals>
 									<goal>report</goal>
 								</goals>
+								<configuration>
+									<formats>
+										<format>XML</format>
+									</formats>
+								</configuration>
 							</execution>
 						</executions>
-						<configuration>
-							<formats>
-								<format>XML</format>
-							</formats>
-							<excludes>
-								<exclude>fr/sylvainjanet/app/*</exclude>
-								<exclude>fr/sylvainjanet/app/config/**/*</exclude>
-							</excludes>
-						</configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -386,17 +382,13 @@
 								<goals>
 									<goal>report</goal>
 								</goals>
+								<configuration>
+									<formats>
+										<format>XML</format>
+									</formats>
+								</configuration>
 							</execution>
 						</executions>
-						<configuration>
-							<formats>
-								<format>XML</format>
-							</formats>
-							<excludes>
-								<exclude>fr/sylvainjanet/app/*</exclude>
-								<exclude>fr/sylvainjanet/app/config/**/*</exclude>
-							</excludes>
-						</configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -436,17 +428,13 @@
 								<goals>
 									<goal>report</goal>
 								</goals>
+								<configuration>
+									<formats>
+										<format>XML</format>
+									</formats>
+								</configuration>
 							</execution>
 						</executions>
-						<configuration>
-							<formats>
-								<format>XML</format>
-							</formats>
-							<excludes>
-								<exclude>fr/sylvainjanet/app/*</exclude>
-								<exclude>fr/sylvainjanet/app/config/**/*</exclude>
-							</excludes>
-						</configuration>
 					</plugin>
 				</plugins>
 			</build>
