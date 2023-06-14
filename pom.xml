@@ -311,6 +311,10 @@
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-dev/site/jacoco/jacoco.xml
   				</sonar.coverage.jacoco.xmlReportPaths>
+				<sonar.coverage.exclusions>
+					<!-- the members of the following list should be in the same line -->
+					src/main/java/fr/sylvainjanet/app/*,src/main/java/fr/sylvainjanet/app/config/**/*
+				</sonar.coverage.exclusions>
 			</properties>
 			<build>
 				<directory>${project.basedir}/target-coverage-dev</directory>
@@ -332,14 +336,13 @@
 								<goals>
 									<goal>report</goal>
 								</goals>
+								<configuration>
+									<formats>
+										<format>XML</format>
+									</formats>
+								</configuration>
 							</execution>
 						</executions>
-						<configuration>
-							<excludes>
-								<exclude>fr/sylvainjanet/app/*</exclude>
-								<exclude>fr/sylvainjanet/app/config/**/*</exclude>
-							</excludes>
-						</configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -354,6 +357,10 @@
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-staging/site/jacoco/jacoco.xml
   				</sonar.coverage.jacoco.xmlReportPaths>
+				<sonar.coverage.exclusions>
+					<!-- the members of the following list should be in the same line -->
+					src/main/java/fr/sylvainjanet/app/*,src/main/java/fr/sylvainjanet/app/config/**/*
+				</sonar.coverage.exclusions>
 			</properties>
 			<build>
 				<directory>${project.basedir}/target-coverage-staging</directory>
@@ -382,12 +389,6 @@
 								</configuration>
 							</execution>
 						</executions>
-						<configuration>
-							<excludes>
-								<exclude>fr/sylvainjanet/app/*</exclude>
-								<exclude>fr/sylvainjanet/app/config/**/*</exclude>
-							</excludes>
-						</configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -402,6 +403,10 @@
 				<sonar.coverage.jacoco.xmlReportPaths>
     				${project.basedir}/target-coverage-prod/site/jacoco/jacoco.xml
   				</sonar.coverage.jacoco.xmlReportPaths>
+				<sonar.coverage.exclusions>
+					<!-- the members of the following list should be in the same line -->
+					src/main/java/fr/sylvainjanet/app/*,src/main/java/fr/sylvainjanet/app/config/**/*
+				</sonar.coverage.exclusions>
 			</properties>
 			<build>
 				<directory>${project.basedir}/target-coverage-prod</directory>
@@ -430,12 +435,6 @@
 								</configuration>
 							</execution>
 						</executions>
-						<configuration>
-							<excludes>
-								<exclude>fr/sylvainjanet/app/*</exclude>
-								<exclude>fr/sylvainjanet/app/config/**/*</exclude>
-							</excludes>
-						</configuration>
 					</plugin>
 				</plugins>
 			</build>
