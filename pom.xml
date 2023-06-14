@@ -385,6 +385,7 @@
 								<configuration>
 									<formats>
 										<format>XML</format>
+										<format>HTML</format>
 									</formats>
 									<excludes>
 										<exclude>fr/sylvainjanet/app/*</exclude>
@@ -435,6 +436,7 @@
 								<configuration>
 									<formats>
 										<format>XML</format>
+										<format>HTML</format>
 									</formats>
 									<excludes>
 										<exclude>fr/sylvainjanet/app/*</exclude>
