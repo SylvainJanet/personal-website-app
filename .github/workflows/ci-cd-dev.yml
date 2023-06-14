@@ -213,7 +213,7 @@ jobs:
       - name: Upload artifact  
         uses: actions/upload-artifact@v3  
         with:  
-          name: sample-java-app-javadoc-tests-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          name: app-javadoc-tests-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
           path: ./target-staging/site/testapidocs
           
       - name: Build javadoc 
@@ -226,8 +226,40 @@ jobs:
       - name: Upload artifact  
         uses: actions/upload-artifact@v3  
         with:  
-          name: sample-java-app-javadoc-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          name: app-javadoc-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
           path: ./target-staging/site/apidocs
+          
+  deploy-documentation:  
+    needs : [document, build]
+    runs-on: ubuntu-latest  
+  
+    steps:
+      - name: Inject slug/short variables  
+        uses: rlespinasse/github-slug-action@v4 
+      - name: Download artifact - test documentation 
+        uses: actions/download-artifact@v3  
+        with:  
+          name: app-javadoc-tests-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          path: './build'
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME_JAVADOC_TEST_DEV }}
+          password: ${{ secrets.FTP_PASSWORD_JAVADOC_TEST_DEV }}
+          local-dir: './build/'
+      - name: Download artifact - documentation
+        uses: actions/download-artifact@v3  
+        with:  
+          name: app-javadoc-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          path: './build'
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME_JAVADOC_DEV }}
+          password: ${{ secrets.FTP_PASSWORD_JAVADOC_DEV }}
+          local-dir: './build/'
   
   build:
     needs: [lint, analyse_QL, check_analysis_sonarcloud]
@@ -281,7 +313,7 @@ jobs:
       - name: Upload artifact  
         uses: actions/upload-artifact@v3  
         with:  
-          name: sample-java-app-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          name: app-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
           path: ./target-staging
           
   deploy:  
@@ -295,7 +327,7 @@ jobs:
       - name: Download artifact  
         uses: actions/download-artifact@v3  
         with:  
-          name: sample-java-app-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          name: app-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
           path: '.'
       - name: rename war file
         run: |
