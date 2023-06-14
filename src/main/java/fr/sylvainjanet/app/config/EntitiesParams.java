@@ -28,11 +28,11 @@ public final class EntitiesParams {
   public static final String LOCALIZED_STRING_TEXTMAP_NAME =
       "messages_text_map";
   /**
-   * Name of the selector column (of textmap table) in db.
+   * Name of the language column (of textmap table) in db.
    */
-  public static final String LOCALIZED_LANGUAGE_NAME = "language";
+  public static final String LOCALIZED_STRING_LANGUAGE_NAME = "language";
   /**
-   * Name of the selector column (of textmap table) in db.
+   * Name of the text column (of textmap table) in db.
    */
   public static final String LOCALIZED_STRING_TEXT_NAME = "text";
 

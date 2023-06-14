@@ -20,7 +20,7 @@ import fr.sylvainjanet.app.services.LocalizedStringServiceImpl;
 public class LocalizedStringController {
 
   /**
-   * Entity repository.
+   * Entity service.
    */
   @Autowired
   private LocalizedStringServiceImpl service;
