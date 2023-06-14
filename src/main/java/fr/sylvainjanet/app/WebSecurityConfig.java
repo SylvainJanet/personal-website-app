@@ -52,7 +52,7 @@ public class WebSecurityConfig {
   /**
    * CORS Configuration. The configuration is different in dev environment
    * (where everything is done locally) and staging/prod environment (where
-   * the VPS is used)
+   * the VPS is used).
    *
    * @return cors Configuration
    */

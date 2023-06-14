@@ -26,7 +26,7 @@ import fr.sylvainjanet.app.config.ConfigurationParams;
 import fr.sylvainjanet.app.config.EntitiesParams;
 
 /**
- * Localized string. Used
+ * Localized string.
  * 
  * @author Sylvain
  *
@@ -70,7 +70,7 @@ public class LocalizedString {
           name = EntitiesParams.LOCALIZED_STRING_NAME),
       joinColumns = @JoinColumn(
           name = EntitiesParams.LOCALIZED_STRING_NAME + "_id"))
-  @MapKeyColumn(name = EntitiesParams.LOCALIZED_LANGUAGE_NAME,
+  @MapKeyColumn(name = EntitiesParams.LOCALIZED_STRING_LANGUAGE_NAME,
       length = ConfigurationParams.MAX_STR_SIZE, nullable = false)
   @MapKeyEnumerated(EnumType.STRING)
   @Column(name = EntitiesParams.LOCALIZED_STRING_TEXT_NAME,

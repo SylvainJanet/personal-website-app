@@ -7,7 +7,7 @@ import fr.sylvainjanet.app.config.EntitiesParams;
 import fr.sylvainjanet.app.entities.LocalizedString;
 
 /**
- * Repository.
+ * Repository for the LocalizedString entity.
  * 
  * @author Sylvain
  *
