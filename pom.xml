@@ -151,11 +151,6 @@
 					<version>${maven.checkstyle.plugin.version}</version>
 				</plugin>
 				<plugin>
-					<groupId>org.jacoco</groupId>
-					<artifactId>jacoco-maven-plugin</artifactId>
-					<version>${jacoco.maven.plugin.version}</version>
-				</plugin>
-				<plugin>
 					<groupId>com.github.ulisesbocchio</groupId>
 					<artifactId>jasypt-maven-plugin</artifactId>
 					<version>${jasypt.maven.plugin.version}</version>
@@ -322,7 +317,7 @@
 					<plugin>
 						<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>
-						<version>0.8.7</version>
+						<version>${jacoco.maven.plugin.version}</version>
 						<executions>
 							<execution>
 								<id>prepare-agent</id>
@@ -339,7 +334,12 @@
 								<configuration>
 									<formats>
 										<format>XML</format>
+										<format>HTML</format>
 									</formats>
+									<excludes>
+										<exclude>fr/sylvainjanet/app/*</exclude>
+										<exclude>fr/sylvainjanet/app/config/**/*</exclude>
+									</excludes>
 								</configuration>
 							</execution>
 						</executions>
@@ -368,7 +368,7 @@
 					<plugin>
 						<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>
-						<version>0.8.7</version>
+						<version>${jacoco.maven.plugin.version}</version>
 						<executions>
 							<execution>
 								<id>prepare-agent</id>
@@ -386,6 +386,10 @@
 									<formats>
 										<format>XML</format>
 									</formats>
+									<excludes>
+										<exclude>fr/sylvainjanet/app/*</exclude>
+										<exclude>fr/sylvainjanet/app/config/**/*</exclude>
+									</excludes>
 								</configuration>
 							</execution>
 						</executions>
@@ -414,7 +418,7 @@
 					<plugin>
 						<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>
-						<version>0.8.7</version>
+						<version>${jacoco.maven.plugin.version}</version>
 						<executions>
 							<execution>
 								<id>prepare-agent</id>
@@ -432,6 +436,10 @@
 									<formats>
 										<format>XML</format>
 									</formats>
+									<excludes>
+										<exclude>fr/sylvainjanet/app/*</exclude>
+										<exclude>fr/sylvainjanet/app/config/**/*</exclude>
+									</excludes>
 								</configuration>
 							</execution>
 						</executions>
