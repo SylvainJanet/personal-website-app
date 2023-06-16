@@ -16,8 +16,7 @@ import fr.sylvainjanet.app.services.interfaces.LocalizedStringService;
  *
  */
 @Service
-public final class LocalizedStringServiceImpl
-    implements LocalizedStringService {
+public class LocalizedStringServiceImpl implements LocalizedStringService {
 
   /**
    * The LocalizedString repository.
@@ -25,6 +24,13 @@ public final class LocalizedStringServiceImpl
   @Autowired
   private LocalizedStringRepository repo;
 
+  /**
+   * Get the text string for a selector in a given language.
+   * 
+   * @param selector the selector
+   * @param language the language
+   * @return the text string
+   */
   @Override
   public String getText(final String selector,
       final TextLanguage language) {

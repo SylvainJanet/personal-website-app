@@ -1,4 +1,4 @@
-package fr.sylvainjanet.app.test;
+package fr.sylvainjanet.app.test.controllers;
 
 import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document;
 import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.resourceDetails;
@@ -9,12 +9,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContextProvider;
@@ -30,17 +30,17 @@ import org.springframework.web.context.WebApplicationContext;
 import com.epages.restdocs.apispec.Schema;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import fr.sylvainjanet.app.controllers.HelloWorldController;
 import fr.sylvainjanet.app.dtos.StringDto;
 
 /**
- * Tests the App controller.
+ * Test the HelloWorld controller.
  * 
  * @author Sylvain
  *
  */
-@SpringBootTest
-@AutoConfigureMockMvc
-public class AppTest {
+@WebMvcTest(controllers = HelloWorldController.class)
+public class HelloWorldControllerTest {
 
   /**
    * Current environment.
@@ -60,6 +60,26 @@ public class AppTest {
    */
   @Autowired
   private MockMvc mockMvc;
+
+  /**
+   * Object mapper.
+   */
+  @Autowired
+  private ObjectMapper mapper;
+
+  static OperationRequestPreprocessor preprocessRequest() {
+    return Preprocessors.preprocessRequest(
+        Preprocessors.removeHeaders("Content-Length", "X-CSRF-TOKEN"),
+        Preprocessors.prettyPrint());
+  }
+
+  static OperationResponsePreprocessor preprocessResponse() {
+    return Preprocessors.preprocessResponse(
+        Preprocessors.removeHeaders("Content-Length", "Pragma",
+            "X-XSS-Protection", "Expires", "X-Frame-Options",
+            "X-Content-Type-Options", "Cache-Control"),
+        Preprocessors.prettyPrint());
+  }
 
   /**
    * Set up the mockMvc instance to use RestDocumentation. For more, see
@@ -89,6 +109,7 @@ public class AppTest {
    * @throws Exception if something goes wrong during the testing.
    */
   @Test
+  @DisplayName("GET /hello should return Hello World and the environment")
   void testHello() throws Exception {
     this.mockMvc
         .perform(RestDocumentationRequestBuilders.get("/hello")
@@ -112,6 +133,7 @@ public class AppTest {
    * @throws Exception if something goes wrong during the testing.
    */
   @Test
+  @DisplayName("PUT /hello should 405")
   void testPutHello() throws Exception {
     this.mockMvc
         .perform(RestDocumentationRequestBuilders.put("/hello")
@@ -120,28 +142,7 @@ public class AppTest {
         .andDo(document("Hello world can't PUT",
             resourceDetails().summary("Hello world PUT request")
                 .description("Request to test the API PUT ISNT ALLOWED")
-                .tag("Test tag"),
+                .tag("Test tag").responseSchema(new Schema("StringDTO")),
             preprocessRequest(), preprocessResponse()));
   }
-
-  /**
-   * Object mapper.
-   */
-  @Autowired
-  private ObjectMapper mapper;
-
-  static OperationRequestPreprocessor preprocessRequest() {
-    return Preprocessors.preprocessRequest(
-        Preprocessors.removeHeaders("Content-Length", "X-CSRF-TOKEN"),
-        Preprocessors.prettyPrint());
-  }
-
-  static OperationResponsePreprocessor preprocessResponse() {
-    return Preprocessors.preprocessResponse(
-        Preprocessors.removeHeaders("Content-Length", "Pragma",
-            "X-XSS-Protection", "Expires", "X-Frame-Options",
-            "X-Content-Type-Options", "Cache-Control"),
-        Preprocessors.prettyPrint());
-  }
-
 }
