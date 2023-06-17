@@ -108,8 +108,8 @@ public class LocalizedStringControllerIT extends ControllerAndRestDocIT {
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(content().json(
             mapper.writeValueAsString(new StringDto(expectedResult))))
-        .andDo(document("Get Text - selector not found",
-            resourceDetails().tag("Text")));
+        .andDo(document("Get Text - selector not found", resourceDetails()
+            .tag("Text").responseSchema(new Schema("StringDTO"))));
   }
 
   @Test
@@ -135,7 +135,7 @@ public class LocalizedStringControllerIT extends ControllerAndRestDocIT {
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(content().json(
             mapper.writeValueAsString(new StringDto(expectedResult))))
-        .andDo(document("Get Text - no translation",
-            resourceDetails().tag("Text")));
+        .andDo(document("Get Text - no translation", resourceDetails()
+            .tag("Text").responseSchema(new Schema("StringDTO"))));
   }
 }
