@@ -24,7 +24,7 @@ CREATE TABLE messages_text_map (
     messages_localized_string_id bigint NOT NULL,
     text_content varchar(10000) COLLATE utf8mb4_unicode_520_ci NOT NULL,
     language_name varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-    PRIMARY KEY (messages_localized_string_id, language)
+    PRIMARY KEY (messages_localized_string_id, language_name)
 ) ENGINE
 = MyISAM DEFAULT CHARSET
 = utf8mb4 COLLATE
