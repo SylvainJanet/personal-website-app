@@ -162,7 +162,7 @@ jobs:
             core.setFailed('Quality gate failed')
             
   coverage:
-    needs: test
+    needs: integration_test
     if: always()
     runs-on: ubuntu-latest
     permissions: # The Dependency Submission API requires write permission
