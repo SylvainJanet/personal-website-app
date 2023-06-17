@@ -1,9 +1,7 @@
 package fr.sylvainjanet.app.test.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +12,8 @@ import java.util.Map;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import fr.sylvainjanet.app.entities.LocalizedString;
 import fr.sylvainjanet.app.entities.TextLanguage;
@@ -166,10 +166,13 @@ public class LocalizedStringTest {
 
   }
 
-  @Test
+  @ParameterizedTest
   @DisplayName("isNonEmptyForAllLanguages should return "
-      + "false when a LocalizedString has no text for a TextLanguage")
-  void isNonEmptyForAllLanguagesFalseSomeDontExist() {
+      + "false when a LocalizedString has no text or is null "
+      + "for a TextLanguage")
+  @ValueSource(booleans = { true, false })
+  final void isNonEmptyForAllLanguagesFalseSomeDontExist(
+      final boolean hasNullTranslation) {
 
     LocalizedString input = new LocalizedString();
 
@@ -181,34 +184,9 @@ public class LocalizedStringTest {
     Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
-
-    input.setId(id);
-    input.setSelectors(selectors);
-    input.setTextMap(textMap);
-
-    Boolean expected = false;
-    Boolean actual = input.isNonEmptyForAllLanguages();
-
-    assertEquals(expected, actual);
-
-  }
-
-  @Test
-  @DisplayName("isNonEmptyForAllLanguages should return "
-      + "false when a LocalizedString has some null text for a TextLanguage")
-  void isNonEmptyForAllLanguagesFalseSomeNull() {
-
-    LocalizedString input = new LocalizedString();
-
-    // input setup
-
-    Long id = 1L;
-    final List<String> selectors =
-        Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
-        new HashMap<TextLanguage, String>();
-    textMap.put(TextLanguage.ENGLISH, "test in english");
-    textMap.put(TextLanguage.FRENCH, null);
+    if (hasNullTranslation) {
+      textMap.put(TextLanguage.ENGLISH, null);
+    }
 
     input.setId(id);
     input.setSelectors(selectors);
@@ -304,11 +282,12 @@ public class LocalizedStringTest {
 
   }
 
-  @Test
+  @ParameterizedTest
   @DisplayName("isNonEmptyFor should return "
-      + "false when a LocalizedString has some null text for "
-      + "the language given")
-  void isNonEmptyForFalseSomeNull() {
+      + "false when a LocalizedString has some null text "
+      + "or en empty text for the language given")
+  @ValueSource(booleans = { true, false })
+  final void isNonEmptyForFalseSomeNull(final boolean hasNullTranslation) {
 
     LocalizedString input = new LocalizedString();
 
@@ -320,35 +299,7 @@ public class LocalizedStringTest {
     Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
-    textMap.put(TextLanguage.FRENCH, null);
-
-    input.setId(id);
-    input.setSelectors(selectors);
-    input.setTextMap(textMap);
-
-    Boolean expected = false;
-    Boolean actual = input.isNonEmptyFor(TextLanguage.FRENCH);
-
-    assertEquals(expected, actual);
-
-  }
-
-  @Test
-  @DisplayName("isNonEmptyFor should return "
-      + "false when a LocalizedString has an empty text for the language given")
-  void isNonEmptyForFalseSomeEmpty() {
-
-    LocalizedString input = new LocalizedString();
-
-    // input setup
-
-    Long id = 1L;
-    final List<String> selectors =
-        Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
-        new HashMap<TextLanguage, String>();
-    textMap.put(TextLanguage.ENGLISH, "test in english");
-    textMap.put(TextLanguage.FRENCH, "");
+    textMap.put(TextLanguage.FRENCH, hasNullTranslation ? null : "");
 
     input.setId(id);
     input.setSelectors(selectors);
@@ -884,12 +835,11 @@ public class LocalizedStringTest {
     input2.setSelectors(selectors2);
     input2.setTextMap(expectedTextMap2);
 
-    assertTrue(input1.equals(input2));
+    assertEquals(input1, input2);
     assertEquals(input1.hashCode(), input2.hashCode());
 
   }
 
-  @SuppressWarnings("unlikely-arg-type")
   @Test
   @DisplayName("Equals and Hashcode should be false if id are different or "
       + "objects are different")
@@ -922,7 +872,7 @@ public class LocalizedStringTest {
     input2.setSelectors(selectors2);
     input2.setTextMap(expectedTextMap2);
 
-    assertFalse(input1.equals(input2));
+    assertNotEquals(input1, input2);
     assertNotEquals(input1.hashCode(), input2.hashCode());
 
     input1.setId(id1);
@@ -932,12 +882,12 @@ public class LocalizedStringTest {
     input2.setSelectors(selectors1);
     input2.setTextMap(expectedTextMap1);
 
-    assertFalse(input1.equals(input2));
+    assertNotEquals(input1, input2);
     assertNotEquals(input1.hashCode(), input2.hashCode());
 
-    assertFalse(input1.equals(new String()));
+    assertNotEquals(input1, new String());
 
-    assertFalse(input1.equals(null));
+    assertNotEquals(input1, null);
   }
 
   @Test
@@ -960,7 +910,7 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(expectedTextMap);
 
-    assertTrue(input.equals(input));
+    assertEquals(input, input);
     assertEquals(input.hashCode(), input.hashCode());
   }
 
@@ -989,8 +939,8 @@ public class LocalizedStringTest {
     input2.setSelectors(selectors);
     input2.setTextMap(expectedTextMap);
 
-    assertFalse(input1.equals(input2));
-    assertFalse(input2.equals(input1));
+    assertNotEquals(input1, input2);
+    assertNotEquals(input2, input1);
     assertNotEquals(input1.hashCode(), input2.hashCode());
     assertNotEquals(input2.hashCode(), input1.hashCode());
 
@@ -1001,8 +951,8 @@ public class LocalizedStringTest {
     input2.setSelectors(selectors);
     input2.setTextMap(expectedTextMap);
 
-    assertTrue(input1.equals(input2));
-    assertTrue(input2.equals(input1));
+    assertEquals(input1, input2);
+    assertEquals(input2, input1);
     assertEquals(input1.hashCode(), input2.hashCode());
     assertEquals(input2.hashCode(), input1.hashCode());
   }
@@ -1049,9 +999,9 @@ public class LocalizedStringTest {
     input3.setSelectors(selectors3);
     input3.setTextMap(expectedTextMap3);
 
-    assertTrue(input1.equals(input2));
-    assertTrue(input2.equals(input3));
-    assertTrue(input1.equals(input3));
+    assertEquals(input1, input2);
+    assertEquals(input2, input3);
+    assertEquals(input1, input3);
     assertEquals(input1.hashCode(), input2.hashCode());
     assertEquals(input2.hashCode(), input3.hashCode());
     assertEquals(input1.hashCode(), input3.hashCode());

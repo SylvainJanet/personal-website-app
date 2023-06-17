@@ -1,9 +1,7 @@
 package fr.sylvainjanet.app.test.dtos;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -95,12 +93,11 @@ public class StringDtoTest {
     input1.setMessage(message1);
     input2.setMessage(message2);
 
-    assertTrue(input1.equals(input2));
+    assertEquals(input1, input2);
     assertEquals(input1.hashCode(), input2.hashCode());
 
   }
 
-  @SuppressWarnings("unlikely-arg-type")
   @Test
   @DisplayName("Equals and Hashcode should be false if messages "
       + "are different or objects are different")
@@ -117,12 +114,12 @@ public class StringDtoTest {
     input1.setMessage(message1);
     input2.setMessage(message2);
 
-    assertFalse(input1.equals(input2));
+    assertNotEquals(input1, input2);
     assertNotEquals(input1.hashCode(), input2.hashCode());
 
-    assertFalse(input1.equals(new String()));
+    assertNotEquals(input1, new String());
 
-    assertFalse(input1.equals(null));
+    assertNotEquals(input1, null);
   }
 
   @Test
@@ -137,7 +134,7 @@ public class StringDtoTest {
 
     input.setMessage(message);
 
-    assertTrue(input.equals(input));
+    assertEquals(input, input);
     assertEquals(input.hashCode(), input.hashCode());
   }
 
@@ -156,16 +153,16 @@ public class StringDtoTest {
     input1.setMessage(message1);
     input2.setMessage(message2);
 
-    assertFalse(input1.equals(input2));
-    assertFalse(input2.equals(input1));
+    assertNotEquals(input1, input2);
+    assertNotEquals(input2, input1);
     assertNotEquals(input1.hashCode(), input2.hashCode());
     assertNotEquals(input2.hashCode(), input1.hashCode());
 
     input1.setMessage(message1);
     input2.setMessage(message1);
 
-    assertTrue(input1.equals(input2));
-    assertTrue(input2.equals(input1));
+    assertEquals(input1, input2);
+    assertEquals(input2, input1);
     assertEquals(input1.hashCode(), input2.hashCode());
     assertEquals(input2.hashCode(), input1.hashCode());
   }
@@ -188,9 +185,9 @@ public class StringDtoTest {
     input2.setMessage(message2);
     input3.setMessage(message3);
 
-    assertTrue(input1.equals(input2));
-    assertTrue(input2.equals(input3));
-    assertTrue(input1.equals(input3));
+    assertEquals(input1, input2);
+    assertEquals(input2, input3);
+    assertEquals(input1, input3);
     assertEquals(input1.hashCode(), input2.hashCode());
     assertEquals(input2.hashCode(), input3.hashCode());
     assertEquals(input1.hashCode(), input3.hashCode());
