@@ -117,9 +117,9 @@ public class StringDtoTest {
     assertNotEquals(input1, input2);
     assertNotEquals(input1.hashCode(), input2.hashCode());
 
-    assertNotEquals(input1, new String());
+    assertNotEquals(new String(), input1);
 
-    assertNotEquals(input1, null);
+    assertNotEquals(null, input1);
   }
 
   @Test
