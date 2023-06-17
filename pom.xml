@@ -297,6 +297,80 @@
 			</properties>
 			<build>
 				<directory>${project.basedir}/target-prod</directory>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${jacoco.maven.plugin.version}</version>
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+								<configuration>
+									<destFile>${project.build.directory}/jacoco-unit.exec</destFile>
+								</configuration>
+							</execution>
+							<execution>
+								<id>before-integration-test-execution</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+								<configuration>
+									<destFile>${project.build.directory}/jacoco-integration.exec</destFile>
+								</configuration>
+							</execution>
+							<execution>
+								<id>merge-unit-and-integration</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>merge</goal>
+								</goals>
+								<configuration>
+									<fileSets>
+										<fileSet>
+											<directory>${project.build.directory}</directory>
+											<includes>
+												<include>*.exec</include>
+											</includes>
+										</fileSet>
+									</fileSets>
+									<destFile>${project.build.directory}/merged.exec</destFile>
+								</configuration>
+							</execution>
+							<execution>
+								<id>check</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>check</goal>
+								</goals>
+								<configuration>
+									<rules>
+										<rule>
+											<element>CLASS</element>
+											<excludes>
+												<exclude>*Test</exclude>
+												<exclude>*IT</exclude>
+												<exclude>fr.sylvainjanet.app.*</exclude>
+												<exclude>fr.sylvainjanet.app.**.*</exclude>
+											</excludes>
+											<limits>
+												<limit>
+													<counter>LINE</counter>
+													<value>COVEREDRATIO</value>
+													<minimum>100%</minimum>
+												</limit>
+											</limits>
+										</rule>
+									</rules>
+									<dataFile>${project.build.directory}/merged.exec</dataFile>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
 			</build>
 		</profile>
 		<profile>
@@ -312,6 +386,80 @@
 			</properties>
 			<build>
 				<directory>${project.basedir}/target-staging</directory>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${jacoco.maven.plugin.version}</version>
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+								<configuration>
+									<destFile>${project.build.directory}/jacoco-unit.exec</destFile>
+								</configuration>
+							</execution>
+							<execution>
+								<id>before-integration-test-execution</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+								<configuration>
+									<destFile>${project.build.directory}/jacoco-integration.exec</destFile>
+								</configuration>
+							</execution>
+							<execution>
+								<id>merge-unit-and-integration</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>merge</goal>
+								</goals>
+								<configuration>
+									<fileSets>
+										<fileSet>
+											<directory>${project.build.directory}</directory>
+											<includes>
+												<include>*.exec</include>
+											</includes>
+										</fileSet>
+									</fileSets>
+									<destFile>${project.build.directory}/merged.exec</destFile>
+								</configuration>
+							</execution>
+							<execution>
+								<id>check</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>check</goal>
+								</goals>
+								<configuration>
+									<rules>
+										<rule>
+											<element>CLASS</element>
+											<excludes>
+												<exclude>*Test</exclude>
+												<exclude>*IT</exclude>
+												<exclude>fr.sylvainjanet.app.*</exclude>
+												<exclude>fr.sylvainjanet.app.**.*</exclude>
+											</excludes>
+											<limits>
+												<limit>
+													<counter>LINE</counter>
+													<value>COVEREDRATIO</value>
+													<minimum>100%</minimum>
+												</limit>
+											</limits>
+										</rule>
+									</rules>
+									<dataFile>${project.build.directory}/merged.exec</dataFile>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
 			</build>
 		</profile>
 		<profile>
@@ -372,10 +520,81 @@
 								<goals>
 									<goal>prepare-agent</goal>
 								</goals>
+								<configuration>
+									<destFile>${project.build.directory}/jacoco-unit.exec</destFile>
+								</configuration>
 							</execution>
 							<execution>
 								<id>report</id>
 								<phase>test</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<configuration>
+									<dataFile>${project.build.directory}/jacoco-unit.exec</dataFile>
+									<formats>
+										<format>XML</format>
+										<format>HTML</format>
+									</formats>
+									<excludes>
+										<exclude>fr/sylvainjanet/app/*</exclude>
+										<exclude>fr/sylvainjanet/app/config/**/*</exclude>
+									</excludes>
+									<outputDirectory>${project.reporting.outputDirectory}/jacoco-unit</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>before-integration-test-execution</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+								<configuration>
+									<destFile>${project.build.directory}/jacoco-integration.exec</destFile>
+								</configuration>
+							</execution>
+							<execution>
+								<id>after-integration-test-execution</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<configuration>
+									<dataFile>${project.build.directory}/jacoco-integration.exec</dataFile>
+									<formats>
+										<format>XML</format>
+										<format>HTML</format>
+									</formats>
+									<excludes>
+										<exclude>fr/sylvainjanet/app/*</exclude>
+										<exclude>fr/sylvainjanet/app/config/**/*</exclude>
+										<exclude>fr/sylvainjanet/app/dtos/**/*</exclude>
+										<exclude>fr/sylvainjanet/app/entities/**/*</exclude>
+									</excludes>
+									<outputDirectory>${project.reporting.outputDirectory}/jacoco-integration</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>merge-unit-and-integration</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>merge</goal>
+								</goals>
+								<configuration>
+									<fileSets>
+										<fileSet>
+											<directory>${project.build.directory}</directory>
+											<includes>
+												<include>*.exec</include>
+											</includes>
+										</fileSet>
+									</fileSets>
+									<destFile>${project.build.directory}/merged.exec</destFile>
+								</configuration>
+							</execution>
+							<execution>
+								<id>create-merged-report</id>
+								<phase>post-integration-test</phase>
 								<goals>
 									<goal>report</goal>
 								</goals>
@@ -388,6 +607,8 @@
 										<exclude>fr/sylvainjanet/app/*</exclude>
 										<exclude>fr/sylvainjanet/app/config/**/*</exclude>
 									</excludes>
+									<dataFile>${project.build.directory}/merged.exec</dataFile>
+									<outputDirectory>${project.reporting.outputDirectory}/jacoco-merged</outputDirectory>
 								</configuration>
 							</execution>
 						</executions>
@@ -423,10 +644,81 @@
 								<goals>
 									<goal>prepare-agent</goal>
 								</goals>
+								<configuration>
+									<destFile>${project.build.directory}/jacoco-unit.exec</destFile>
+								</configuration>
 							</execution>
 							<execution>
 								<id>report</id>
 								<phase>test</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<configuration>
+									<dataFile>${project.build.directory}/jacoco-unit.exec</dataFile>
+									<formats>
+										<format>XML</format>
+										<format>HTML</format>
+									</formats>
+									<excludes>
+										<exclude>fr/sylvainjanet/app/*</exclude>
+										<exclude>fr/sylvainjanet/app/config/**/*</exclude>
+									</excludes>
+									<outputDirectory>${project.reporting.outputDirectory}/jacoco-unit</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>before-integration-test-execution</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+								<configuration>
+									<destFile>${project.build.directory}/jacoco-integration.exec</destFile>
+								</configuration>
+							</execution>
+							<execution>
+								<id>after-integration-test-execution</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<configuration>
+									<dataFile>${project.build.directory}/jacoco-integration.exec</dataFile>
+									<formats>
+										<format>XML</format>
+										<format>HTML</format>
+									</formats>
+									<excludes>
+										<exclude>fr/sylvainjanet/app/*</exclude>
+										<exclude>fr/sylvainjanet/app/config/**/*</exclude>
+										<exclude>fr/sylvainjanet/app/dtos/**/*</exclude>
+										<exclude>fr/sylvainjanet/app/entities/**/*</exclude>
+									</excludes>
+									<outputDirectory>${project.reporting.outputDirectory}/jacoco-integration</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>merge-unit-and-integration</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>merge</goal>
+								</goals>
+								<configuration>
+									<fileSets>
+										<fileSet>
+											<directory>${project.build.directory}</directory>
+											<includes>
+												<include>*.exec</include>
+											</includes>
+										</fileSet>
+									</fileSets>
+									<destFile>${project.build.directory}/merged.exec</destFile>
+								</configuration>
+							</execution>
+							<execution>
+								<id>create-merged-report</id>
+								<phase>post-integration-test</phase>
 								<goals>
 									<goal>report</goal>
 								</goals>
@@ -439,6 +731,36 @@
 										<exclude>fr/sylvainjanet/app/*</exclude>
 										<exclude>fr/sylvainjanet/app/config/**/*</exclude>
 									</excludes>
+									<dataFile>${project.build.directory}/merged.exec</dataFile>
+									<outputDirectory>${project.reporting.outputDirectory}/jacoco-merged</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>check</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>check</goal>
+								</goals>
+								<configuration>
+									<rules>
+										<rule>
+											<element>CLASS</element>
+											<excludes>
+												<exclude>*Test</exclude>
+												<exclude>*IT</exclude>
+												<exclude>fr.sylvainjanet.app.*</exclude>
+												<exclude>fr.sylvainjanet.app.**.*</exclude>
+											</excludes>
+											<limits>
+												<limit>
+													<counter>LINE</counter>
+													<value>COVEREDRATIO</value>
+													<minimum>100%</minimum>
+												</limit>
+											</limits>
+										</rule>
+									</rules>
+									<dataFile>${project.build.directory}/merged.exec</dataFile>
 								</configuration>
 							</execution>
 						</executions>
@@ -474,10 +796,81 @@
 								<goals>
 									<goal>prepare-agent</goal>
 								</goals>
+								<configuration>
+									<destFile>${project.build.directory}/jacoco-unit.exec</destFile>
+								</configuration>
 							</execution>
 							<execution>
 								<id>report</id>
 								<phase>test</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<configuration>
+									<dataFile>${project.build.directory}/jacoco-unit.exec</dataFile>
+									<formats>
+										<format>XML</format>
+										<format>HTML</format>
+									</formats>
+									<excludes>
+										<exclude>fr/sylvainjanet/app/*</exclude>
+										<exclude>fr/sylvainjanet/app/config/**/*</exclude>
+									</excludes>
+									<outputDirectory>${project.reporting.outputDirectory}/jacoco-unit</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>before-integration-test-execution</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+								<configuration>
+									<destFile>${project.build.directory}/jacoco-integration.exec</destFile>
+								</configuration>
+							</execution>
+							<execution>
+								<id>after-integration-test-execution</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<configuration>
+									<dataFile>${project.build.directory}/jacoco-integration.exec</dataFile>
+									<formats>
+										<format>XML</format>
+										<format>HTML</format>
+									</formats>
+									<excludes>
+										<exclude>fr/sylvainjanet/app/*</exclude>
+										<exclude>fr/sylvainjanet/app/config/**/*</exclude>
+										<exclude>fr/sylvainjanet/app/dtos/**/*</exclude>
+										<exclude>fr/sylvainjanet/app/entities/**/*</exclude>
+									</excludes>
+									<outputDirectory>${project.reporting.outputDirectory}/jacoco-integration</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>merge-unit-and-integration</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>merge</goal>
+								</goals>
+								<configuration>
+									<fileSets>
+										<fileSet>
+											<directory>${project.build.directory}</directory>
+											<includes>
+												<include>*.exec</include>
+											</includes>
+										</fileSet>
+									</fileSets>
+									<destFile>${project.build.directory}/merged.exec</destFile>
+								</configuration>
+							</execution>
+							<execution>
+								<id>create-merged-report</id>
+								<phase>post-integration-test</phase>
 								<goals>
 									<goal>report</goal>
 								</goals>
@@ -490,6 +883,36 @@
 										<exclude>fr/sylvainjanet/app/*</exclude>
 										<exclude>fr/sylvainjanet/app/config/**/*</exclude>
 									</excludes>
+									<dataFile>${project.build.directory}/merged.exec</dataFile>
+									<outputDirectory>${project.reporting.outputDirectory}/jacoco-merged</outputDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>check</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>check</goal>
+								</goals>
+								<configuration>
+									<rules>
+										<rule>
+											<element>CLASS</element>
+											<excludes>
+												<exclude>*Test</exclude>
+												<exclude>*IT</exclude>
+												<exclude>fr.sylvainjanet.app.*</exclude>
+												<exclude>fr.sylvainjanet.app.**.*</exclude>
+											</excludes>
+											<limits>
+												<limit>
+													<counter>LINE</counter>
+													<value>COVEREDRATIO</value>
+													<minimum>100%</minimum>
+												</limit>
+											</limits>
+										</rule>
+									</rules>
+									<dataFile>${project.build.directory}/merged.exec</dataFile>
 								</configuration>
 							</execution>
 						</executions>
