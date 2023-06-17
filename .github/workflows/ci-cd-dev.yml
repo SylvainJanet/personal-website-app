@@ -26,6 +26,9 @@ jobs:
           VALIDATE_MARKDOWN: false
           VALIDATE_YAML: false
           VALIDATE_JSCPD: false
+          # even though sqlfluff lint is done locally, sqlfluff fails when used by superlinter
+          # VALIDATE_SQL is still set to true, so sql-lint will still lint sql files
+          VALIDATE_SQLFLUFF: false
       - name: Lint Code Base - sun
         uses: github/super-linter@v4
         env:
