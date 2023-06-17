@@ -1,6 +1,7 @@
 package fr.sylvainjanet.app.test.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.ArrayList;
@@ -885,9 +886,12 @@ public class LocalizedStringTest {
     assertNotEquals(input1, input2);
     assertNotEquals(input1.hashCode(), input2.hashCode());
 
-    assertNotEquals(input1, new String());
+    @SuppressWarnings("unlikely-arg-type")
+    boolean actual = input1.equals(new String());
+    assertFalse(actual);
 
-    assertNotEquals(input1, null);
+    actual = input1.equals(null);
+    assertFalse(actual);
   }
 
   @Test
