@@ -137,7 +137,7 @@ jobs:
                 -Dsonar.organization=sylvainjanet 
                 -Dsonar.projectKey=SylvainJanet_personal-website-app 
                 -Dsonar.java.source=1.8 
-                -Dsonar.coverage.jacoco.xmlReportPaths=target-coverage-stagging/site/jacoco-merged/jacoco.xml
+                -Dsonar.coverage.jacoco.xmlReportPaths=target-coverage-staging/site/jacoco-merged/jacoco.xml
             
   check_analysis_sonarcloud:
     needs: analysis_sonarcloud
