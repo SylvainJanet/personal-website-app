@@ -2,6 +2,7 @@ package fr.sylvainjanet.app.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.sylvainjanet.app.config.ConfigurationParams;
 import fr.sylvainjanet.app.entities.LocalizedString;
@@ -32,6 +33,7 @@ public class LocalizedStringServiceImpl implements LocalizedStringService {
    * @return the text string
    */
   @Override
+  @Transactional
   public String getText(final String selector,
       final TextLanguage language) {
     LocalizedString ls = repo.getBySelector(selector);

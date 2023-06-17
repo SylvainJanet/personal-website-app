@@ -48,7 +48,7 @@ public class HelloWorldController {
   @ResponseBody
   ResponseEntity<StringDto> putHome() {
     return new ResponseEntity<>(
-        new StringDto("Hello World ! - " + environment),
+        new StringDto("Method PUT not allowed - " + environment),
         HttpStatus.METHOD_NOT_ALLOWED);
   }
 }

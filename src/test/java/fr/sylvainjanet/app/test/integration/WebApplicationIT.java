@@ -1,7 +1,8 @@
-package fr.sylvainjanet.app.test;
+package fr.sylvainjanet.app.test.integration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -11,8 +12,12 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @author Sylvain
  *
  */
+@Tag("Integration-test")
 @SpringBootTest
-public class WebApplicationTests {
+//CHECKSTYLE.OFF: AbbreviationAsWordInNameCheck 
+//IT should be part of the class name
+public class WebApplicationIT {
+  // CHECKSTYLE.ON: AbbreviationAsWordInNameCheck
 
   /**
    * The application context should load.
