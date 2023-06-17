@@ -26,6 +26,9 @@ jobs:
           VALIDATE_MARKDOWN: false
           VALIDATE_YAML: false
           VALIDATE_JSCPD: false
+          # even though sqlfluff lint is done locally, sqlfluff fails when used by superlinter
+          # VALIDATE_SQL is still set to true, so sql-lint will still lint sql files
+          VALIDATE_SQLFLUFF: false
       - name: Lint Code Base - sun
         uses: github/super-linter@v4
         env:
@@ -36,7 +39,23 @@ jobs:
           JAVA_FILE_NAME: checkstyle-sun-modified.xml
           VALIDATE_JAVA: true
           
-  test:
+  unit_test:
+    runs-on: ubuntu-latest 
+    steps: 
+      - name: Checkout source code  
+        uses: actions/checkout@v3
+      - name: Set up JDK 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          cache: maven
+      - name: Test app 
+        env: 
+          JASYPT_ENCRYPTOR_PWD_DIST: ${{ secrets.JASYPT_ENCRYPTOR_PWD_DIST }}
+        run: mvn -Pstaging test
+        
+  integration_test:
     runs-on: ubuntu-latest 
     steps: 
       - name: Start MySQL
@@ -71,10 +90,10 @@ jobs:
       - name: Test app 
         env: 
           JASYPT_ENCRYPTOR_PWD_DIST: ${{ secrets.JASYPT_ENCRYPTOR_PWD_DIST }}
-        run: mvn -Pstaging test
+        run: mvn -Pstaging verify
         
   analysis_sonarcloud:
-    needs: test
+    needs: integration_test
     name: SonarCloud Analysis
     runs-on: ubuntu-latest
     steps:
@@ -113,7 +132,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
           JASYPT_ENCRYPTOR_PWD_DIST: ${{ secrets.JASYPT_ENCRYPTOR_PWD_DIST }}
-        run: mvn -Pcoverage-staging verify sonar:sonar "-Dsonar.host.url=https://sonarcloud.io" -Dsonar.organization=sylvainjanet -Dsonar.projectKey=SylvainJanet_personal-website-app -Dsonar.java.source=1.8
+        run: mvn -Pcoverage-staging verify sonar:sonar 
+                "-Dsonar.host.url=https://sonarcloud.io" 
+                -Dsonar.organization=sylvainjanet 
+                -Dsonar.projectKey=SylvainJanet_personal-website-app 
+                -Dsonar.java.source=1.8 
+                -Dsonar.coverage.jacoco.xmlReportPaths=target-coverage-staging/site/jacoco-merged/jacoco.xml
             
   check_analysis_sonarcloud:
     needs: analysis_sonarcloud
@@ -137,7 +161,7 @@ jobs:
             core.setFailed('Quality gate failed')
             
   coverage:
-    needs: test
+    needs: integration_test
     if: always()
     runs-on: ubuntu-latest
     permissions: # The Dependency Submission API requires write permission
@@ -175,14 +199,14 @@ jobs:
       - name: Build with Maven 
         env: 
           JASYPT_ENCRYPTOR_PWD_DIST: ${{ secrets.JASYPT_ENCRYPTOR_PWD_DIST }}
-        run: mvn -B -Pcoverage-staging test    
+        run: mvn -B -Pcoverage-staging verify    
       - name: Inject slug/short variables  
         uses: rlespinasse/github-slug-action@v4
       - name: Upload artifact  
         uses: actions/upload-artifact@v3  
         with:  
           name: app-coverage-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
-          path: ./target-coverage-staging/site/jacoco
+          path: ./target-coverage-staging/site/jacoco-merged
           
   deploy_coverage:  
     needs : [coverage]
