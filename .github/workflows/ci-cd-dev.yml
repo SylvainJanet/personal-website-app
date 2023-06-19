@@ -163,7 +163,6 @@ jobs:
             
   coverage:
     needs: integration_test
-    if: always()
     runs-on: ubuntu-latest
     permissions: # The Dependency Submission API requires write permission
       contents: write
