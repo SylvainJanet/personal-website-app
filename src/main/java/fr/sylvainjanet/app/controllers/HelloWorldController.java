@@ -49,7 +49,9 @@ public class HelloWorldController {
    * Temp.
    */
   @Autowired
-  private LocalizedStringRepository repo;
+  // CHECKSTYLE.OFF: VisibilityModifierCheck
+  LocalizedStringRepository repo;
+  // CHECKSTYLE.ON: VisibilityModifierCheck
 
   /**
    * Put mapping used for basic testing of the app functionality : the API

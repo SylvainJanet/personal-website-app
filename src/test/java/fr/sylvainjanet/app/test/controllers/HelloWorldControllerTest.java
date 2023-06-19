@@ -8,18 +8,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import fr.sylvainjanet.app.App;
-import fr.sylvainjanet.app.WebSecurityConfig;
-import fr.sylvainjanet.app.controllers.HelloWorldController;
 import fr.sylvainjanet.app.dtos.StringDto;
 
 /**
@@ -28,8 +25,10 @@ import fr.sylvainjanet.app.dtos.StringDto;
  * @author Sylvain
  *
  */
-@WebMvcTest(controllers = HelloWorldController.class)
-@ContextConfiguration(classes = { App.class, WebSecurityConfig.class })
+//@WebMvcTest(controllers = HelloWorldController.class)
+//@ContextConfiguration(classes = { App.class, WebSecurityConfig.class })
+@SpringBootTest
+@AutoConfigureMockMvc
 public class HelloWorldControllerTest {
 
   /**
