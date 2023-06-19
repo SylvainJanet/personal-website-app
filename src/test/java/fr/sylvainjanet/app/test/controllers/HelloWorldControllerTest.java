@@ -5,17 +5,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import fr.sylvainjanet.app.App;
+import fr.sylvainjanet.app.WebSecurityConfig;
+import fr.sylvainjanet.app.controllers.HelloWorldController;
 import fr.sylvainjanet.app.dtos.StringDto;
 
 /**
@@ -24,10 +28,8 @@ import fr.sylvainjanet.app.dtos.StringDto;
  * @author Sylvain
  *
  */
-//@WebMvcTest(controllers = HelloWorldController.class)
-//@ContextConfiguration(classes = { App.class, WebSecurityConfig.class })
-@SpringBootTest
-@AutoConfigureMockMvc
+@WebMvcTest(controllers = HelloWorldController.class)
+@ContextConfiguration(classes = { App.class, WebSecurityConfig.class })
 public class HelloWorldControllerTest {
 
   /**
@@ -53,7 +55,7 @@ public class HelloWorldControllerTest {
    *
    * @throws Exception if something goes wrong during the testing.
    */
-//  @Test
+  @Test
   @DisplayName("GET /hello should return Hello World and the environment")
   void testHello() throws Exception {
     this.mockMvc
@@ -70,7 +72,7 @@ public class HelloWorldControllerTest {
    *
    * @throws Exception if something goes wrong during the testing.
    */
-//  @Test
+  @Test
   @DisplayName("PUT /hello should 405")
   void testPutHello() throws Exception {
     this.mockMvc
