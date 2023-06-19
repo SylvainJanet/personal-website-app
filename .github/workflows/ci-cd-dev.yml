@@ -56,6 +56,7 @@ jobs:
         run: mvn -Pstaging test
         
   integration_test:
+    needs: unit_test
     runs-on: ubuntu-latest 
     steps: 
       - name: Start MySQL
@@ -202,14 +203,24 @@ jobs:
         run: mvn -B -Pcoverage-staging verify    
       - name: Inject slug/short variables  
         uses: rlespinasse/github-slug-action@v4
-      - name: Upload artifact  
+      - name: Upload artifact coverage
         uses: actions/upload-artifact@v3  
         with:  
           name: app-coverage-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
           path: ./target-coverage-staging/site/jacoco-merged
+      - name: Upload artifact coverage unit
+        uses: actions/upload-artifact@v3  
+        with:  
+          name: app-coverage-unit-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          path: ./target-coverage-staging/site/jacoco-unit
+      - name: Upload artifact coverage integration
+        uses: actions/upload-artifact@v3  
+        with:  
+          name: app-coverage-integration-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          path: ./target-coverage-staging/site/jacoco-integration
           
   deploy_coverage:  
-    needs : [coverage]
+    needs : [coverage,build]
     runs-on: ubuntu-latest  
   
     steps:
@@ -226,6 +237,30 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME_API_COVERAGE_DEV }}
           password: ${{ secrets.FTP_PASSWORD_API_COVERAGE_DEV }}
+          local-dir: './build/' 
+      - name: Download artifact - coverage unit
+        uses: actions/download-artifact@v3  
+        with:  
+          name: app-coverage-unit-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          path: './build'
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME_API_COVERAGE_UNIT_DEV }}
+          password: ${{ secrets.FTP_PASSWORD_API_COVERAGE_UNIT_DEV }}
+          local-dir: './build/' 
+      - name: Download artifact - coverage integration
+        uses: actions/download-artifact@v3  
+        with:  
+          name: app-coverage-integration-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          path: './build'
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME_API_COVERAGE_INTEGRATION_DEV }}
+          password: ${{ secrets.FTP_PASSWORD_API_COVERAGE_INTEGRATION_DEV }}
           local-dir: './build/'
           
   analyse_QL:
@@ -281,8 +316,6 @@ jobs:
         category: "/language:${{matrix.language}}"
         
   document:
-    needs: [lint]
-    if: always()
     runs-on: ubuntu-latest
     permissions: # The Dependency Submission API requires write permission
       contents: write
@@ -355,7 +388,6 @@ jobs:
   
   build:
     needs: [lint, analyse_QL, check_analysis_sonarcloud]
-    if: always()
     runs-on: ubuntu-latest
     permissions: # The Dependency Submission API requires write permission
       contents: write
