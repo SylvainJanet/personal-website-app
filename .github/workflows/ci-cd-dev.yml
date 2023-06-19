@@ -207,6 +207,16 @@ jobs:
         with:  
           name: app-coverage-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
           path: ./target-coverage-staging/site/jacoco-merged
+      - name: Upload artifact  
+        uses: actions/upload-artifact@v3  
+        with:  
+          name: app-coverage-unit-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          path: ./target-coverage-staging/site/jacoco-unit
+      - name: Upload artifact  
+        uses: actions/upload-artifact@v3  
+        with:  
+          name: app-coverage-integration-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          path: ./target-coverage-staging/site/jacoco-integration
           
   deploy_coverage:  
     needs : [coverage]
@@ -226,6 +236,30 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME_API_COVERAGE_DEV }}
           password: ${{ secrets.FTP_PASSWORD_API_COVERAGE_DEV }}
+          local-dir: './build/' 
+      - name: Download artifact - coverage unit
+        uses: actions/download-artifact@v3  
+        with:  
+          name: app-coverage-unit-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          path: './build'
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME_API_COVERAGE_UNIT_DEV }}
+          password: ${{ secrets.FTP_PASSWORD_API_COVERAGE_UNIT_DEV }}
+          local-dir: './build/' 
+      - name: Download artifact - coverage integration
+        uses: actions/download-artifact@v3  
+        with:  
+          name: app-coverage-integration-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          path: './build'
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME_API_COVERAGE_INTEGRATION_DEV }}
+          password: ${{ secrets.FTP_PASSWORD_API_COVERAGE_INTEGRATION_DEV }}
           local-dir: './build/'
           
   analyse_QL:
