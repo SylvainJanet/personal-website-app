@@ -179,11 +179,11 @@ jobs:
       - name: Verify MySQL
         run: mysql --user=root --password=root
       - name: Create SQL user
-        run: mysql --user=root --password=root --execute="CREATE USER 'sylvainjanet-staging-tests'@'localhost' IDENTIFIED BY '${{ secrets.MYSQL_STAGING_TESTS }}';"
+        run: mysql --user=root --password=root --execute="CREATE USER 'sylvainjanet-prod-tests'@'localhost' IDENTIFIED BY '${{ secrets.MYSQL_PROD_TESTS }}';"
       - name: Create database
-        run: mysql --user=root --password=root --execute="CREATE DATABASE sylvainjanet_staging_tests CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci;"
+        run: mysql --user=root --password=root --execute="CREATE DATABASE sylvainjanet_prod_tests CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci;"
       - name: Grant privileges to user
-        run: mysql --user=root --password=root --execute="GRANT ALL PRIVILEGES ON sylvainjanet_staging_tests.* TO 'sylvainjanet-staging-tests'@'localhost';"
+        run: mysql --user=root --password=root --execute="GRANT ALL PRIVILEGES ON sylvainjanet_prod_tests.* TO 'sylvainjanet-prod-tests'@'localhost';"
       - name: List existing SQL databases
         run: mysql --user=root --password=root --execute="show databases;"
       - name: Check existing users
