@@ -150,7 +150,7 @@ jobs:
       id: httpRequest
       uses: fjogeleit/http-request-action@v1
       with:
-        url: 'https://sonarcloud.io/api/qualitygates/project_status?projectKey=SylvainJanet_personal-website-app&branch=main'
+        url: 'https://sonarcloud.io/api/qualitygates/project_status?projectKey=SylvainJanet_personal-website-app&branch=dev'
         method: 'GET'
     - name: Show Response
       run: |
