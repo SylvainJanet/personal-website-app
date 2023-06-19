@@ -7,7 +7,7 @@ permissions:
   pull-requests: read # allows SonarCloud to decorate PRs with analysis results
   actions: write
 
-jobs: 
+jobs:
 
   lint:
     runs-on: ubuntu-latest
@@ -25,6 +25,9 @@ jobs:
           VALIDATE_MARKDOWN: false
           VALIDATE_YAML: false
           VALIDATE_JSCPD: false
+          # even though sqlfluff lint is done locally, sqlfluff fails when used by superlinter
+          # VALIDATE_SQL is still set to true, so sql-lint will still lint sql files
+          VALIDATE_SQLFLUFF: false
       - name: Lint Code Base - sun
         uses: github/super-linter@v4
         env:
@@ -34,10 +37,29 @@ jobs:
           LINTER_RULES_PATH: /
           JAVA_FILE_NAME: checkstyle-sun-modified.xml
           VALIDATE_JAVA: true
-          
-  test:
-    runs-on: ubuntu-latest
-    steps:
+  
+  
+  unit_test:
+    runs-on: ubuntu-latest 
+    steps: 
+      - name: Checkout source code  
+        uses: actions/checkout@v3
+      - name: Set up JDK 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          cache: maven
+      - name: Test app 
+        env: 
+          JASYPT_ENCRYPTOR_PWD_DIST: ${{ secrets.JASYPT_ENCRYPTOR_PWD_DIST }}
+        run: mvn -Pprod test
+        
+
+  integration_test:
+    needs: unit_test
+    runs-on: ubuntu-latest 
+    steps: 
       - name: Start MySQL
         run: sudo service mysql restart
       - name: Wait for MySQL
@@ -67,13 +89,13 @@ jobs:
           java-version: '8'
           distribution: 'temurin'
           cache: maven
-      - name: Test app   
+      - name: Test app 
         env: 
           JASYPT_ENCRYPTOR_PWD_DIST: ${{ secrets.JASYPT_ENCRYPTOR_PWD_DIST }}
-        run: mvn -Pprod test
+        run: mvn -Pprod verify
         
   analysis_sonarcloud:
-    needs: test
+    needs: integration_test
     name: SonarCloud Analysis
     runs-on: ubuntu-latest
     steps:
@@ -112,7 +134,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           JASYPT_ENCRYPTOR_PWD_DIST: ${{ secrets.JASYPT_ENCRYPTOR_PWD_DIST }}
-        run: mvn -Pcoverage-prod verify sonar:sonar "-Dsonar.host.url=https://sonarcloud.io" -Dsonar.organization=sylvainjanet -Dsonar.projectKey=SylvainJanet_personal-website-app -Dsonar.java.source=1.8
+        run: mvn -Pcoverage-prod verify sonar:sonar 
+                "-Dsonar.host.url=https://sonarcloud.io" 
+                -Dsonar.organization=sylvainjanet 
+                -Dsonar.projectKey=SylvainJanet_personal-website-app 
+                -Dsonar.java.source=1.8 
+                -Dsonar.coverage.jacoco.xmlReportPaths=target-coverage-prod/site/jacoco-merged/jacoco.xml
             
   check_analysis_sonarcloud:
     needs: analysis_sonarcloud
@@ -123,8 +150,7 @@ jobs:
       id: httpRequest
       uses: fjogeleit/http-request-action@v1
       with:
-        #url: 'https://sonarcloud.io/api/qualitygates/project_status?projectKey=SylvainJanet_personal-website-app&branch=dev'
-        url: "${{ format('https://sonarcloud.io/api/qualitygates/project_status?projectKey=SylvainJanet_personal-website-app&branch={0}', github.head_ref) }}"
+        url: 'https://sonarcloud.io/api/qualitygates/project_status?projectKey=SylvainJanet_personal-website-app&branch=dev'
         method: 'GET'
     - name: Show Response
       run: |
@@ -136,6 +162,63 @@ jobs:
       with:
         script: |
             core.setFailed('Quality gate failed')
+            
+  coverage:
+    needs: integration_test
+    runs-on: ubuntu-latest
+    permissions: # The Dependency Submission API requires write permission
+      contents: write
+    steps:
+      - name: Start MySQL
+        run: sudo service mysql restart
+      - name: Wait for MySQL
+        run: |
+          while ! mysqladmin ping --host=127.0.0.1 --password=root --silent; do
+            sleep 1
+          done
+      - name: Verify MySQL
+        run: mysql --user=root --password=root
+      - name: Create SQL user
+        run: mysql --user=root --password=root --execute="CREATE USER 'sylvainjanet-staging-tests'@'localhost' IDENTIFIED BY '${{ secrets.MYSQL_STAGING_TESTS }}';"
+      - name: Create database
+        run: mysql --user=root --password=root --execute="CREATE DATABASE sylvainjanet_staging_tests CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci;"
+      - name: Grant privileges to user
+        run: mysql --user=root --password=root --execute="GRANT ALL PRIVILEGES ON sylvainjanet_staging_tests.* TO 'sylvainjanet-staging-tests'@'localhost';"
+      - name: List existing SQL databases
+        run: mysql --user=root --password=root --execute="show databases;"
+      - name: Check existing users
+        run: mysql --user=root --password=root --execute="SELECT user FROM mysql. user"
+      - name: Verify MySQL user
+        run: mysql --user=sylvainjanet-staging-tests --password=${{ secrets.MYSQL_STAGING_TESTS }}
+      - name: Checkout source code  
+        uses: actions/checkout@v3
+      - name: Set up JDK 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven 
+        env: 
+          JASYPT_ENCRYPTOR_PWD_DIST: ${{ secrets.JASYPT_ENCRYPTOR_PWD_DIST }}
+        run: mvn -B -Pcoverage-prod test    
+      - name: Inject slug/short variables  
+        uses: rlespinasse/github-slug-action@v4
+      - name: Upload artifact coverage
+        uses: actions/upload-artifact@v3  
+        with:  
+          name: app-coverage-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          path: ./target-coverage-prod/site/jacoco-merged
+      - name: Upload artifact coverage unit
+        uses: actions/upload-artifact@v3  
+        with:  
+          name: app-coverage-unit-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          path: ./target-coverage-prod/site/jacoco-unit
+      - name: Upload artifact coverage integration
+        uses: actions/upload-artifact@v3  
+        with:  
+          name: app-coverage-integration-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
+          path: ./target-coverage-prod/site/jacoco-integration
           
   analyse_QL:
     name: Analyze CodeQL
@@ -149,6 +232,8 @@ jobs:
       fail-fast: false
       matrix:
         language: [ 'java' ]
+        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
+        # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     steps:
     - name: Checkout repository
@@ -159,18 +244,35 @@ jobs:
       uses: github/codeql-action/init@v2
       with:
         languages: ${{ matrix.language }}
+        # If you wish to specify custom queries, you can do so here or in a config file.
+        # By default, queries listed here will override any specified in a config file.
+        # Prefix the list here with "+" to use these queries and those in the config file.
 
+        # Details on CodeQL's query packs refer to : https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
+        # queries: security-extended,security-and-quality
+
+
+    # Autobuild attempts to build any compiled languages  (C/C++, C#, Go, or Java).
+    # If this step fails, then you should remove it and run the build manually (see below)
     - name: Autobuild
       uses: github/codeql-action/autobuild@v2
+
+    # ℹ️ Command-line programs to run using the OS shell.
+    # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
+
+    #   If the Autobuild fails above, remove it and uncomment the following three lines.
+    #   modify them (or add more) to build your code if your project, please refer to the EXAMPLE below for guidance.
+
+    # - run: |
+    #   echo "Run, Build Application using script"
+    #   ./location_of_script_within_repo/buildscript.sh
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
       with:
         category: "/language:${{matrix.language}}"
-  
+        
   document:
-    needs: [lint]
-    if: always()
     runs-on: ubuntu-latest
     permissions: # The Dependency Submission API requires write permission
       contents: write
@@ -194,7 +296,7 @@ jobs:
         uses: actions/upload-artifact@v3  
         with:  
           name: app-javadoc-tests-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
-          path: ./target-staging/site/testapidocs
+          path: ./target-prod/site/testapidocs
           
       - name: Build javadoc 
         env: 
@@ -207,7 +309,7 @@ jobs:
         uses: actions/upload-artifact@v3  
         with:  
           name: app-javadoc-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
-          path: ./target-staging/site/apidocs
+          path: ./target-prod/site/apidocs
   
   build:
     needs: [lint, analyse_QL, check_analysis_sonarcloud]
@@ -241,13 +343,13 @@ jobs:
       - name: Set up JDK 8
         uses: actions/setup-java@v3
         with:
-         java-version: '8'
-         distribution: 'temurin'
-         cache: maven
+          java-version: '8'
+          distribution: 'temurin'
+          cache: maven
       - name: Build with Maven 
         env: 
           JASYPT_ENCRYPTOR_PWD_DIST: ${{ secrets.JASYPT_ENCRYPTOR_PWD_DIST }}
-        run: mvn -Pprod -B package restdocs-spec:generate install
+        run: mvn -Pprod -B verify restdocs-spec:generate javadoc:javadoc install
 
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
       - name: Maven Dependency Tree Dependency Submission
@@ -262,3 +364,4 @@ jobs:
         with:  
           name: app-${{ env.GITHUB_REF_SLUG }}-${{ github.run_id }}-${{ github.run_number }}  
           path: ./target-prod
+          

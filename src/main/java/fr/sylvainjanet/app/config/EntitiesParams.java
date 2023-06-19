@@ -30,11 +30,12 @@ public final class EntitiesParams {
   /**
    * Name of the language column (of textmap table) in db.
    */
-  public static final String LOCALIZED_STRING_LANGUAGE_NAME = "language";
+  public static final String LOCALIZED_STRING_LANGUAGE_NAME =
+      "language_name";
   /**
    * Name of the text column (of textmap table) in db.
    */
-  public static final String LOCALIZED_STRING_TEXT_NAME = "text";
+  public static final String LOCALIZED_STRING_TEXT_NAME = "text_content";
 
   private EntitiesParams() {
 

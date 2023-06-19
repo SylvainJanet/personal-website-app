@@ -75,4 +75,13 @@ public class StringDto {
     StringDto other = (StringDto) obj;
     return Objects.equals(message, other.message);
   }
+
+  /**
+   * To String method.
+   */
+  @Override
+  public String toString() {
+    return "StringDto\r\n[\r\n\tmessage = " + message + "\r\n]";
+  }
+
 }

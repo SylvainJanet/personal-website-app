@@ -50,10 +50,10 @@ public final class InitialData {
   /**
    * Texts for sylvain janet.
    */
-  // CSOFF: LineLength - this line can't be made shorter
+  // CHECKSTYLE.OFF: LineLength - this line can't be made shorter
   private static final Map<TextLanguage, String> TEXTMAP_OCCUPATION_MATHEMATICIAN =
       new EnumMap<>(TextLanguage.class);
-  // CSON: LineLength
+  // CHECKSTYLE.ON: LineLength
   /**
    * Texts for sylvain janet.
    */
@@ -63,10 +63,10 @@ public final class InitialData {
   /**
    * Texts for sylvain janet.
    */
-  // CSOFF: LineLength - this line can't be made shorter
+  // CHECKSTYLE.OFF: LineLength - this line can't be made shorter
   private static final Map<TextLanguage, String> TEXTMAP_OCCUPATION_FULLSTACK_DEV =
       new EnumMap<>(TextLanguage.class);
-  // CSON: LineLength
+  // CHECKSTYLE.ON: LineLength
 
   /**
    * Texts for sylvain janet.

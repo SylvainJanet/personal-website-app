@@ -1,5 +1,6 @@
 package fr.sylvainjanet.app.entities;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -160,9 +161,10 @@ public class LocalizedString {
    * Remove a selector from this localized string.
    * 
    * @param selector the selector
+   * @return true if the selector list contained the given element
    */
-  public void removeSelector(final String selector) {
-    selectors.remove(selector);
+  public boolean removeSelector(final String selector) {
+    return selectors.remove(selector);
   }
 
   /**
@@ -180,9 +182,12 @@ public class LocalizedString {
    * 
    * @param language the language
    * @param text     the text content in that specific language
+   * @return the previous value associated with key, or null if there was
+   *         no mapping for key
    */
-  public void translateIn(final TextLanguage language, final String text) {
-    textMap.put(language, text);
+  public String translateIn(final TextLanguage language,
+      final String text) {
+    return textMap.put(language, text);
   }
 
   /**
@@ -190,6 +195,8 @@ public class LocalizedString {
    */
   public LocalizedString() {
     super();
+    this.selectors = new ArrayList<>();
+    this.textMap = new EnumMap<>(TextLanguage.class);
   }
 
   /**
@@ -217,6 +224,60 @@ public class LocalizedString {
       final Map<TextLanguage, String> textMap) {
     super();
     this.selectors = selectors;
+    this.textMap = textMap;
+  }
+
+  /**
+   * Get id.
+   *
+   * @return the id
+   */
+  public Long getId() {
+    return id;
+  }
+
+  /**
+   * Set id.
+   *
+   * @param id the id to set
+   */
+  public void setId(final Long id) {
+    this.id = id;
+  }
+
+  /**
+   * Get selectors.
+   *
+   * @return the selectors
+   */
+  public List<String> getSelectors() {
+    return selectors;
+  }
+
+  /**
+   * Set selectors.
+   *
+   * @param selectors the selectors to set
+   */
+  public void setSelectors(final List<String> selectors) {
+    this.selectors = selectors;
+  }
+
+  /**
+   * Get textMap.
+   *
+   * @return the textMap
+   */
+  public Map<TextLanguage, String> getTextMap() {
+    return textMap;
+  }
+
+  /**
+   * Set textMap.
+   *
+   * @param textMap the textMap to set
+   */
+  public void setTextMap(final Map<TextLanguage, String> textMap) {
     this.textMap = textMap;
   }
 
@@ -251,8 +312,9 @@ public class LocalizedString {
    */
   @Override
   public String toString() {
-    return "LocalizedString [id=" + id + ", selectors=" + selectors
-        + ", textMap=" + textMap + "]";
+    return "LocalizedString\r\n" + "[\r\n\tid = " + id + "\r\n"
+        + "\tselectors = " + selectors + "\r\n\ttextMap = " + textMap
+        + "\r\n]";
   }
 
 }
