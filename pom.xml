@@ -6,7 +6,7 @@
 	<artifactId>app</artifactId>
 	<version>0.0.2</version>
 	<packaging>war</packaging>
-	<name>app</name>
+	<name>sylvainjanet</name>
 	<description>sylvainjanet.fr backend app</description>
 	<url>http://sylvain.janet.fr/app</url>
 	<parent>
