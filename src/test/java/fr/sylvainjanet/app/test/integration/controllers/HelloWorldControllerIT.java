@@ -39,6 +39,12 @@ public class HelloWorldControllerIT extends ControllerAndRestDocIT {
   private String environment;
 
   /**
+   * Current version.
+   */
+  @Value("${app.version}")
+  private String version;
+
+  /**
    * Object mapper.
    */
   @Autowired
@@ -57,8 +63,8 @@ public class HelloWorldControllerIT extends ControllerAndRestDocIT {
             .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(content().json(mapper.writeValueAsString(
-            new StringDto("Hello World ! - " + environment))))
+        .andExpect(content().json(mapper.writeValueAsString(new StringDto(
+            "Hello World ! - " + environment + " - v" + version))))
         .andDo(document("Hello world !", resourceDetails()
             .summary("Get Hello world message")
             .description("Request to test the API, the doc generation and "
@@ -80,8 +86,9 @@ public class HelloWorldControllerIT extends ControllerAndRestDocIT {
         .perform(RestDocumentationRequestBuilders.put("/hello")
             .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().is(HttpStatus.METHOD_NOT_ALLOWED.value()))
-        .andExpect(content().json(mapper.writeValueAsString(
-            new StringDto("Method PUT not allowed - " + environment))))
+        .andExpect(content().json(mapper
+            .writeValueAsString(new StringDto("Method PUT not allowed - "
+                + environment + " - v" + version))))
         .andDo(document("PUT Hello world error",
             resourceDetails().summary("PUT Hello world error").description(
                 "This request should return a METHOD NOT ALLOWED error")
