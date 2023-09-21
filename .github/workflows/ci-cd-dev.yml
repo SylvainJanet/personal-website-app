@@ -453,7 +453,7 @@ jobs:
           path: '.'
       - name: rename war file
         run: |
-          mv app-0.0.1-SNAPSHOT.war app-dev.war
+          mv *app* app-dev.war
       - name: copy file via ssh key
         uses: appleboy/scp-action@master
         with:
