@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.sylvainjanet</groupId>
 	<artifactId>app</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<packaging>war</packaging>
 	<name>sylvainjanet</name>
 	<description>sylvainjanet.fr backend app</description>
@@ -199,7 +199,7 @@
 						</execution>
 					</executions>
 					<configuration>
-						<name>Demo Spring REST Docs</name>
+						<name>sylvainjanet app REST Docs</name>
 						<version>${project.version}</version>
 						<host>${api.host}</host>
 						<basePath>${api.basePath}</basePath>
@@ -207,7 +207,7 @@
 						<outputDirectory>${project.build.outputDirectory}/static/openApi</outputDirectory>
 						<filename>openApi</filename>
 						<specification>OPENAPI_V3</specification>
-						<description>API description for Demo Spring REST Docs service</description>
+						<description>API description for sylvainjanet app</description>
 						<snippetsDirectory>${snippetsDirectory}</snippetsDirectory>
 					</configuration>
 				</plugin>
