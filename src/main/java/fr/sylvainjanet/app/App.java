@@ -25,6 +25,12 @@ public class App extends SpringBootServletInitializer {
   private String environment;
 
   /**
+   * Version from app.version. Uses the ConfigurationProperties annotation
+   * to bind the property and avoid warnings in .properties file
+   */
+  private String version;
+
+  /**
    * Get the current environment. Corresponds to the current maven profile.
    * 
    * <p>Can be : dev, staging, prod for different stages of development.
@@ -52,6 +58,25 @@ public class App extends SpringBootServletInitializer {
    */
   public void setEnvironment(final String environment) {
     this.environment = environment;
+  }
+
+  /**
+   * Get version.
+   *
+   * @return the version
+   */
+  public String getVersion() {
+    return version;
+  }
+
+  /**
+   * Set version. Used for property binding by the ConfigurationProperties
+   * annotation.
+   *
+   * @param version the version to set
+   */
+  public void setVersion(final String version) {
+    this.version = version;
   }
 
   /**

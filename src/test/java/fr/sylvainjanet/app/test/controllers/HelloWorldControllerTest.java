@@ -39,6 +39,12 @@ public class HelloWorldControllerTest {
   private String environment;
 
   /**
+   * Current version.
+   */
+  @Value("${app.version}")
+  private String version;
+
+  /**
    * Autowired mockMvc used to mock http requests.
    */
   @Autowired
@@ -63,8 +69,8 @@ public class HelloWorldControllerTest {
             .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(content().json(mapper.writeValueAsString(
-            new StringDto("Hello World ! - " + environment))));
+        .andExpect(content().json(mapper.writeValueAsString(new StringDto(
+            "Hello World ! - " + environment + " - v" + version))));
   }
 
   /**

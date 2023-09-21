@@ -26,6 +26,12 @@ public class HelloWorldController {
   private String environment;
 
   /**
+   * Current version.
+   */
+  @Value("${app.version}")
+  private String version;
+
+  /**
    * Get mapping used for basic testing of the app functionality : the API
    * Hello world.
    *
@@ -35,7 +41,8 @@ public class HelloWorldController {
   @ResponseBody
   ResponseEntity<StringDto> home() {
     return new ResponseEntity<>(
-        new StringDto("Hello World ! - " + environment), HttpStatus.OK);
+        new StringDto("Hello World ! - " + environment + " - v" + version),
+        HttpStatus.OK);
   }
 
   /**
@@ -48,7 +55,8 @@ public class HelloWorldController {
   @ResponseBody
   ResponseEntity<StringDto> putHome() {
     return new ResponseEntity<>(
-        new StringDto("Method PUT not allowed - " + environment),
+        new StringDto(
+            "Method PUT not allowed - " + environment + " - v" + version),
         HttpStatus.METHOD_NOT_ALLOWED);
   }
 }
