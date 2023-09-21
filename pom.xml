@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.sylvainjanet</groupId>
 	<artifactId>app</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>war</packaging>
 	<name>app</name>
 	<description>sylvainjanet.fr backend app</description>
@@ -29,6 +29,7 @@
 		<springdoc.openapi.ui.version>1.7.0</springdoc.openapi.ui.version>
 		<restdocs.spec.maven.plugin.version>0.19</restdocs.spec.maven.plugin.version>
 		<maven.javadoc.plugin.version>3.5.0</maven.javadoc.plugin.version>
+		<versions.maven.plugin.version>2.16.1</versions.maven.plugin.version>
 	</properties>
 	<pluginRepositories>
 		<pluginRepository>
@@ -126,10 +127,16 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-  			<version>7.15.0</version><!--$NO-MVN-MAN-VER$-->
+			<version>7.15.0</version> <!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-mysql -->
 		<!-- no need https://stackoverflow.com/questions/70438180/what-is-the-last-version-of-flyway-community-edition-that-supported-mysql-5-7 -->
+		<!-- https://mvnrepository.com/artifact/org.codehaus.mojo/versions-maven-plugin -->
+		<dependency>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>versions-maven-plugin</artifactId>
+			<version>${versions.maven.plugin.version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<pluginManagement>
