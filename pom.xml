@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.sylvainjanet</groupId>
 	<artifactId>app</artifactId>
-	<version>0.0.3</version>
+	<version>0.1.3</version>
 	<packaging>war</packaging>
 	<name>sylvainjanet</name>
 	<description>sylvainjanet.fr backend app</description>
@@ -131,12 +131,6 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-mysql -->
 		<!-- no need https://stackoverflow.com/questions/70438180/what-is-the-last-version-of-flyway-community-edition-that-supported-mysql-5-7 -->
-		<!-- https://mvnrepository.com/artifact/org.codehaus.mojo/versions-maven-plugin -->
-		<dependency>
-			<groupId>org.codehaus.mojo</groupId>
-			<artifactId>versions-maven-plugin</artifactId>
-			<version>${versions.maven.plugin.version}</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<pluginManagement>
@@ -258,6 +252,12 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<!-- https://mvnrepository.com/artifact/org.codehaus.mojo/versions-maven-plugin -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>${versions.maven.plugin.version}</version> <!--$NO-MVN-MAN-VER$-->
 			</plugin>
 		</plugins>
 		<resources>
