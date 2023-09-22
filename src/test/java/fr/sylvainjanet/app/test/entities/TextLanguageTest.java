@@ -17,9 +17,6 @@ import fr.sylvainjanet.app.entities.TextLanguage;
  */
 public class TextLanguageTest {
 
-  /**
-   * Test of getLanguage method.
-   */
   @Test
   @DisplayName("getLanguage should return the language")
   void getLanguageTest() {
@@ -30,9 +27,6 @@ public class TextLanguageTest {
     assertEquals(expected, actual);
   }
 
-  /**
-   * Test of getRegion method.
-   */
   @Test
   @DisplayName("getRegion should return the region")
   void getRegionTest() {
@@ -43,9 +37,6 @@ public class TextLanguageTest {
     assertEquals(expected, actual);
   }
 
-  /**
-   * Test of getVariant method.
-   */
   @Test
   @DisplayName("getVariant should return the variant")
   void getVariantTest() {
@@ -56,9 +47,6 @@ public class TextLanguageTest {
     assertEquals(expected, actual);
   }
 
-  /**
-   * Test of getScript method.
-   */
   @Test
   @DisplayName("getScript should return the script")
   void getScriptTest() {
@@ -69,9 +57,6 @@ public class TextLanguageTest {
     assertEquals(expected, actual);
   }
 
-  /**
-   * Test of getLocale method.
-   */
   @Test
   @DisplayName("getLocale should return the locale")
   void getLocaleTest() {

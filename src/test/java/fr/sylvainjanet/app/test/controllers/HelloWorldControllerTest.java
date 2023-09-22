@@ -56,11 +56,6 @@ public class HelloWorldControllerTest {
   @Autowired
   private ObjectMapper mapper;
 
-  /**
-   * GET /hello should return Hello world and the environment name.
-   *
-   * @throws Exception if something goes wrong during the testing.
-   */
   @Test
   @DisplayName("GET /hello should return Hello World and the environment")
   void testHello() throws Exception {
@@ -73,11 +68,6 @@ public class HelloWorldControllerTest {
             "Hello World ! - " + environment + " - v" + version))));
   }
 
-  /**
-   * PUT /hello should ERROR 405.
-   *
-   * @throws Exception if something goes wrong during the testing.
-   */
   @Test
   @DisplayName("PUT /hello should 405")
   void testPutHello() throws Exception {
