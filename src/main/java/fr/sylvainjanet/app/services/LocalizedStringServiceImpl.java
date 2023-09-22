@@ -61,7 +61,7 @@ public class LocalizedStringServiceImpl implements LocalizedStringService {
   @Transactional
   public List<String> getMultiText(final List<String> selectors,
       final TextLanguage language) {
-    List<String> result = new ArrayList<String>();
+    List<String> result = new ArrayList<>();
     for (String selector : selectors) {
       result.add(this.getText(selector, language));
     }

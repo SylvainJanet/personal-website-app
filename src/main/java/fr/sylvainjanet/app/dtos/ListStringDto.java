@@ -40,7 +40,7 @@ public class ListStringDto {
    */
   public ListStringDto() {
     super();
-    this.messages = new ArrayList<String>();
+    this.messages = new ArrayList<>();
   }
 
   /**
