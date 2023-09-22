@@ -29,7 +29,7 @@ public class StringDtoTest {
 
     input.setMessage(expectedMessage);
 
-    String actualMessage = input.getMessage();
+    final String actualMessage = input.getMessage();
 
     assertEquals(expectedMessage, actualMessage);
   }
@@ -46,7 +46,7 @@ public class StringDtoTest {
 
     input.setMessage(expectedMessage);
 
-    String actualMessage = input.getMessage();
+    final String actualMessage = input.getMessage();
 
     assertEquals(expectedMessage, actualMessage);
   }
@@ -57,9 +57,9 @@ public class StringDtoTest {
 
     final StringDto input = new StringDto();
 
-    String messageExpected = null;
+    final String messageExpected = null;
 
-    String messageActual = input.getMessage();
+    final String messageActual = input.getMessage();
 
     assertEquals(messageExpected, messageActual);
 
@@ -69,11 +69,11 @@ public class StringDtoTest {
   @DisplayName("Full constructor should instanciate properly")
   void fullConstructor() {
 
-    String messageExpected = "test message";
+    final String messageExpected = "test message";
 
     final StringDto input = new StringDto(messageExpected);
 
-    String messageActual = input.getMessage();
+    final String messageActual = input.getMessage();
 
     assertEquals(messageExpected, messageActual);
 
@@ -119,11 +119,11 @@ public class StringDtoTest {
     assertNotEquals(input1.hashCode(), input2.hashCode());
 
     @SuppressWarnings("unlikely-arg-type")
-    boolean actual = input1.equals(new String());
-    assertFalse(actual);
+    final boolean actualNotSameType = input1.equals(new String());
+    assertFalse(actualNotSameType);
 
-    actual = input1.equals(null);
-    assertFalse(actual);
+    final boolean actualNull = input1.equals(null);
+    assertFalse(actualNull);
   }
 
   @Test
@@ -209,9 +209,9 @@ public class StringDtoTest {
 
     input.setMessage(message);
 
-    String expected =
+    final String expected =
         "StringDto\r\n" + "[\r\n\tmessage = test message\r\n" + "]";
-    String actual = input.toString();
+    final String actual = input.toString();
 
     assertEquals(expected, actual);
   }

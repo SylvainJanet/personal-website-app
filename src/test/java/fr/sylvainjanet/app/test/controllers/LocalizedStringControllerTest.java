@@ -62,9 +62,9 @@ public class LocalizedStringControllerTest {
   @DisplayName("getText should return the text when it is found")
   void getText() throws Exception {
 
-    String inputSelecteur = "test-selecteur";
-    TextLanguage inputTextLanguage = TextLanguage.ENGLISH;
-    String expectedResult = "this is a test";
+    final String inputSelecteur = "test-selecteur";
+    final TextLanguage inputTextLanguage = TextLanguage.ENGLISH;
+    final String expectedResult = "this is a test";
 
     // mock setup
 
@@ -73,7 +73,7 @@ public class LocalizedStringControllerTest {
 
     // query setup
 
-    LinkedMultiValueMap<String, String> requestParams =
+    final LinkedMultiValueMap<String, String> requestParams =
         new LinkedMultiValueMap<>();
     requestParams.add("selector", inputSelecteur);
     requestParams.add("language", inputTextLanguage.toString());
@@ -90,9 +90,9 @@ public class LocalizedStringControllerTest {
   @DisplayName("getText should return an error message when it is not found")
   void getTextNotFound() throws Exception {
 
-    String inputSelecteur = "test-selecteur";
-    TextLanguage inputTextLanguage = TextLanguage.ENGLISH;
-    String expectedResult =
+    final String inputSelecteur = "test-selecteur";
+    final TextLanguage inputTextLanguage = TextLanguage.ENGLISH;
+    final String expectedResult =
         ConfigurationParams.DEFAULT_TEXT_NO_SELECTOR_FOUND;
 
     // mock setup
@@ -102,7 +102,7 @@ public class LocalizedStringControllerTest {
 
     // query setup
 
-    LinkedMultiValueMap<String, String> requestParams =
+    final LinkedMultiValueMap<String, String> requestParams =
         new LinkedMultiValueMap<>();
     requestParams.add("selector", inputSelecteur);
     requestParams.add("language", inputTextLanguage.toString());
@@ -119,9 +119,9 @@ public class LocalizedStringControllerTest {
       + "not for the language specified")
   void getTextFoundNotLanguage() throws Exception {
 
-    String inputSelecteur = "test-selecteur";
-    TextLanguage inputTextLanguage = TextLanguage.ENGLISH;
-    String expectedResult =
+    final String inputSelecteur = "test-selecteur";
+    final TextLanguage inputTextLanguage = TextLanguage.ENGLISH;
+    final String expectedResult =
         ConfigurationParams.DEFAULT_TEXT_NO_TRANSLATION_FOUND;
 
     // mock setup
@@ -131,7 +131,7 @@ public class LocalizedStringControllerTest {
 
     // query setup
 
-    LinkedMultiValueMap<String, String> requestParams =
+    final LinkedMultiValueMap<String, String> requestParams =
         new LinkedMultiValueMap<>();
     requestParams.add("selector", inputSelecteur);
     requestParams.add("language", inputTextLanguage.toString());
@@ -160,7 +160,7 @@ public class LocalizedStringControllerTest {
 
     // query setup
 
-    LinkedMultiValueMap<String, String> requestParams =
+    final LinkedMultiValueMap<String, String> requestParams =
         new LinkedMultiValueMap<>();
     requestParams.add("selectors", inputSelectors.get(0));
     requestParams.add("selectors", inputSelectors.get(1));
@@ -194,7 +194,7 @@ public class LocalizedStringControllerTest {
 
     // query setup
 
-    LinkedMultiValueMap<String, String> requestParams =
+    final LinkedMultiValueMap<String, String> requestParams =
         new LinkedMultiValueMap<>();
     requestParams.add("selectors", inputSelectors.get(0));
     requestParams.add("selectors", inputSelectors.get(1));
@@ -229,7 +229,7 @@ public class LocalizedStringControllerTest {
 
     // query setup
 
-    LinkedMultiValueMap<String, String> requestParams =
+    final LinkedMultiValueMap<String, String> requestParams =
         new LinkedMultiValueMap<>();
     requestParams.add("selectors", inputSelectors.get(0));
     requestParams.add("selectors", inputSelectors.get(1));

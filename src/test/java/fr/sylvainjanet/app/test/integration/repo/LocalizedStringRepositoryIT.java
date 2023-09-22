@@ -40,8 +40,8 @@ public class LocalizedStringRepositoryIT extends InitDbForTestsIT {
 
   @Test
   void getBySelectorNotFound() {
-    String input = "test-unused-selector";
-    LocalizedString ls = repo.getBySelector(input);
+    final String input = "test-unused-selector";
+    final LocalizedString ls = repo.getBySelector(input);
 
     assertNull(ls);
 
@@ -49,26 +49,30 @@ public class LocalizedStringRepositoryIT extends InitDbForTestsIT {
 
   @Test
   void getBySelectorFound() {
-    String input = "test-main";
-    LocalizedString expected = InitialTestData.LS_MAIN;
-    LocalizedString actual = repo.getBySelector(input);
+    final String inputSingle = "test-main";
+    final LocalizedString expectedSingle = InitialTestData.LS_MAIN;
+    final LocalizedString actualSingle = repo.getBySelector(inputSingle);
 
-    assertNotNull(actual);
-    assertEquals(expected, actual);
+    assertNotNull(actualSingle);
+    assertEquals(expectedSingle, actualSingle);
 
-    input = "test-multiple-selectors";
-    expected = InitialTestData.LS_MULTIPLE_SELECTORS;
-    actual = repo.getBySelector(input);
+    final String inputMultiple1 = "test-multiple-selectors";
+    final LocalizedString expectedMultiple1 =
+        InitialTestData.LS_MULTIPLE_SELECTORS;
+    final LocalizedString actualMultiple1 =
+        repo.getBySelector(inputMultiple1);
 
-    assertNotNull(actual);
-    assertEquals(expected, actual);
+    assertNotNull(actualMultiple1);
+    assertEquals(expectedMultiple1, actualMultiple1);
 
-    input = "test-other-selector";
-    expected = InitialTestData.LS_MULTIPLE_SELECTORS;
-    actual = repo.getBySelector(input);
+    final String inputMultiple2 = "test-other-selector";
+    final LocalizedString expectedMultiple2 =
+        InitialTestData.LS_MULTIPLE_SELECTORS;
+    final LocalizedString actualMultiple2 =
+        repo.getBySelector(inputMultiple2);
 
-    assertNotNull(actual);
-    assertEquals(expected, actual);
+    assertNotNull(actualMultiple2);
+    assertEquals(expectedMultiple2, actualMultiple2);
 
   }
 

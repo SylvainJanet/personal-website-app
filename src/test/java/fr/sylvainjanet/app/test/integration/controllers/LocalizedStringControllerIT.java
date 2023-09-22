@@ -50,20 +50,21 @@ public class LocalizedStringControllerIT extends ControllerAndRestDocIT {
   @DisplayName("getText should return the text when it is found")
   void getText() throws Exception {
 
-    String inputSelecteur = InitialTestData.LS_MAIN.getSelectors().get(0);
-    TextLanguage inputTextLanguage = TextLanguage.ENGLISH;
-    String expectedResult =
+    final String inputSelecteur =
+        InitialTestData.LS_MAIN.getSelectors().get(0);
+    final TextLanguage inputTextLanguage = TextLanguage.ENGLISH;
+    final String expectedResult =
         InitialTestData.LS_MAIN.from(inputTextLanguage);
 
     // query setup
 
-    LinkedMultiValueMap<String, String> requestParams =
+    final LinkedMultiValueMap<String, String> requestParams =
         new LinkedMultiValueMap<>();
     requestParams.add("selector", inputSelecteur);
     requestParams.add("language", inputTextLanguage.toString());
 
     // restDoc setup
-    String formattedEnumValues = Arrays.stream(TextLanguage.values())
+    final String formattedEnumValues = Arrays.stream(TextLanguage.values())
         .map(type -> String.format("`%s`", type))
         .collect(Collectors.joining(", "));
 
@@ -89,14 +90,14 @@ public class LocalizedStringControllerIT extends ControllerAndRestDocIT {
   @DisplayName("getText should return an error message when it is not found")
   void getTextNotFound() throws Exception {
 
-    String inputSelecteur = "test-i-dont-exist";
-    TextLanguage inputTextLanguage = TextLanguage.ENGLISH;
-    String expectedResult =
+    final String inputSelecteur = "test-i-dont-exist";
+    final TextLanguage inputTextLanguage = TextLanguage.ENGLISH;
+    final String expectedResult =
         ConfigurationParams.DEFAULT_TEXT_NO_SELECTOR_FOUND;
 
     // query setup
 
-    LinkedMultiValueMap<String, String> requestParams =
+    final LinkedMultiValueMap<String, String> requestParams =
         new LinkedMultiValueMap<>();
     requestParams.add("selector", inputSelecteur);
     requestParams.add("language", inputTextLanguage.toString());
@@ -115,15 +116,15 @@ public class LocalizedStringControllerIT extends ControllerAndRestDocIT {
       + "not for the language specified")
   void getTextFoundNotLanguage() throws Exception {
 
-    String inputSelecteur =
+    final String inputSelecteur =
         InitialTestData.LS_ENGLISH_ONLY.getSelectors().get(0);
-    TextLanguage inputTextLanguage = TextLanguage.FRENCH;
-    String expectedResult =
+    final TextLanguage inputTextLanguage = TextLanguage.FRENCH;
+    final String expectedResult =
         ConfigurationParams.DEFAULT_TEXT_NO_TRANSLATION_FOUND;
 
     // query setup
 
-    LinkedMultiValueMap<String, String> requestParams =
+    final LinkedMultiValueMap<String, String> requestParams =
         new LinkedMultiValueMap<>();
     requestParams.add("selector", inputSelecteur);
     requestParams.add("language", inputTextLanguage.toString());
@@ -151,14 +152,14 @@ public class LocalizedStringControllerIT extends ControllerAndRestDocIT {
 
     // query setup
 
-    LinkedMultiValueMap<String, String> requestParams =
+    final LinkedMultiValueMap<String, String> requestParams =
         new LinkedMultiValueMap<>();
     requestParams.add("selectors", inputSelectors.get(0));
     requestParams.add("selectors", inputSelectors.get(1));
     requestParams.add("language", inputTextLanguage.toString());
 
     // restDoc setup
-    String formattedEnumValues = Arrays.stream(TextLanguage.values())
+    final String formattedEnumValues = Arrays.stream(TextLanguage.values())
         .map(type -> String.format("`%s`", type))
         .collect(Collectors.joining(", "));
 
@@ -232,7 +233,7 @@ public class LocalizedStringControllerIT extends ControllerAndRestDocIT {
 
     // query setup
 
-    LinkedMultiValueMap<String, String> requestParams =
+    final LinkedMultiValueMap<String, String> requestParams =
         new LinkedMultiValueMap<>();
     requestParams.add("selectors", inputSelectors.get(0));
     requestParams.add("selectors", inputSelectors.get(1));

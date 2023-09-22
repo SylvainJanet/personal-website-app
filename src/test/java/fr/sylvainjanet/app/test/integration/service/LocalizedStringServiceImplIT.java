@@ -39,11 +39,14 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
   @DisplayName("getText should return the text when it is found")
   void getTextFound() {
 
-    String inputSelector = InitialTestData.LS_MAIN.getSelectors().get(0);
-    TextLanguage inputTextLanguage = TextLanguage.FRENCH;
-    String expected = InitialTestData.LS_MAIN.from(inputTextLanguage);
+    final String inputSelector =
+        InitialTestData.LS_MAIN.getSelectors().get(0);
+    final TextLanguage inputTextLanguage = TextLanguage.FRENCH;
+    final String expected =
+        InitialTestData.LS_MAIN.from(inputTextLanguage);
 
-    String actual = service.getText(inputSelector, inputTextLanguage);
+    final String actual =
+        service.getText(inputSelector, inputTextLanguage);
 
     assertEquals(expected, actual);
   }
@@ -52,11 +55,13 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
   @DisplayName("getText should return an error message when it is not found")
   void getTextNotFound() {
 
-    String inputSelector = "test-not-exist";
-    TextLanguage inputTextLanguage = TextLanguage.FRENCH;
-    String expected = ConfigurationParams.DEFAULT_TEXT_NO_SELECTOR_FOUND;
+    final String inputSelector = "test-not-exist";
+    final TextLanguage inputTextLanguage = TextLanguage.FRENCH;
+    final String expected =
+        ConfigurationParams.DEFAULT_TEXT_NO_SELECTOR_FOUND;
 
-    String actual = service.getText(inputSelector, inputTextLanguage);
+    final String actual =
+        service.getText(inputSelector, inputTextLanguage);
 
     assertEquals(expected, actual);
   }
@@ -112,7 +117,7 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
             InitialTestData.LS_MAIN.from(inputTextLanguage),
             ConfigurationParams.DEFAULT_TEXT_NO_SELECTOR_FOUND));
 
-    List<String> actual =
+    final List<String> actual =
         service.getMultiText(inputSelectors, inputTextLanguage);
 
     assertEquals(expected, actual);

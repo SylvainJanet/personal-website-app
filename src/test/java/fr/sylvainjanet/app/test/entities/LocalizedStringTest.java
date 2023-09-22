@@ -32,14 +32,14 @@ public class LocalizedStringTest {
       + "true when a LocalizedString is defined for all languages")
   void testDefinedForAllLanguagesTrue() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "test en français");
@@ -48,8 +48,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Boolean expected = true;
-    Boolean actual = input.isDefinedForAllLanguages();
+    final Boolean expected = true;
+    final Boolean actual = input.isDefinedForAllLanguages();
 
     assertEquals(expected, actual);
 
@@ -60,14 +60,14 @@ public class LocalizedStringTest {
       + "false when a LocalizedString is not defined for all languages")
   void testDefinedForAllLanguagesFalse() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     // not defined for TextLanguage.FRENCH
@@ -76,8 +76,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Boolean expected = false;
-    Boolean actual = input.isDefinedForAllLanguages();
+    final Boolean expected = false;
+    final Boolean actual = input.isDefinedForAllLanguages();
 
     assertEquals(expected, actual);
 
@@ -88,14 +88,14 @@ public class LocalizedStringTest {
       + "true when a LocalizedString is defined the language given")
   void testDefinedForTrue() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "test en français");
@@ -104,8 +104,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Boolean expected = true;
-    Boolean actual = input.isDefinedFor(TextLanguage.ENGLISH);
+    final Boolean expected = true;
+    final Boolean actual = input.isDefinedFor(TextLanguage.ENGLISH);
 
     assertEquals(expected, actual);
 
@@ -116,14 +116,14 @@ public class LocalizedStringTest {
       + "false when a LocalizedString is not defined for the language given")
   void testDefinedForFalse() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     // not defined for TextLanguage.FRENCH
@@ -132,8 +132,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Boolean expected = false;
-    Boolean actual = input.isDefinedFor(TextLanguage.FRENCH);
+    final Boolean expected = false;
+    final Boolean actual = input.isDefinedFor(TextLanguage.FRENCH);
 
     assertEquals(expected, actual);
 
@@ -144,14 +144,14 @@ public class LocalizedStringTest {
       + "true when a LocalizedString has non empty text for every language")
   void isNonEmptyForAllLanguagesTrue() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "test en français");
@@ -160,8 +160,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Boolean expected = true;
-    Boolean actual = input.isNonEmptyForAllLanguages();
+    final Boolean expected = true;
+    final Boolean actual = input.isNonEmptyForAllLanguages();
 
     assertEquals(expected, actual);
 
@@ -175,14 +175,14 @@ public class LocalizedStringTest {
   final void isNonEmptyForAllLanguagesFalseSomeDontExist(
       final boolean hasNullTranslation) {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     if (hasNullTranslation) {
@@ -193,8 +193,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Boolean expected = false;
-    Boolean actual = input.isNonEmptyForAllLanguages();
+    final Boolean expected = false;
+    final Boolean actual = input.isNonEmptyForAllLanguages();
 
     assertEquals(expected, actual);
 
@@ -205,14 +205,14 @@ public class LocalizedStringTest {
       + "false when a LocalizedString has an empty text for a TextLanguage")
   void isNonEmptyForAllLanguagesFalseSomeEmpty() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "");
@@ -221,8 +221,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Boolean expected = false;
-    Boolean actual = input.isNonEmptyForAllLanguages();
+    final Boolean expected = false;
+    final Boolean actual = input.isNonEmptyForAllLanguages();
 
     assertEquals(expected, actual);
 
@@ -233,14 +233,14 @@ public class LocalizedStringTest {
       + "true when a LocalizedString has non empty text for the language given")
   void isNonEmptyForTrue() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "test en français");
@@ -249,8 +249,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Boolean expected = true;
-    Boolean actual = input.isNonEmptyFor(TextLanguage.FRENCH);
+    final Boolean expected = true;
+    final Boolean actual = input.isNonEmptyFor(TextLanguage.FRENCH);
 
     assertEquals(expected, actual);
 
@@ -261,14 +261,14 @@ public class LocalizedStringTest {
       + "false when a LocalizedString has no text for the language given")
   void isNonEmptyForFalseSomeDontExist() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
 
@@ -276,8 +276,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Boolean expected = false;
-    Boolean actual = input.isNonEmptyFor(TextLanguage.FRENCH);
+    final Boolean expected = false;
+    final Boolean actual = input.isNonEmptyFor(TextLanguage.FRENCH);
 
     assertEquals(expected, actual);
 
@@ -290,14 +290,14 @@ public class LocalizedStringTest {
   @ValueSource(booleans = { true, false })
   final void isNonEmptyForFalseSomeNull(final boolean hasNullTranslation) {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, hasNullTranslation ? null : "");
@@ -306,8 +306,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Boolean expected = false;
-    Boolean actual = input.isNonEmptyFor(TextLanguage.FRENCH);
+    final Boolean expected = false;
+    final Boolean actual = input.isNonEmptyFor(TextLanguage.FRENCH);
 
     assertEquals(expected, actual);
 
@@ -318,14 +318,14 @@ public class LocalizedStringTest {
       + "true when a LocalizedString is associated with the selector given")
   void isForSelectorTrue() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "test en français");
@@ -334,8 +334,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Boolean expected = true;
-    Boolean actual = input.isForSelector("test-selector");
+    final Boolean expected = true;
+    final Boolean actual = input.isForSelector("test-selector");
 
     assertEquals(expected, actual);
 
@@ -347,14 +347,14 @@ public class LocalizedStringTest {
       + "the selector given")
   void isForSelectorFalse() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "test en français");
@@ -363,8 +363,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Boolean expected = false;
-    Boolean actual = input.isForSelector("not-present-selector");
+    final Boolean expected = false;
+    final Boolean actual = input.isForSelector("not-present-selector");
 
     assertEquals(expected, actual);
 
@@ -375,15 +375,15 @@ public class LocalizedStringTest {
       + "to the selector list of a LocalizedString")
   void addSelector() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors = new ArrayList<>(
         Arrays.asList("test-selector", "other-test-selector"));
 
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "test en français");
@@ -408,15 +408,15 @@ public class LocalizedStringTest {
       + "and return true")
   void removeSelectorTrue() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors = new ArrayList<>(
         Arrays.asList("test-selector", "other-test-selector"));
 
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "test en français");
@@ -425,8 +425,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Boolean expectedResult = true;
-    Boolean actualResult = input.removeSelector("test-selector");
+    final Boolean expectedResult = true;
+    final Boolean actualResult = input.removeSelector("test-selector");
     assertEquals(expectedResult, actualResult);
 
     final List<String> expectedSelectors =
@@ -443,15 +443,15 @@ public class LocalizedStringTest {
       + "and return false")
   void removeSelectorFalse() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors = new ArrayList<>(
         Arrays.asList("test-selector", "other-test-selector"));
 
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "test en français");
@@ -460,8 +460,9 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Boolean expectedResult = false;
-    Boolean actualResult = input.removeSelector("not-present-selector");
+    final Boolean expectedResult = false;
+    final Boolean actualResult =
+        input.removeSelector("not-present-selector");
     assertEquals(expectedResult, actualResult);
 
     final List<String> expectedSelectors = new ArrayList<>(
@@ -477,15 +478,15 @@ public class LocalizedStringTest {
       + "the text in the language given when it is listed")
   void fromExists() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors = new ArrayList<>(
         Arrays.asList("test-selector", "other-test-selector"));
 
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "test en français");
@@ -494,8 +495,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    String expected = "test in english";
-    String actual = input.from(TextLanguage.ENGLISH);
+    final String expected = "test in english";
+    final String actual = input.from(TextLanguage.ENGLISH);
 
     assertEquals(expected, actual);
 
@@ -506,15 +507,15 @@ public class LocalizedStringTest {
       + "null when the language given is not listed")
   void fromDontExist() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors = new ArrayList<>(
         Arrays.asList("test-selector", "other-test-selector"));
 
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
 
@@ -522,8 +523,8 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    String expected = null;
-    String actual = input.from(TextLanguage.FRENCH);
+    final String expected = null;
+    final String actual = input.from(TextLanguage.FRENCH);
 
     assertEquals(expected, actual);
 
@@ -535,15 +536,15 @@ public class LocalizedStringTest {
       + "translation.")
   void translateInExisted() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors = new ArrayList<>(
         Arrays.asList("test-selector", "other-test-selector"));
 
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "test en français");
@@ -552,14 +553,14 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    String expectedPrevious = "test en français";
-    String actualPrevious =
+    final String expectedPrevious = "test en français";
+    final String actualPrevious =
         input.translateIn(TextLanguage.FRENCH, "nouveau texte");
 
     assertEquals(expectedPrevious, actualPrevious);
 
-    String expectedTranslation = "nouveau texte";
-    String actualTranslation = input.from(TextLanguage.FRENCH);
+    final String expectedTranslation = "nouveau texte";
+    final String actualTranslation = input.from(TextLanguage.FRENCH);
 
     assertEquals(expectedTranslation, actualTranslation);
 
@@ -571,15 +572,15 @@ public class LocalizedStringTest {
       + "translation.")
   void translateInNew() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors = new ArrayList<>(
         Arrays.asList("test-selector", "other-test-selector"));
 
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
 
@@ -587,14 +588,14 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    String expectedPrevious = null;
-    String actualPrevious =
+    final String expectedPrevious = null;
+    final String actualPrevious =
         input.translateIn(TextLanguage.FRENCH, "nouveau texte");
 
     assertEquals(expectedPrevious, actualPrevious);
 
-    String expectedTranslation = "nouveau texte";
-    String actualTranslation = input.from(TextLanguage.FRENCH);
+    final String expectedTranslation = "nouveau texte";
+    final String actualTranslation = input.from(TextLanguage.FRENCH);
 
     assertEquals(expectedTranslation, actualTranslation);
 
@@ -604,16 +605,16 @@ public class LocalizedStringTest {
   @DisplayName("Default constructor should instanciate properly")
   void defaultConstructor() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
-    Long idExpected = null;
-    List<String> selectorsExpected = new ArrayList<>();
-    Map<TextLanguage, String> textMapExpected =
+    final Long idExpected = null;
+    final List<String> selectorsExpected = new ArrayList<>();
+    final Map<TextLanguage, String> textMapExpected =
         new EnumMap<>(TextLanguage.class);
 
-    Long idActual = input.getId();
-    List<String> selectorsActual = input.getSelectors();
-    Map<TextLanguage, String> textMapActual = input.getTextMap();
+    final Long idActual = input.getId();
+    final List<String> selectorsActual = input.getSelectors();
+    final Map<TextLanguage, String> textMapActual = input.getTextMap();
 
     assertEquals(idExpected, idActual);
     assertEquals(selectorsExpected, selectorsActual);
@@ -627,20 +628,20 @@ public class LocalizedStringTest {
 
     // input setup
 
-    Long idExpected = 1L;
+    final Long idExpected = 1L;
     final List<String> selectorsExpected =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMapExpected =
+    final Map<TextLanguage, String> textMapExpected =
         new HashMap<TextLanguage, String>();
     textMapExpected.put(TextLanguage.ENGLISH, "test in english");
     textMapExpected.put(TextLanguage.FRENCH, "test en français");
 
-    LocalizedString input = new LocalizedString(idExpected,
+    final LocalizedString input = new LocalizedString(idExpected,
         selectorsExpected, textMapExpected);
 
-    Long idActual = input.getId();
-    List<String> selectorsActual = input.getSelectors();
-    Map<TextLanguage, String> textMapActual = input.getTextMap();
+    final Long idActual = input.getId();
+    final List<String> selectorsActual = input.getSelectors();
+    final Map<TextLanguage, String> textMapActual = input.getTextMap();
 
     assertEquals(idExpected, idActual);
     assertEquals(selectorsExpected, selectorsActual);
@@ -654,20 +655,20 @@ public class LocalizedStringTest {
 
     // input setup
 
-    Long idExpected = null;
+    final Long idExpected = null;
     final List<String> selectorsExpected =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMapExpected =
+    final Map<TextLanguage, String> textMapExpected =
         new HashMap<TextLanguage, String>();
     textMapExpected.put(TextLanguage.ENGLISH, "test in english");
     textMapExpected.put(TextLanguage.FRENCH, "test en français");
 
-    LocalizedString input =
+    final LocalizedString input =
         new LocalizedString(selectorsExpected, textMapExpected);
 
-    Long idActual = input.getId();
-    List<String> selectorsActual = input.getSelectors();
-    Map<TextLanguage, String> textMapActual = input.getTextMap();
+    final Long idActual = input.getId();
+    final List<String> selectorsActual = input.getSelectors();
+    final Map<TextLanguage, String> textMapActual = input.getTextMap();
 
     assertEquals(idExpected, idActual);
     assertEquals(selectorsExpected, selectorsActual);
@@ -679,14 +680,14 @@ public class LocalizedStringTest {
   @DisplayName("getId should return the id")
   void getId() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long expectedId = 1L;
+    final Long expectedId = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "test en français");
@@ -695,7 +696,7 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    Long actualId = input.getId();
+    final Long actualId = input.getId();
 
     assertEquals(expectedId, actualId);
   }
@@ -704,15 +705,15 @@ public class LocalizedStringTest {
   @DisplayName("setId should set the id")
   void setId() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long expectedId = 1L;
+    final Long expectedId = 1L;
 
     input.setId(expectedId);
 
-    Long actualId = input.getId();
+    final Long actualId = input.getId();
 
     assertEquals(expectedId, actualId);
   }
@@ -721,14 +722,14 @@ public class LocalizedStringTest {
   @DisplayName("getSelectors should return the selectors")
   void getSelectors() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> expectedSelectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "test en français");
@@ -746,7 +747,7 @@ public class LocalizedStringTest {
   @DisplayName("setSelectors should set the selectors")
   void setSelectors() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
@@ -764,14 +765,14 @@ public class LocalizedStringTest {
   @DisplayName("getTextMap should return the textMap")
   void getTextMap() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> expectedTextMap =
+    final Map<TextLanguage, String> expectedTextMap =
         new HashMap<TextLanguage, String>();
     expectedTextMap.put(TextLanguage.ENGLISH, "test in english");
     expectedTextMap.put(TextLanguage.FRENCH, "test en français");
@@ -780,7 +781,7 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(expectedTextMap);
 
-    Map<TextLanguage, String> actualTextMap = input.getTextMap();
+    final Map<TextLanguage, String> actualTextMap = input.getTextMap();
 
     assertEquals(expectedTextMap, actualTextMap);
   }
@@ -789,18 +790,18 @@ public class LocalizedStringTest {
   @DisplayName("setTextMap should set the textMap")
   void setTextMap() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Map<TextLanguage, String> expectedTextMap =
+    final Map<TextLanguage, String> expectedTextMap =
         new HashMap<TextLanguage, String>();
     expectedTextMap.put(TextLanguage.ENGLISH, "test in english");
     expectedTextMap.put(TextLanguage.FRENCH, "test en français");
 
     input.setTextMap(expectedTextMap);
 
-    Map<TextLanguage, String> actualTextMap = input.getTextMap();
+    final Map<TextLanguage, String> actualTextMap = input.getTextMap();
 
     assertEquals(expectedTextMap, actualTextMap);
   }
@@ -887,25 +888,25 @@ public class LocalizedStringTest {
     assertNotEquals(input1.hashCode(), input2.hashCode());
 
     @SuppressWarnings("unlikely-arg-type")
-    boolean actual = input1.equals(new String());
-    assertFalse(actual);
+    final boolean actualNotSameType = input1.equals(new String());
+    assertFalse(actualNotSameType);
 
-    actual = input1.equals(null);
-    assertFalse(actual);
+    final boolean actualNull = input1.equals(null);
+    assertFalse(actualNull);
   }
 
   @Test
   @DisplayName("Equals and Hashcode should be reflexive")
   void equalsHashcodeReflexive() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> expectedTextMap =
+    final Map<TextLanguage, String> expectedTextMap =
         new HashMap<TextLanguage, String>();
     expectedTextMap.put(TextLanguage.ENGLISH, "test in english");
     expectedTextMap.put(TextLanguage.FRENCH, "test en français");
@@ -1015,14 +1016,14 @@ public class LocalizedStringTest {
   @DisplayName("toString should return a proper representation of the entity")
   void toStringTest() {
 
-    LocalizedString input = new LocalizedString();
+    final LocalizedString input = new LocalizedString();
 
     // input setup
 
-    Long id = 1L;
+    final Long id = 1L;
     final List<String> selectors =
         Arrays.asList("test-selector", "other-test-selector");
-    Map<TextLanguage, String> textMap =
+    final Map<TextLanguage, String> textMap =
         new HashMap<TextLanguage, String>();
     textMap.put(TextLanguage.ENGLISH, "test in english");
     textMap.put(TextLanguage.FRENCH, "test en français");
@@ -1031,10 +1032,10 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(textMap);
 
-    String expected = "LocalizedString\r\n" + "[\r\n\tid = 1\r\n"
+    final String expected = "LocalizedString\r\n" + "[\r\n\tid = 1\r\n"
         + "\tselectors = [test-selector, other-test-selector]\r\n"
         + "\ttextMap = " + textMap + "\r\n" + "]";
-    String actual = input.toString();
+    final String actual = input.toString();
 
     assertEquals(expected, actual);
   }

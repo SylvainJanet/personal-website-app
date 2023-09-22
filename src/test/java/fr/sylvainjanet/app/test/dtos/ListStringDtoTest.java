@@ -1,9 +1,9 @@
 package fr.sylvainjanet.app.test.dtos;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +35,7 @@ public class ListStringDtoTest {
 
     input.setMessages(expectedMessages);
 
-    List<String> actualMessages = input.getMessages();
+    final List<String> actualMessages = input.getMessages();
 
     assertEquals(expectedMessages, actualMessages);
   }
@@ -53,7 +53,7 @@ public class ListStringDtoTest {
 
     input.setMessages(expectedMessages);
 
-    List<String> actualMessages = input.getMessages();
+    final List<String> actualMessages = input.getMessages();
 
     assertEquals(expectedMessages, actualMessages);
   }
@@ -64,7 +64,7 @@ public class ListStringDtoTest {
 
     final ListStringDto input = new ListStringDto();
 
-    List<String> actualMessages = input.getMessages();
+    final List<String> actualMessages = input.getMessages();
 
     assertNotNull(actualMessages);
     assertEquals(0, actualMessages.size());
@@ -80,7 +80,7 @@ public class ListStringDtoTest {
 
     final ListStringDto input = new ListStringDto(expectedMessages);
 
-    List<String> actualMessages = input.getMessages();
+    final List<String> actualMessages = input.getMessages();
 
     assertEquals(expectedMessages, actualMessages);
 
@@ -130,11 +130,11 @@ public class ListStringDtoTest {
     assertNotEquals(input1.hashCode(), input2.hashCode());
 
     @SuppressWarnings("unlikely-arg-type")
-    boolean actual = input1.equals(new String());
-    assertFalse(actual);
+    final boolean actualNotSameType = input1.equals(new String());
+    assertFalse(actualNotSameType);
 
-    actual = input1.equals(null);
-    assertFalse(actual);
+    final boolean actualNull = input1.equals(null);
+    assertFalse(actualNull);
   }
 
   @Test
@@ -227,9 +227,9 @@ public class ListStringDtoTest {
 
     input.setMessages(messages);
 
-    String expected = "ListStringDto\r\n"
+    final String expected = "ListStringDto\r\n"
         + "[\r\n\tmessages = [test message, other test message]\r\n" + "]";
-    String actual = input.toString();
+    final String actual = input.toString();
 
     assertEquals(expected, actual);
   }
