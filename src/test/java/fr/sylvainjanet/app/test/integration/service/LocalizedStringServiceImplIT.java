@@ -35,6 +35,9 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
   @Autowired
   private LocalizedStringServiceImpl service;
 
+  /**
+   * getText should return the text when it is found.
+   */
   @Test
   @DisplayName("getText should return the text when it is found")
   void getTextFound() {
@@ -51,6 +54,9 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
     assertEquals(expected, actual);
   }
 
+  /**
+   * getText should return an error message when it is not found.
+   */
   @Test
   @DisplayName("getText should return an error message when it is not found")
   void getTextNotFound() {
@@ -66,6 +72,10 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
     assertEquals(expected, actual);
   }
 
+  /**
+   * getText should return an error message when it is found but not for
+   * the language specified.
+   */
   @Test
   @DisplayName("getText should return an error message when it is found but "
       + "not for the language specified")
@@ -83,6 +93,9 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
     assertEquals(expected, actual);
   }
 
+  /**
+   * getMultiText should return the texts when they are found.
+   */
   @Test
   @DisplayName("getMultiText should return the texts when they are found")
   void getMultiTextFound() {
@@ -102,6 +115,9 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
     assertEquals(expected, actual);
   }
 
+  /**
+   * getMultiText should return an error message when it is not found.
+   */
   @Test
   @DisplayName("getMultiText should return an error message "
       + "when it is not found")
@@ -123,6 +139,10 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
     assertEquals(expected, actual);
   }
 
+  /**
+   * getMultiText should return an error message when it is found but not
+   * for the language specified.
+   */
   @Test
   @DisplayName("getMultiText should return an error message "
       + "when it is found but not for the language specified")

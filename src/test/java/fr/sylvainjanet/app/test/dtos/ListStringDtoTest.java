@@ -22,6 +22,9 @@ import fr.sylvainjanet.app.dtos.ListStringDto;
  */
 public class ListStringDtoTest {
 
+  /**
+   * getMessages should return the messages.
+   */
   @Test
   @DisplayName("getMessages should return the messages")
   void getMessages() {
@@ -40,6 +43,9 @@ public class ListStringDtoTest {
     assertEquals(expectedMessages, actualMessages);
   }
 
+  /**
+   * setMessages should set the messages.
+   */
   @Test
   @DisplayName("setMessages should set the messages")
   void setMessage() {
@@ -58,6 +64,9 @@ public class ListStringDtoTest {
     assertEquals(expectedMessages, actualMessages);
   }
 
+  /**
+   * Default constructor should instanciate properly.
+   */
   @Test
   @DisplayName("Default constructor should instanciate properly")
   void defaultConstructor() {
@@ -71,6 +80,9 @@ public class ListStringDtoTest {
 
   }
 
+  /**
+   * Full constructor should instanciate properly.
+   */
   @Test
   @DisplayName("Full constructor should instanciate properly")
   void fullConstructor() {
@@ -86,6 +98,9 @@ public class ListStringDtoTest {
 
   }
 
+  /**
+   * Equals and Hashcode should be true if messages are equal.
+   */
   @Test
   @DisplayName("Equals and Hashcode should be true if messages are equal")
   void equalsHashcodeTrue() {
@@ -108,6 +123,10 @@ public class ListStringDtoTest {
 
   }
 
+  /**
+   * Equals and Hashcode should be false if messages are different or
+   * objects are different.
+   */
   @Test
   @DisplayName("Equals and Hashcode should be false if messages "
       + "are different or objects are different")
@@ -137,6 +156,9 @@ public class ListStringDtoTest {
     assertFalse(actualNull);
   }
 
+  /**
+   * Equals and Hashcode should be reflexive.
+   */
   @Test
   @DisplayName("Equals and Hashcode should be reflexive")
   void equalsHashcodeReflexive() {
@@ -154,6 +176,9 @@ public class ListStringDtoTest {
     assertEquals(input.hashCode(), input.hashCode());
   }
 
+  /**
+   * Equals and Hashcode should be symmetric.
+   */
   @Test
   @DisplayName("Equals and Hashcode should be symmetric")
   void equalsHashcodeSymmetric() {
@@ -185,6 +210,9 @@ public class ListStringDtoTest {
     assertEquals(input2.hashCode(), input1.hashCode());
   }
 
+  /**
+   * Equals and Hashcode should be transitive.
+   */
   @Test
   @DisplayName("Equals and Hashcode should be transitive")
   void equalsHashcodeTransitive() {
@@ -214,6 +242,9 @@ public class ListStringDtoTest {
     assertEquals(input1.hashCode(), input3.hashCode());
   }
 
+  /**
+   * toString should return a proper representation of the dto.
+   */
   @Test
   @DisplayName("toString should return a proper representation of the dto")
   void toStringTest() {

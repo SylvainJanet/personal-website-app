@@ -58,6 +58,11 @@ public class LocalizedStringControllerTest {
   @MockBean
   private LocalizedStringServiceImpl service;
 
+  /**
+   * getText should return the text when it is found.
+   * 
+   * @throws Exception if an exception occurs.
+   */
   @Test
   @DisplayName("getText should return the text when it is found")
   void getText() throws Exception {
@@ -86,6 +91,11 @@ public class LocalizedStringControllerTest {
 
   }
 
+  /**
+   * getText should return an error message when it is not found.
+   * 
+   * @throws Exception if an exception occurs.
+   */
   @Test
   @DisplayName("getText should return an error message when it is not found")
   void getTextNotFound() throws Exception {
@@ -114,6 +124,12 @@ public class LocalizedStringControllerTest {
             mapper.writeValueAsString(new StringDto(expectedResult))));
   }
 
+  /**
+   * getText should return an error message when it is found but not for
+   * the language specified.
+   * 
+   * @throws Exception if an exception occurs.
+   */
   @Test
   @DisplayName("getText should return an error message when it is found but "
       + "not for the language specified")
@@ -143,6 +159,11 @@ public class LocalizedStringControllerTest {
             mapper.writeValueAsString(new StringDto(expectedResult))));
   }
 
+  /**
+   * getMultiText should return the texts when they are found.
+   * 
+   * @throws Exception if an exception occurs.
+   */
   @Test
   @DisplayName("getMultiText should return the texts when they are found")
   void getMultiText() throws Exception {
@@ -174,6 +195,11 @@ public class LocalizedStringControllerTest {
 
   }
 
+  /**
+   * getMultiText should return an error message when it is not found.
+   * 
+   * @throws Exception if an exception occurs.
+   */
   @Test
   @DisplayName("getMultiText should return an error message "
       + "when it is not found")
@@ -208,6 +234,12 @@ public class LocalizedStringControllerTest {
             .json(mapper.writeValueAsString(new ListStringDto(expected))));
   }
 
+  /**
+   * getMultiText should return an error message when it is found but not
+   * for the language specified.
+   * 
+   * @throws Exception if an exception occurs.
+   */
   @Test
   @DisplayName("getMultiText should return an error message "
       + "when it is found but not for the language specified")

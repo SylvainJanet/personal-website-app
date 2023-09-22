@@ -21,7 +21,9 @@ public class WebApplicationIT {
   // CHECKSTYLE.ON: AbbreviationAsWordInNameCheck
 
   /**
-   * The application context should load.
+   * context should load.
+   * 
+   * @throws Exception if an exception occurs.
    */
   @Test
   @DisplayName("context should load")
