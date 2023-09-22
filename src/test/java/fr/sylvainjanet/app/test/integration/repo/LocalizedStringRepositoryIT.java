@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -38,7 +39,12 @@ public class LocalizedStringRepositoryIT extends InitDbForTestsIT {
   @Autowired
   private LocalizedStringRepository repo;
 
+  /**
+   * getBySelector should return null when localized string is not found.
+   */
   @Test
+  @DisplayName("getBySelector should return null "
+      + "when localized string is not found")
   void getBySelectorNotFound() {
     final String input = "test-unused-selector";
     final LocalizedString ls = repo.getBySelector(input);
@@ -47,7 +53,13 @@ public class LocalizedStringRepositoryIT extends InitDbForTestsIT {
 
   }
 
+  /**
+   * getBySelector should return the localized string with a given
+   * selector.
+   */
   @Test
+  @DisplayName("getBySelector should return the localized string "
+      + "with a given selector")
   void getBySelectorFound() {
     final String inputSingle = "test-main";
     final LocalizedString expectedSingle = InitialTestData.LS_MAIN;

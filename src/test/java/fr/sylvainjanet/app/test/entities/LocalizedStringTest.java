@@ -27,6 +27,10 @@ import fr.sylvainjanet.app.entities.TextLanguage;
  */
 public class LocalizedStringTest {
 
+  /**
+   * isDefinedForAllLanguages should return true when a LocalizedString is
+   * defined for all languages.
+   */
   @Test
   @DisplayName("isDefinedForAllLanguages should return "
       + "true when a LocalizedString is defined for all languages")
@@ -55,6 +59,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * isDefinedForAllLanguages should return false when a LocalizedString is
+   * not defined for all languages.
+   */
   @Test
   @DisplayName("isDefinedForAllLanguages should return "
       + "false when a LocalizedString is not defined for all languages")
@@ -83,6 +91,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * isDefinedFor should return true when a LocalizedString is defined the
+   * language given.
+   */
   @Test
   @DisplayName("isDefinedFor should return "
       + "true when a LocalizedString is defined the language given")
@@ -111,6 +123,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * isDefinedFor should return false when a LocalizedString is not defined
+   * for the language given.
+   */
   @Test
   @DisplayName("isDefinedFor should return "
       + "false when a LocalizedString is not defined for the language given")
@@ -139,6 +155,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * isNonEmptyForAllLanguages should return true when a LocalizedString
+   * has non empty text for every language.
+   */
   @Test
   @DisplayName("isNonEmptyForAllLanguages should return "
       + "true when a LocalizedString has non empty text for every language")
@@ -167,6 +187,12 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * isNonEmptyForAllLanguages should return false when a LocalizedString
+   * has no text or is null for a TextLanguage.
+   * 
+   * @param hasNullTranslation whether or not the text is null.
+   */
   @ParameterizedTest
   @DisplayName("isNonEmptyForAllLanguages should return "
       + "false when a LocalizedString has no text or is null "
@@ -200,6 +226,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * isNonEmptyForAllLanguages should return false when a LocalizedString
+   * has an empty text for a TextLanguage.
+   */
   @Test
   @DisplayName("isNonEmptyForAllLanguages should return "
       + "false when a LocalizedString has an empty text for a TextLanguage")
@@ -228,6 +258,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * isNonEmptyFor should return true when a LocalizedString has non empty
+   * text for the language given.
+   */
   @Test
   @DisplayName("isNonEmptyFor should return "
       + "true when a LocalizedString has non empty text for the language given")
@@ -256,6 +290,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * isNonEmptyFor should return false when a LocalizedString has no text
+   * for the language given.
+   */
   @Test
   @DisplayName("isNonEmptyFor should return "
       + "false when a LocalizedString has no text for the language given")
@@ -283,10 +321,16 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * isNonEmptyFor should return false when a LocalizedString has some null
+   * text or an empty text for the language given.
+   * 
+   * @param hasNullTranslation whether or not the text is null.
+   */
   @ParameterizedTest
   @DisplayName("isNonEmptyFor should return "
       + "false when a LocalizedString has some null text "
-      + "or en empty text for the language given")
+      + "or an empty text for the language given")
   @ValueSource(booleans = { true, false })
   final void isNonEmptyForFalseSomeNull(final boolean hasNullTranslation) {
 
@@ -313,6 +357,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * isForSelector should return true when a LocalizedString is associated
+   * with the selector given.
+   */
   @Test
   @DisplayName("isForSelector should return "
       + "true when a LocalizedString is associated with the selector given")
@@ -341,6 +389,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * isForSelector should return false when a LocalizedString is not
+   * associated with the selector given.
+   */
   @Test
   @DisplayName("isForSelector should return "
       + "false when a LocalizedString is not associated with "
@@ -370,6 +422,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * addSelector should add a given selector to the selector list of a
+   * LocalizedString.
+   */
   @Test
   @DisplayName("addSelector should add a given selector "
       + "to the selector list of a LocalizedString")
@@ -402,6 +458,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * removeSelector should remove a given selector to the selector list of
+   * a LocalizedString if it is present and return true.
+   */
   @Test
   @DisplayName("removeSelector should remove a given selector "
       + "to the selector list of a LocalizedString if it is present "
@@ -437,6 +497,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * removeSelector should not do anything to the selector list of a
+   * LocalizedString if it is not present and return false.
+   */
   @Test
   @DisplayName("removeSelector should not do anything "
       + "to the selector list of a LocalizedString if it is not present "
@@ -473,6 +537,9 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * from should return the text in the language given when it is listed.
+   */
   @Test
   @DisplayName("from should return "
       + "the text in the language given when it is listed")
@@ -502,6 +569,9 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * from should return null when the language given is not listed.
+   */
   @Test
   @DisplayName("from should return "
       + "null when the language given is not listed")
@@ -530,6 +600,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * translateIn should add a given translation associated to a given
+   * language and return the previous translation..
+   */
   @Test
   @DisplayName("translateIn should add a given translation "
       + "associated to a given language and return the previous "
@@ -566,6 +640,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * translateIn should add a given translation associated to a given
+   * language and return the previous translation..
+   */
   @Test
   @DisplayName("translateIn should add a given translation "
       + "associated to a given language and return the previous "
@@ -601,6 +679,9 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * Default constructor should instanciate properly.
+   */
   @Test
   @DisplayName("Default constructor should instanciate properly")
   void defaultConstructor() {
@@ -622,6 +703,9 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * Full constructor should instanciate properly.
+   */
   @Test
   @DisplayName("Full constructor should instanciate properly")
   void fullConstructor() {
@@ -649,6 +733,9 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * Constructor without the id should instanciate properly.
+   */
   @Test
   @DisplayName("Constructor without the id should instanciate properly")
   void withoutIdConstructor() {
@@ -676,6 +763,9 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * getId should return the id.
+   */
   @Test
   @DisplayName("getId should return the id")
   void getId() {
@@ -701,6 +791,9 @@ public class LocalizedStringTest {
     assertEquals(expectedId, actualId);
   }
 
+  /**
+   * setId should set the id.
+   */
   @Test
   @DisplayName("setId should set the id")
   void setId() {
@@ -718,6 +811,9 @@ public class LocalizedStringTest {
     assertEquals(expectedId, actualId);
   }
 
+  /**
+   * getSelectors should return the selectors.
+   */
   @Test
   @DisplayName("getSelectors should return the selectors")
   void getSelectors() {
@@ -743,6 +839,9 @@ public class LocalizedStringTest {
     assertEquals(expectedSelectors, actualSelectors);
   }
 
+  /**
+   * setSelectors should set the selectors.
+   */
   @Test
   @DisplayName("setSelectors should set the selectors")
   void setSelectors() {
@@ -761,6 +860,9 @@ public class LocalizedStringTest {
     assertEquals(expectedSelectors, actualSelectors);
   }
 
+  /**
+   * getTextMap should return the textMap.
+   */
   @Test
   @DisplayName("getTextMap should return the textMap")
   void getTextMap() {
@@ -786,6 +888,9 @@ public class LocalizedStringTest {
     assertEquals(expectedTextMap, actualTextMap);
   }
 
+  /**
+   * setTextMap should set the textMap.
+   */
   @Test
   @DisplayName("setTextMap should set the textMap")
   void setTextMap() {
@@ -806,6 +911,9 @@ public class LocalizedStringTest {
     assertEquals(expectedTextMap, actualTextMap);
   }
 
+  /**
+   * Equals and Hashcode should be true if id are equal.
+   */
   @Test
   @DisplayName("Equals and Hashcode should be true if id are equal")
   void equalsHashcodeTrue() {
@@ -842,6 +950,10 @@ public class LocalizedStringTest {
 
   }
 
+  /**
+   * Equals and Hashcode should be false if id are different or objects are
+   * different.
+   */
   @Test
   @DisplayName("Equals and Hashcode should be false if id are different or "
       + "objects are different")
@@ -895,6 +1007,9 @@ public class LocalizedStringTest {
     assertFalse(actualNull);
   }
 
+  /**
+   * Equals and Hashcode should be reflexive.
+   */
   @Test
   @DisplayName("Equals and Hashcode should be reflexive")
   void equalsHashcodeReflexive() {
@@ -919,6 +1034,9 @@ public class LocalizedStringTest {
     assertEquals(input.hashCode(), input.hashCode());
   }
 
+  /**
+   * Equals and Hashcode should be symmetric.
+   */
   @Test
   @DisplayName("Equals and Hashcode should be symmetric")
   void equalsHashcodeSymmetric() {
@@ -962,6 +1080,9 @@ public class LocalizedStringTest {
     assertEquals(input2.hashCode(), input1.hashCode());
   }
 
+  /**
+   * Equals and Hashcode should be transitive.
+   */
   @Test
   @DisplayName("Equals and Hashcode should be transitive")
   void equalsHashcodeTransitive() {
@@ -1012,6 +1133,9 @@ public class LocalizedStringTest {
     assertEquals(input1.hashCode(), input3.hashCode());
   }
 
+  /**
+   * toString should return a proper representation of the entity.
+   */
   @Test
   @DisplayName("toString should return a proper representation of the entity")
   void toStringTest() {

@@ -50,6 +50,11 @@ public class HelloWorldControllerIT extends ControllerAndRestDocIT {
   @Autowired
   private ObjectMapper mapper;
 
+  /**
+   * GET /hello should return Hello World and the environment.
+   * 
+   * @throws Exception if an exception occurs.
+   */
   @Test
   @DisplayName("GET /hello should return Hello World and the environment")
   void testHello() throws Exception {
@@ -69,6 +74,11 @@ public class HelloWorldControllerIT extends ControllerAndRestDocIT {
                 fieldWithPath("message").description("the message"))));
   }
 
+  /**
+   * PUT /hello should 405.
+   * 
+   * @throws Exception if an exception occurs.
+   */
   @Test
   @DisplayName("PUT /hello should 405")
   void testPutHello() throws Exception {

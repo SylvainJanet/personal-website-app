@@ -46,6 +46,11 @@ public class LocalizedStringControllerIT extends ControllerAndRestDocIT {
   @Autowired
   private ObjectMapper mapper;
 
+  /**
+   * getText should return the text when it is found.
+   * 
+   * @throws Exception if an exception occurs.
+   */
   @Test
   @DisplayName("getText should return the text when it is found")
   void getText() throws Exception {
@@ -86,6 +91,11 @@ public class LocalizedStringControllerIT extends ControllerAndRestDocIT {
 
   }
 
+  /**
+   * getText should return an error message when it is not found.
+   * 
+   * @throws Exception if an exception occurs.
+   */
   @Test
   @DisplayName("getText should return an error message when it is not found")
   void getTextNotFound() throws Exception {
@@ -111,6 +121,12 @@ public class LocalizedStringControllerIT extends ControllerAndRestDocIT {
             .tag("Text").responseSchema(new Schema("StringDTO"))));
   }
 
+  /**
+   * getText should return an error message when it is found but not for
+   * the language specified.
+   * 
+   * @throws Exception if an exception occurs.
+   */
   @Test
   @DisplayName("getText should return an error message when it is found but "
       + "not for the language specified")
@@ -138,6 +154,11 @@ public class LocalizedStringControllerIT extends ControllerAndRestDocIT {
             .tag("Text").responseSchema(new Schema("StringDTO"))));
   }
 
+  /**
+   * getMultiText should return the text when it is found.
+   * 
+   * @throws Exception if an exception occurs.
+   */
   @Test
   @DisplayName("getMultiText should return the text when it is found")
   void getMultiText() throws Exception {
@@ -182,6 +203,11 @@ public class LocalizedStringControllerIT extends ControllerAndRestDocIT {
 
   }
 
+  /**
+   * getMultiText should return an error message when it is not found.
+   * 
+   * @throws Exception if an exception occurs.
+   */
   @Test
   @DisplayName("getMultiText should return an error message "
       + "when it is not found")
@@ -216,6 +242,12 @@ public class LocalizedStringControllerIT extends ControllerAndRestDocIT {
                 .responseSchema(new Schema("ListStringDTO"))));
   }
 
+  /**
+   * getMultiText should return an error message when it is found but not
+   * for the language specified.
+   * 
+   * @throws Exception if an exception occurs.
+   */
   @Test
   @DisplayName("getMultiText should return an error message "
       + "when it is found but not for the language specified")
