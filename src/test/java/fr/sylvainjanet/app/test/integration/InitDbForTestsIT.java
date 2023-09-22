@@ -53,7 +53,8 @@ public class InitDbForTestsIT {
    * Add initial data.
    */
   void addInitData() {
-    List<LocalizedString> lsList = InitialTestData.TEST_LOCALIZED_STRING;
+    final List<LocalizedString> lsList =
+        InitialTestData.TEST_LOCALIZED_STRING;
     for (LocalizedString ls : lsList) {
       ls = localizedStringRepo.save(ls);
     }
