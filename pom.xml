@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.sylvainjanet</groupId>
 	<artifactId>app</artifactId>
-	<version>0.1.6</version>
+	<version>0.1.7</version>
 	<packaging>war</packaging>
 	<name>sylvainjanet</name>
 	<description>sylvainjanet.fr backend app</description>
