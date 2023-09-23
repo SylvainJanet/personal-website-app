@@ -51,7 +51,7 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
     final String actual =
         service.getText(inputSelector, inputTextLanguage);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "getText should return the text");
   }
 
   /**
@@ -69,7 +69,8 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
     final String actual =
         service.getText(inputSelector, inputTextLanguage);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "getText should return an error message");
   }
 
   /**
@@ -90,7 +91,8 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
     final String actual =
         service.getText(inputSelector, inputTextLanguage);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "getText should return an error message");
   }
 
   /**
@@ -112,7 +114,7 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
     final List<String> actual =
         service.getMultiText(inputSelectors, inputTextLanguage);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "getMultiText should return the texts");
   }
 
   /**
@@ -136,7 +138,8 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
     final List<String> actual =
         service.getMultiText(inputSelectors, inputTextLanguage);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "getMultiText should return an error message");
   }
 
   /**
@@ -161,6 +164,7 @@ public class LocalizedStringServiceImplIT extends InitDbForTestsIT {
     final List<String> actual =
         service.getMultiText(inputSelectors, inputTextLanguage);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "getMultiText should return an error message");
   }
 }

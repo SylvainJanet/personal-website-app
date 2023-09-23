@@ -68,7 +68,7 @@ public class LocalizedStringServiceImplTest {
     final String actual =
         service.getText(inputSelector, inputTextLanguage);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "getText should return the text");
   }
 
   /**
@@ -89,7 +89,8 @@ public class LocalizedStringServiceImplTest {
     final String actual =
         service.getText(inputSelector, inputTextLanguage);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "getText should return an error message");
   }
 
   /**
@@ -115,7 +116,8 @@ public class LocalizedStringServiceImplTest {
     final String actual =
         service.getText(inputSelector, inputTextLanguage);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "getText should return an error message");
   }
 
   /**
@@ -145,7 +147,7 @@ public class LocalizedStringServiceImplTest {
     final List<String> actual =
         service.getMultiText(inputSelectors, inputTextLanguage);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "getMultiText should return the texts");
   }
 
   /**
@@ -177,7 +179,8 @@ public class LocalizedStringServiceImplTest {
     final List<String> actual =
         service.getMultiText(inputSelectors, inputTextLanguage);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "getMultiText should return an error message");
   }
 
   /**
@@ -217,6 +220,7 @@ public class LocalizedStringServiceImplTest {
     final List<String> actual =
         service.getMultiText(inputSelectors, inputTextLanguage);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "getMultiText should return an error message");
   }
 }
