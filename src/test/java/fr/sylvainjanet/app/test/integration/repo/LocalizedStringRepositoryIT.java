@@ -49,7 +49,7 @@ public class LocalizedStringRepositoryIT extends InitDbForTestsIT {
     final String input = "test-unused-selector";
     final LocalizedString ls = repo.getBySelector(input);
 
-    assertNull(ls);
+    assertNull(ls, "getBySelector should return null");
 
   }
 
@@ -65,8 +65,10 @@ public class LocalizedStringRepositoryIT extends InitDbForTestsIT {
     final LocalizedString expectedSingle = InitialTestData.LS_MAIN;
     final LocalizedString actualSingle = repo.getBySelector(inputSingle);
 
-    assertNotNull(actualSingle);
-    assertEquals(expectedSingle, actualSingle);
+    assertNotNull(actualSingle,
+        "getBySelector should return non null value (single selector)");
+    assertEquals(expectedSingle, actualSingle,
+        "getBySelector should return the localized string (single selector)");
 
     final String inputMultiple1 = "test-multiple-selectors";
     final LocalizedString expectedMultiple1 =
@@ -74,8 +76,12 @@ public class LocalizedStringRepositoryIT extends InitDbForTestsIT {
     final LocalizedString actualMultiple1 =
         repo.getBySelector(inputMultiple1);
 
-    assertNotNull(actualMultiple1);
-    assertEquals(expectedMultiple1, actualMultiple1);
+    assertNotNull(actualMultiple1,
+        "getBySelector should return non null value "
+            + "(mutiple selectors, first)");
+    assertEquals(expectedMultiple1, actualMultiple1,
+        "getBySelector should return the localized string "
+            + "(mutiple selectors, first)");
 
     final String inputMultiple2 = "test-other-selector";
     final LocalizedString expectedMultiple2 =
@@ -83,8 +89,12 @@ public class LocalizedStringRepositoryIT extends InitDbForTestsIT {
     final LocalizedString actualMultiple2 =
         repo.getBySelector(inputMultiple2);
 
-    assertNotNull(actualMultiple2);
-    assertEquals(expectedMultiple2, actualMultiple2);
+    assertNotNull(actualMultiple2,
+        "getBySelector should return non null value "
+            + "(mutiple selectors, second)");
+    assertEquals(expectedMultiple2, actualMultiple2,
+        "getBySelector should return the localized string "
+            + "(mutiple selectors, second)");
 
   }
 

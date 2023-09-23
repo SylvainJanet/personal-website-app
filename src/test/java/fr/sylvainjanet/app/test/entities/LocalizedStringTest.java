@@ -55,7 +55,8 @@ public class LocalizedStringTest {
     final Boolean expected = true;
     final Boolean actual = input.isDefinedForAllLanguages();
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "isDefinedForAllLanguages should return true");
 
   }
 
@@ -87,7 +88,8 @@ public class LocalizedStringTest {
     final Boolean expected = false;
     final Boolean actual = input.isDefinedForAllLanguages();
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "isDefinedForAllLanguages should return false");
 
   }
 
@@ -119,7 +121,7 @@ public class LocalizedStringTest {
     final Boolean expected = true;
     final Boolean actual = input.isDefinedFor(TextLanguage.ENGLISH);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "isDefinedFor should return true");
 
   }
 
@@ -151,7 +153,7 @@ public class LocalizedStringTest {
     final Boolean expected = false;
     final Boolean actual = input.isDefinedFor(TextLanguage.FRENCH);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "isDefinedFor should return false");
 
   }
 
@@ -183,7 +185,8 @@ public class LocalizedStringTest {
     final Boolean expected = true;
     final Boolean actual = input.isNonEmptyForAllLanguages();
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "isNonEmptyForAllLanguages should return true");
 
   }
 
@@ -222,7 +225,8 @@ public class LocalizedStringTest {
     final Boolean expected = false;
     final Boolean actual = input.isNonEmptyForAllLanguages();
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "isNonEmptyForAllLanguages should return false");
 
   }
 
@@ -254,7 +258,8 @@ public class LocalizedStringTest {
     final Boolean expected = false;
     final Boolean actual = input.isNonEmptyForAllLanguages();
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "isNonEmptyForAllLanguages should return false");
 
   }
 
@@ -286,7 +291,7 @@ public class LocalizedStringTest {
     final Boolean expected = true;
     final Boolean actual = input.isNonEmptyFor(TextLanguage.FRENCH);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "isNonEmptyFor should return true");
 
   }
 
@@ -317,7 +322,7 @@ public class LocalizedStringTest {
     final Boolean expected = false;
     final Boolean actual = input.isNonEmptyFor(TextLanguage.FRENCH);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "isNonEmptyFor should return false");
 
   }
 
@@ -353,7 +358,7 @@ public class LocalizedStringTest {
     final Boolean expected = false;
     final Boolean actual = input.isNonEmptyFor(TextLanguage.FRENCH);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "isNonEmptyFor should return false");
 
   }
 
@@ -385,7 +390,7 @@ public class LocalizedStringTest {
     final Boolean expected = true;
     final Boolean actual = input.isForSelector("test-selector");
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "isForSelector should return true");
 
   }
 
@@ -418,7 +423,7 @@ public class LocalizedStringTest {
     final Boolean expected = false;
     final Boolean actual = input.isForSelector("not-present-selector");
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "isForSelector should return false");
 
   }
 
@@ -454,7 +459,7 @@ public class LocalizedStringTest {
         .asList("test-selector", "other-test-selector", "added-selector"));
     final List<String> actual = input.getSelectors();
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "addSelector should add selector");
 
   }
 
@@ -487,13 +492,15 @@ public class LocalizedStringTest {
 
     final Boolean expectedResult = true;
     final Boolean actualResult = input.removeSelector("test-selector");
-    assertEquals(expectedResult, actualResult);
+    assertEquals(expectedResult, actualResult,
+        "removeSelector should return true");
 
     final List<String> expectedSelectors =
         new ArrayList<>(Arrays.asList("other-test-selector"));
     final List<String> actualSelectors = input.getSelectors();
 
-    assertEquals(expectedSelectors, actualSelectors);
+    assertEquals(expectedSelectors, actualSelectors,
+        "removeSelector should remove selector");
 
   }
 
@@ -527,13 +534,15 @@ public class LocalizedStringTest {
     final Boolean expectedResult = false;
     final Boolean actualResult =
         input.removeSelector("not-present-selector");
-    assertEquals(expectedResult, actualResult);
+    assertEquals(expectedResult, actualResult,
+        "removeSelector should return false");
 
     final List<String> expectedSelectors = new ArrayList<>(
         Arrays.asList("test-selector", "other-test-selector"));
     final List<String> actualSelectors = input.getSelectors();
 
-    assertEquals(expectedSelectors, actualSelectors);
+    assertEquals(expectedSelectors, actualSelectors,
+        "removeSelector should not do anything");
 
   }
 
@@ -565,7 +574,7 @@ public class LocalizedStringTest {
     final String expected = "test in english";
     final String actual = input.from(TextLanguage.ENGLISH);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "from should return the text");
 
   }
 
@@ -596,7 +605,7 @@ public class LocalizedStringTest {
     final String expected = null;
     final String actual = input.from(TextLanguage.FRENCH);
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "from should return null");
 
   }
 
@@ -631,12 +640,14 @@ public class LocalizedStringTest {
     final String actualPrevious =
         input.translateIn(TextLanguage.FRENCH, "nouveau texte");
 
-    assertEquals(expectedPrevious, actualPrevious);
+    assertEquals(expectedPrevious, actualPrevious,
+        "translateIn should return the previous translation");
 
     final String expectedTranslation = "nouveau texte";
     final String actualTranslation = input.from(TextLanguage.FRENCH);
 
-    assertEquals(expectedTranslation, actualTranslation);
+    assertEquals(expectedTranslation, actualTranslation,
+        "translateIn should change the text");
 
   }
 
@@ -670,12 +681,14 @@ public class LocalizedStringTest {
     final String actualPrevious =
         input.translateIn(TextLanguage.FRENCH, "nouveau texte");
 
-    assertEquals(expectedPrevious, actualPrevious);
+    assertEquals(expectedPrevious, actualPrevious,
+        "translateIn should return null");
 
     final String expectedTranslation = "nouveau texte";
     final String actualTranslation = input.from(TextLanguage.FRENCH);
 
-    assertEquals(expectedTranslation, actualTranslation);
+    assertEquals(expectedTranslation, actualTranslation,
+        "translateIn should change the text");
 
   }
 
@@ -697,9 +710,10 @@ public class LocalizedStringTest {
     final List<String> selectorsActual = input.getSelectors();
     final Map<TextLanguage, String> textMapActual = input.getTextMap();
 
-    assertEquals(idExpected, idActual);
-    assertEquals(selectorsExpected, selectorsActual);
-    assertEquals(textMapExpected, textMapActual);
+    assertEquals(idExpected, idActual, "id should be set");
+    assertEquals(selectorsExpected, selectorsActual,
+        "selectors should be set");
+    assertEquals(textMapExpected, textMapActual, "textMap should be set");
 
   }
 
@@ -727,9 +741,10 @@ public class LocalizedStringTest {
     final List<String> selectorsActual = input.getSelectors();
     final Map<TextLanguage, String> textMapActual = input.getTextMap();
 
-    assertEquals(idExpected, idActual);
-    assertEquals(selectorsExpected, selectorsActual);
-    assertEquals(textMapExpected, textMapActual);
+    assertEquals(idExpected, idActual, "id should be set");
+    assertEquals(selectorsExpected, selectorsActual,
+        "selectors should be set");
+    assertEquals(textMapExpected, textMapActual, "textMap should be set");
 
   }
 
@@ -757,9 +772,10 @@ public class LocalizedStringTest {
     final List<String> selectorsActual = input.getSelectors();
     final Map<TextLanguage, String> textMapActual = input.getTextMap();
 
-    assertEquals(idExpected, idActual);
-    assertEquals(selectorsExpected, selectorsActual);
-    assertEquals(textMapExpected, textMapActual);
+    assertEquals(idExpected, idActual, "id should be set");
+    assertEquals(selectorsExpected, selectorsActual,
+        "selectors should be set");
+    assertEquals(textMapExpected, textMapActual, "textMap should be set");
 
   }
 
@@ -788,7 +804,7 @@ public class LocalizedStringTest {
 
     final Long actualId = input.getId();
 
-    assertEquals(expectedId, actualId);
+    assertEquals(expectedId, actualId, "getId should return the id");
   }
 
   /**
@@ -808,7 +824,7 @@ public class LocalizedStringTest {
 
     final Long actualId = input.getId();
 
-    assertEquals(expectedId, actualId);
+    assertEquals(expectedId, actualId, "setId should set the id");
   }
 
   /**
@@ -836,7 +852,8 @@ public class LocalizedStringTest {
 
     final List<String> actualSelectors = input.getSelectors();
 
-    assertEquals(expectedSelectors, actualSelectors);
+    assertEquals(expectedSelectors, actualSelectors,
+        "getSelectors should return the selectors");
   }
 
   /**
@@ -857,7 +874,8 @@ public class LocalizedStringTest {
 
     final List<String> actualSelectors = input.getSelectors();
 
-    assertEquals(expectedSelectors, actualSelectors);
+    assertEquals(expectedSelectors, actualSelectors,
+        "setSelectors should set the selectors");
   }
 
   /**
@@ -885,7 +903,8 @@ public class LocalizedStringTest {
 
     final Map<TextLanguage, String> actualTextMap = input.getTextMap();
 
-    assertEquals(expectedTextMap, actualTextMap);
+    assertEquals(expectedTextMap, actualTextMap,
+        "getTextMap should return the textMap");
   }
 
   /**
@@ -908,7 +927,8 @@ public class LocalizedStringTest {
 
     final Map<TextLanguage, String> actualTextMap = input.getTextMap();
 
-    assertEquals(expectedTextMap, actualTextMap);
+    assertEquals(expectedTextMap, actualTextMap,
+        "setTextMap should set the textMap");
   }
 
   /**
@@ -945,8 +965,9 @@ public class LocalizedStringTest {
     input2.setSelectors(selectors2);
     input2.setTextMap(expectedTextMap2);
 
-    assertEquals(input1, input2);
-    assertEquals(input1.hashCode(), input2.hashCode());
+    assertEquals(input1, input2, "Equals should be true if id are equal");
+    assertEquals(input1.hashCode(), input2.hashCode(),
+        "Hashcode should be the same if id are equal");
 
   }
 
@@ -986,8 +1007,10 @@ public class LocalizedStringTest {
     input2.setSelectors(selectors2);
     input2.setTextMap(expectedTextMap2);
 
-    assertNotEquals(input1, input2);
-    assertNotEquals(input1.hashCode(), input2.hashCode());
+    assertNotEquals(input1, input2,
+        "Equals should be false if id (and other fields) are different");
+    assertNotEquals(input1.hashCode(), input2.hashCode(),
+        "Hashcode should be different if id (and other fields) are different");
 
     input1.setId(id1);
     input1.setSelectors(selectors1);
@@ -996,15 +1019,19 @@ public class LocalizedStringTest {
     input2.setSelectors(selectors1);
     input2.setTextMap(expectedTextMap1);
 
-    assertNotEquals(input1, input2);
-    assertNotEquals(input1.hashCode(), input2.hashCode());
+    assertNotEquals(input1, input2,
+        "Equals should be false if id (only) are different");
+    assertNotEquals(input1.hashCode(), input2.hashCode(),
+        "Hashcode should be different if id (only) are different");
 
     @SuppressWarnings("unlikely-arg-type")
     final boolean actualNotSameType = input1.equals(new String());
-    assertFalse(actualNotSameType);
+    assertFalse(actualNotSameType,
+        "Equals should be false if other object is of another type");
 
     final boolean actualNull = input1.equals(null);
-    assertFalse(actualNull);
+    assertFalse(actualNull,
+        "Equals should be false if other object is null");
   }
 
   /**
@@ -1030,8 +1057,9 @@ public class LocalizedStringTest {
     input.setSelectors(selectors);
     input.setTextMap(expectedTextMap);
 
-    assertEquals(input, input);
-    assertEquals(input.hashCode(), input.hashCode());
+    assertEquals(input, input, "Equals should be reflexive");
+    assertEquals(input.hashCode(), input.hashCode(),
+        "Hashcode should be reflexive");
   }
 
   /**
@@ -1062,10 +1090,14 @@ public class LocalizedStringTest {
     input2.setSelectors(selectors);
     input2.setTextMap(expectedTextMap);
 
-    assertNotEquals(input1, input2);
-    assertNotEquals(input2, input1);
-    assertNotEquals(input1.hashCode(), input2.hashCode());
-    assertNotEquals(input2.hashCode(), input1.hashCode());
+    assertNotEquals(input1, input2,
+        "Equals should be symmetric (1 - different)");
+    assertNotEquals(input2, input1,
+        "Equals should be symmetric (2 - different)");
+    assertNotEquals(input1.hashCode(), input2.hashCode(),
+        "Hashcode should be symmetric (1 - different)");
+    assertNotEquals(input2.hashCode(), input1.hashCode(),
+        "Hashcode should be symmetric (2 - different)");
 
     input1.setId(id1);
     input1.setSelectors(selectors);
@@ -1074,10 +1106,12 @@ public class LocalizedStringTest {
     input2.setSelectors(selectors);
     input2.setTextMap(expectedTextMap);
 
-    assertEquals(input1, input2);
-    assertEquals(input2, input1);
-    assertEquals(input1.hashCode(), input2.hashCode());
-    assertEquals(input2.hashCode(), input1.hashCode());
+    assertEquals(input1, input2, "Equals should be symmetric (1 - same)");
+    assertEquals(input2, input1, "Equals should be symmetric (2 - same)");
+    assertEquals(input1.hashCode(), input2.hashCode(),
+        "Hashcode should be symmetric (1 - different)");
+    assertEquals(input2.hashCode(), input1.hashCode(),
+        "Hashcode should be symmetric (2 - different)");
   }
 
   /**
@@ -1125,12 +1159,15 @@ public class LocalizedStringTest {
     input3.setSelectors(selectors3);
     input3.setTextMap(expectedTextMap3);
 
-    assertEquals(input1, input2);
-    assertEquals(input2, input3);
-    assertEquals(input1, input3);
-    assertEquals(input1.hashCode(), input2.hashCode());
-    assertEquals(input2.hashCode(), input3.hashCode());
-    assertEquals(input1.hashCode(), input3.hashCode());
+    assertEquals(input1, input2, "Equals should be transitive - 1");
+    assertEquals(input2, input3, "Equals should be transitive - 2");
+    assertEquals(input1, input3, "Equals should be transitive - 3");
+    assertEquals(input1.hashCode(), input2.hashCode(),
+        "Hashcode should be transitive - 1");
+    assertEquals(input2.hashCode(), input3.hashCode(),
+        "Hashcode should be transitive - 2");
+    assertEquals(input1.hashCode(), input3.hashCode(),
+        "Hashcode should be transitive - 3");
   }
 
   /**
@@ -1161,6 +1198,7 @@ public class LocalizedStringTest {
         + "\ttextMap = " + textMap + "\r\n" + "]";
     final String actual = input.toString();
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "toString should return a proper representation of the entity");
   }
 }

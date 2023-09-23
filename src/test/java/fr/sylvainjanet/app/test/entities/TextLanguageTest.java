@@ -27,7 +27,8 @@ public class TextLanguageTest {
     final String expected = "fr";
     final String actual = TextLanguage.FRENCH.getLanguage();
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "getLanguage should return the language");
   }
 
   /**
@@ -40,7 +41,7 @@ public class TextLanguageTest {
     final String expected = "FR";
     final String actual = TextLanguage.FRENCH.getRegion();
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "getRegion should return the region");
   }
 
   /**
@@ -53,7 +54,7 @@ public class TextLanguageTest {
     final String expected = "";
     final String actual = TextLanguage.FRENCH.getVariant();
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "getVariant should return the variant");
   }
 
   /**
@@ -66,7 +67,7 @@ public class TextLanguageTest {
     final String expected = "Latn";
     final String actual = TextLanguage.FRENCH.getScript();
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "getScript should return the script");
   }
 
   /**
@@ -80,6 +81,6 @@ public class TextLanguageTest {
         .setRegion("FR").setVariant("").setScript("Latn").build();
     final Locale actual = TextLanguage.FRENCH.getLocale();
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual, "getLocale should return the locale");
   }
 }

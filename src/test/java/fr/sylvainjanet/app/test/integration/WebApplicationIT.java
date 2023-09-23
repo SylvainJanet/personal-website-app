@@ -29,7 +29,8 @@ public class WebApplicationIT {
   @DisplayName("context should load")
   void contextLoads() {
     // nothing to do
-    assertTrue(true);
+    assertTrue(true,
+        "should never fail, but will succeed only if the context loads");
   }
 
 }

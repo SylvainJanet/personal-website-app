@@ -34,7 +34,8 @@ public class StringDtoTest {
 
     final String actualMessage = input.getMessage();
 
-    assertEquals(expectedMessage, actualMessage);
+    assertEquals(expectedMessage, actualMessage,
+        "getMessage should return the message");
   }
 
   /**
@@ -54,7 +55,8 @@ public class StringDtoTest {
 
     final String actualMessage = input.getMessage();
 
-    assertEquals(expectedMessage, actualMessage);
+    assertEquals(expectedMessage, actualMessage,
+        "setMessage should set the message");
   }
 
   /**
@@ -70,7 +72,7 @@ public class StringDtoTest {
 
     final String messageActual = input.getMessage();
 
-    assertEquals(messageExpected, messageActual);
+    assertEquals(messageExpected, messageActual, "message should be set");
 
   }
 
@@ -87,7 +89,7 @@ public class StringDtoTest {
 
     final String messageActual = input.getMessage();
 
-    assertEquals(messageExpected, messageActual);
+    assertEquals(messageExpected, messageActual, "message should be set");
 
   }
 
@@ -109,8 +111,10 @@ public class StringDtoTest {
     input1.setMessage(message1);
     input2.setMessage(message2);
 
-    assertEquals(input1, input2);
-    assertEquals(input1.hashCode(), input2.hashCode());
+    assertEquals(input1, input2,
+        "Equals should be true if messages are equal");
+    assertEquals(input1.hashCode(), input2.hashCode(),
+        "Hashcode should be true if messages are equal");
 
   }
 
@@ -134,15 +138,19 @@ public class StringDtoTest {
     input1.setMessage(message1);
     input2.setMessage(message2);
 
-    assertNotEquals(input1, input2);
-    assertNotEquals(input1.hashCode(), input2.hashCode());
+    assertNotEquals(input1, input2,
+        "Equals should be false if messages are different");
+    assertNotEquals(input1.hashCode(), input2.hashCode(),
+        "Hashcode should be false if messages are different");
 
     @SuppressWarnings("unlikely-arg-type")
     final boolean actualNotSameType = input1.equals(new String());
-    assertFalse(actualNotSameType);
+    assertFalse(actualNotSameType,
+        "Equals should be false if other object is of another type");
 
     final boolean actualNull = input1.equals(null);
-    assertFalse(actualNull);
+    assertFalse(actualNull,
+        "Equals should be false if other object is null");
   }
 
   /**
@@ -160,8 +168,9 @@ public class StringDtoTest {
 
     input.setMessage(message);
 
-    assertEquals(input, input);
-    assertEquals(input.hashCode(), input.hashCode());
+    assertEquals(input, input, "Equals should be reflexive");
+    assertEquals(input.hashCode(), input.hashCode(),
+        "Hashcode should be reflexive");
   }
 
   /**
@@ -182,18 +191,24 @@ public class StringDtoTest {
     input1.setMessage(message1);
     input2.setMessage(message2);
 
-    assertNotEquals(input1, input2);
-    assertNotEquals(input2, input1);
-    assertNotEquals(input1.hashCode(), input2.hashCode());
-    assertNotEquals(input2.hashCode(), input1.hashCode());
+    assertNotEquals(input1, input2,
+        "Equals should be symmetric (1 - different)");
+    assertNotEquals(input2, input1,
+        "Equals should be symmetric (2 - different)");
+    assertNotEquals(input1.hashCode(), input2.hashCode(),
+        "Hashcode should be symmetric (1 - different)");
+    assertNotEquals(input2.hashCode(), input1.hashCode(),
+        "Hashcode should be symmetric (2 - different)");
 
     input1.setMessage(message1);
     input2.setMessage(message1);
 
-    assertEquals(input1, input2);
-    assertEquals(input2, input1);
-    assertEquals(input1.hashCode(), input2.hashCode());
-    assertEquals(input2.hashCode(), input1.hashCode());
+    assertEquals(input1, input2, "Equals should be symmetric (1 - same)");
+    assertEquals(input2, input1, "Equals should be symmetric (2 - same)");
+    assertEquals(input1.hashCode(), input2.hashCode(),
+        "Hashcode should be symmetric (1 - different)");
+    assertEquals(input2.hashCode(), input1.hashCode(),
+        "Hashcode should be symmetric (2 - different)");
   }
 
   /**
@@ -217,12 +232,15 @@ public class StringDtoTest {
     input2.setMessage(message2);
     input3.setMessage(message3);
 
-    assertEquals(input1, input2);
-    assertEquals(input2, input3);
-    assertEquals(input1, input3);
-    assertEquals(input1.hashCode(), input2.hashCode());
-    assertEquals(input2.hashCode(), input3.hashCode());
-    assertEquals(input1.hashCode(), input3.hashCode());
+    assertEquals(input1, input2, "Equals should be transitive - 1");
+    assertEquals(input2, input3, "Equals should be transitive - 2");
+    assertEquals(input1, input3, "Equals should be transitive - 3");
+    assertEquals(input1.hashCode(), input2.hashCode(),
+        "Hashcode should be transitive - 1");
+    assertEquals(input2.hashCode(), input3.hashCode(),
+        "Hashcode should be transitive - 2");
+    assertEquals(input1.hashCode(), input3.hashCode(),
+        "Hashcode should be transitive - 3");
   }
 
   /**
@@ -244,6 +262,7 @@ public class StringDtoTest {
         "StringDto\r\n" + "[\r\n\tmessage = test message\r\n" + "]";
     final String actual = input.toString();
 
-    assertEquals(expected, actual);
+    assertEquals(expected, actual,
+        "toString should return a proper representation of the dto");
   }
 }
