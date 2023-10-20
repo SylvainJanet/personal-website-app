@@ -2,7 +2,7 @@
 
 [![Deployed](https://github.com/SylvainJanet/personal-website-app/actions/workflows/ci-cd-main.yml/badge.svg)](https://github.com/SylvainJanet/personal-website-app/actions/workflows/ci-cd-main.yml)
 
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/SylvainJanet/personal-website-app)![GitHub repo file count](https://img.shields.io/github/directory-file-count/SylvainJanet/personal-website-app)![Lines of code](https://img.shields.io/tokei/lines/github/SylvainJanet/personal-website-app?category=lines)![GitHub issues](https://img.shields.io/github/issues/SylvainJanet/personal-website-app)![GitHub](https://img.shields.io/github/license/SylvainJanet/personal-website-app)![GitHub last commit](https://img.shields.io/github/last-commit/SylvainJanet/personal-website-app)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/SylvainJanet/personal-website-app)![GitHub repo file count](https://img.shields.io/github/directory-file-count/SylvainJanet/personal-website-app)![Lines of code](https://tokei.rs/b1/github/SylvainJanet/personal-website-app)![GitHub issues](https://img.shields.io/github/issues/SylvainJanet/personal-website-app)![GitHub](https://img.shields.io/github/license/SylvainJanet/personal-website-app)![GitHub last commit](https://img.shields.io/github/last-commit/SylvainJanet/personal-website-app)
 
 # sample Java App
 Sample Java App. Used to try and deploy on my VPS
